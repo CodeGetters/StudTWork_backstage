@@ -1,0 +1,13 @@
+src/auto-imports.d.ts
+src/components.d.ts
+
+dist
+src/assets
+public
+.env
+dev-dist/
+vite.config.js
+test/
+utils/
+
+commitlint.config.js

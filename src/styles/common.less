@@ -1,0 +1,120 @@
+/*
+ * @Description-en: global generic style variables
+ * @Description-zh: 全局通用样式变量
+ * @Author: CodeGetters
+ * @version:
+ * @Date: 2023-06-21 15:04:04
+ * @LastEditors: CodeGetters
+ * @LastEditTime: 2023-07-05 21:22:20
+ */
+
+@font-face {
+  font-family: "CascadiaCode";
+  src: url("../assets/font/CascadiaCode.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "CascadiaCodeItalic";
+  src: url(../assets/font/CascadiaCodeItalic.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+#app {
+  font-family: "CascadiaCode", "CascadiaCodeItalic", "微软雅黑";
+  overflow: hidden;
+}
+
+.fade-enter-from {
+  /* 进入时的透明度为 0 和 刚开始进入时的原始位置通过 active 透明度渐渐变为 1 */
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  /*定义进入完成后的位置 和 透明度 */
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.fade-leave-active,
+.fade-enter-active {
+  transition: all 0.5s ease-out;
+}
+
+// .fade-leave-from {
+//   /* 页面离开时一开始的css样式,离开后为leave-to，经过active渐渐透明 */
+//   transform: translateX(0%);
+//   opacity: 1;
+// }
+
+.fade-leave-to {
+  /* 这个是离开后的透明度通过下面的active阶段渐渐变为0 */
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+// 黑白主题变量
+:root {
+  /* ------------------loginPage---------------------------- */
+
+  --loginPage-bgc: linear-gradient(
+    45deg,
+    #c1deff 4.69%,
+    #e0eeff 26.56%,
+    #e5f8fb 87.13%
+  );
+
+  // login-form
+  --form-left-bgc: #f3fafd;
+  --form-right-bgc: #fff;
+  --form-left-logo-textColor: linear-gradient(to right, #38a7f8, #4e78f6);
+  --from-right-textColor: #000;
+  --form-right-textBgc: #fff;
+  --form-right-explain-textColor: #e1e4ea;
+  --form-right-forget-pwd: #a5afbd;
+  --form-bgc-box-shadow: #f2f6fb;
+  --form-right-btn: linear-gradient(135deg, #38a7f8 24.58%, #5074f5 100%),
+    #031f47;
+
+  // footer
+  --footer-textColor: #007fdf;
+
+  /* ------------------loginPage---------------------------- */
+
+  /* ------------------TopNavbar---------------------------- */
+  --navbar-bgc: #fff;
+  --navbar-logo-desc: linear-gradient(135deg, #3399e4 24.58%, #4d79f6 100%);
+  /* ------------------TopNavbar---------------------------- */
+}
+
+:root[theme="dark"] {
+  /* ------------------loginPage---------------------------- */
+
+  --loginPage-bgc: linear-gradient(
+    45deg,
+    #3a7ecd 4.69%,
+    #4991d2 36.46%,
+    #37b6c8 87.13%
+  );
+
+  // login-form
+  --form-left-bgc: #07346f;
+  --form-right-bgc: #2964b0;
+  --form-bgc-box-shadow: #3174c4;
+  --form-left-logo-textColor: linear-gradient(to right, #5092f5, #dee7fe);
+  --form-right-explain-textColor: #e1e4ea;
+  --from-right-textColor: #fff;
+  --form-right-textBgc: #2964b0;
+  --form-right-forget-pwd: #e1e4ea;
+  --form-right-btn: linear-gradient(135deg, #38a7f8 24.58%, #5074f5 100%),
+    #031f47;
+
+  // footer
+  --footer-textColor: #e1e4ea;
+
+  /* ------------------loginPage---------------------------- */
+}
