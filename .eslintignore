@@ -9,3 +9,5 @@ dev-dist/
 vite.config.js
 test/
 utils/
+
+commitlint.config.js

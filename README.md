@@ -1,68 +1,41 @@
 # StudTWork2
 
+English | [简体中文](./README-ZH.md)
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCodeGetters%2FStudTWork2.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCodeGetters%2FStudTWork2?ref=badge_shield)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Usage
 
-## Setup
+require:
 
-Make sure to install the dependencies:
+- node >= `16`
 
-```bash
-# npm
-npm install
+```shell
+$ git clone https://github.com/CodeGetters/studTWork.git
 
-# pnpm
-pnpm install
+# Recommend to use yarn
+$ yarn install
 
-# yarn
-yarn install
+# or using npm
+
+$ npm install
+
+# There may be some problems with using pnpm ❗
+$ pnpm install
+
 ```
 
-## Development Server
+## 贡献
 
-Start the development server on `http://localhost:3000`:
+If you would like to work on the TODO project, please submit your pr to the dev branch 👀
 
-```bash
-# npm
-npm run dev
+Most important: Run a command to check your code before committing it 🤞
 
-# pnpm
-pnpm run dev
+```shell
+# This will prevent your code from being reset
+$ yarn lint
 
-# yarn
-yarn dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
 ## License
 
