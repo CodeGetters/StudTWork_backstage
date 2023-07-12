@@ -15,8 +15,9 @@ const UserManage = () => import("../components/UserManage.vue");
 const UserHome = () => import("../components/UserHome.vue");
 const CommentManage = () => import("../components/CommentManage.vue");
 const UserCenter = () => import("../components/UserCenter.vue");
-
 const ArticleManage = () => import("../components/ArticleManage.vue");
+
+const ChartTest = () => import("../views/ChartTest.vue");
 const routes = [
   {
     path: "/",
@@ -38,8 +39,12 @@ const routes = [
         component: CommentManage,
       },
       {
-        path: "articleManage",
+        path: "/articleManage",
         component: ArticleManage,
+      },
+      {
+        path: "/charTest",
+        component: ChartTest,
       },
       {
         path: "/userCenter",

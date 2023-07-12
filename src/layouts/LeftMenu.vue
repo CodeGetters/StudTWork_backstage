@@ -89,6 +89,8 @@ const handleClose = (key, keyPath) => {
 #LeftMenu {
   height: 100%;
   display: flex;
+  position: fixed;
+  top: 5.5%;
   flex-direction: column;
 
   .el-menu {

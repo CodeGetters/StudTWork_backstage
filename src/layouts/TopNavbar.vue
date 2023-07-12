@@ -57,6 +57,9 @@ const toHome = () => {
 <style lang="less">
 #TopNavbar {
   height: 5.5%;
+  width: 100%;
+  position: fixed;
+  top: 0;
   border-bottom: 1px solid #e5e6eb;
 
   .el-row {

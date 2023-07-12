@@ -21,13 +21,17 @@ import IconsResolver from "unplugin-icons/resolver";
 
 import postcssPresetEnv from "postcss-preset-env";
 
-import path, { resolve } from "node:path";
+import path from "node:path";
 
 import viteCompression from "vite-plugin-compression";
 
 import { VitePWA } from "vite-plugin-pwa";
 
-// import VueDevTools from "vite-plugin-vue-devtools";
+import UnoCSS from "unocss/vite";
+
+import presetUno from "@unocss/preset-uno";
+
+import VueDevTools from "vite-plugin-vue-devtools";
 
 // https://vitejs.dev/config/
 
@@ -108,7 +112,11 @@ export default ({ mode }) => {
     plugins: [
       vue(),
       // https://github.com/webfansplz/vite-plugin-vue-devtools
-      // VueDevTools(),
+      VueDevTools(),
+      // https://github.com/unocss/unocss
+      UnoCSS({
+        presets: [presetUno()],
+      }),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         resolvers: [ElementPlusResolver()],

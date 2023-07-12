@@ -14,25 +14,57 @@ import TopNavbar from "../layouts/TopNavbar.vue";
 
 <template>
   <div id="HomePage">
-    <TopNavbar />
-    <div class="contentBox">
-      <LeftMenu />
-      <router-view />
+    <div class="topBar">
+      <TopNavbar />
+    </div>
+
+    <div class="main-content">
+      <div class="sideBar">
+        <LeftMenu />
+      </div>
+      <div class="main">
+        <router-view />
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="less">
 #HomePage {
-  height: 100vh;
   width: 100%;
-  min-width: 375px;
+  height: 100vh;
 
-  .contentBox {
-    height: 100%;
+  .topBar {
+    height: 5%;
+    width: 100%;
+    position: fixed;
+  }
+
+  .main-content {
+    height: calc(100vh - 5.5%);
     width: 100%;
     display: flex;
     flex-direction: row;
+
+    .sideBar {
+      height: 94.5%;
+      top: 5.5%;
+      width: 13%;
+      position: fixed;
+      overflow-y: auto;
+    }
+
+    .main {
+      flex: 1;
+      position: relative;
+      left: 13%;
+      top: 5.5%;
+      height: 100vh;
+      font-size: 40px;
+      width: calc(100% - 13%);
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
   }
 }
 </style>
