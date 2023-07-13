@@ -123,6 +123,7 @@ const submitForm = async () => {
     await postLogin(isRight)
       .then((res) => {
         notification("success");
+        // TODO:检查是否有 token 有则删除
         // token 持久化
         authStore.setToken(JSON.stringify(res.data.token));
         router.push({

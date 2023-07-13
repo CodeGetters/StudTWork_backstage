@@ -70,11 +70,11 @@ const collapse = ref(globalConfig.layout.isCollapse);
       left: 13%;
       top: 5.5%;
       height: 100vh;
-      font-size: 40px;
       width: calc(100% - 13%);
       overflow-y: auto;
       box-sizing: border-box;
       transition: all 0.3s ease-in;
+      padding: 2%;
     }
 
     .mainOff {

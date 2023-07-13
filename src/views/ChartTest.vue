@@ -1,6 +1,69 @@
 <script setup>
-import * as echart from "echarts";
 import { onMounted, onUnmounted } from "vue";
+import { getAllUser } from "../api/user";
+import * as echart from "echarts";
+
+const getUsers = async () => {
+  await getAllUser()
+    .then((res) => {
+      handleUsers(res.data.users);
+    })
+    .catch((err) => {
+      console.log("err:", err);
+    });
+};
+
+const handleUsers = async (data) => {
+  const showData = await data.reduce((count, item) => {
+    const name = item.role;
+    if (count[name]) {
+      count[name]++;
+    } else {
+      count[name] = 1;
+    }
+    return count;
+  }, {});
+  const arr = Object.entries(showData).map(([name, value]) => {
+    return { name, value };
+  });
+
+  const pieChart = async () => {
+    let chart = echart.init(document.getElementById("showUser"), "auto");
+    await chart.setOption({
+      title: {
+        text: "StudTWork 人员分配情况",
+        left: "center",
+      },
+      tooltip: {
+        trigger: "item",
+      },
+      legend: {
+        // 图例列表的布局朝向。
+        orient: "vertical",
+        left: "left",
+      },
+      series: [
+        {
+          // 系列名称，鼠标 hover 显示的文本
+          name: "人员",
+          type: "pie",
+          radius: "50%",
+          data: arr,
+          // 高亮状态的扇区和标签样式。
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              // 阴影水平方向上的偏移距离。
+              shadowOffsetX: 0,
+              shadowColor: "rgba(0, 0, 0, 0.5)",
+            },
+          },
+        },
+      ],
+    });
+  };
+  pieChart();
+};
 
 const initLineChart = () => {
   let chart = echart.init(document.getElementById("chart1"), "auto");
@@ -121,6 +184,7 @@ const initCatrChart = () => {
 };
 
 onMounted(() => {
+  getUsers();
   initLineChart();
   initPieChart();
   initCatrChart();
@@ -134,10 +198,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="chart-box1">
-    <div id="chart1" :style="{ width: '900px', height: '300px' }"></div>
-    <div id="chart2" :style="{ with: '900px', height: '300px' }"></div>
-    <div id="chart3" :style="{ with: '900px', height: '300px' }"></div>
-    <div id="chart4" :style="{ with: '900px', height: '300px' }"></div>
+  <div class="chartUser h300px">
+    <div id="showUser" :style="{ width: '500px', height: '300px' }"></div>
+  </div>
+  <div class="chart-box1 w500px">
+    <div id="chart1" :style="{ width: '500px', height: '300px' }"></div>
+    <div id="chart2" :style="{ with: '500px', height: '300px' }"></div>
+    <div id="chart3" :style="{ with: '500px', height: '300px' }"></div>
   </div>
 </template>

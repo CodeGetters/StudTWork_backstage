@@ -8,6 +8,9 @@
  */
 import axios from "axios";
 
+import useAuthStore from "../store/auth";
+const authStore = useAuthStore();
+
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
   headers: {
@@ -17,20 +20,12 @@ const service = axios.create({
 
 // 请求拦截器
 service.interceptors.request.use(
+  // 在发送请求之前做什么
   function (config) {
-    // 在发送请求之前做什么
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  },
-);
-
-// 响应拦截器
-service.interceptors.response.use(
-  function (config) {
-    // 2xx 范围内的状态码都会触发该函数
-    // 对响应做什么
+    if (authStore.Authorization !== null) {
+      config.headers.authorization =
+        "Bearer " + authStore.Authorization.slice(1, -1);
+    }
     return config;
   },
   function (error) {
