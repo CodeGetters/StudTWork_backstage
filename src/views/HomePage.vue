@@ -7,9 +7,15 @@
  * @LastEditTime: 2023-07-07 10:52:30
 -->
 <script setup>
-// import { changeTheme } from "@/utils/index.js";
+import { ref } from "vue";
 import LeftMenu from "../layouts/LeftMenu.vue";
 import TopNavbar from "../layouts/TopNavbar.vue";
+import globalConfig from "../utils/globalConfig";
+const collapse = ref(globalConfig.layout.isCollapse);
+
+// watch(collapse, (preValue, newValue) => {
+//   console.log("old,new", preValue, newValue);
+// });
 </script>
 
 <template>
@@ -19,10 +25,10 @@ import TopNavbar from "../layouts/TopNavbar.vue";
     </div>
 
     <div class="main-content">
-      <div class="sideBar">
-        <LeftMenu />
+      <div class="sideBar" :class="{ sidebarOff: collapse }">
+        <LeftMenu @update-value="collapse = $event" />
       </div>
-      <div class="main">
+      <div class="main" :class="{ mainOff: collapse }">
         <router-view />
       </div>
     </div>
@@ -54,6 +60,10 @@ import TopNavbar from "../layouts/TopNavbar.vue";
       overflow-y: auto;
     }
 
+    .sidebarOff {
+      width: 4%;
+    }
+
     .main {
       flex: 1;
       position: relative;
@@ -64,6 +74,12 @@ import TopNavbar from "../layouts/TopNavbar.vue";
       width: calc(100% - 13%);
       overflow-y: auto;
       box-sizing: border-box;
+      transition: all 0.3s ease-in;
+    }
+
+    .mainOff {
+      left: 4%;
+      width: calc(100% - 4%);
     }
   }
 }
