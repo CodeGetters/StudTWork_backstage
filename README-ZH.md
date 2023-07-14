@@ -51,6 +51,10 @@ $ yarn build:mock
 $ yarn lint
 ```
 
+## TODO
+
+- homepage refactor with login and register component
+
 ## 许可证
 
 GNU
