@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-21 18:10:04
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-06 23:31:49
+ * @LastEditTime: 2023-07-14 13:09:21
 -->
 <script setup>
 import { ref, onMounted } from "vue";
@@ -15,6 +15,9 @@ import { postLogin } from "@/api/user";
 import { useRouter } from "vue-router";
 import useAuthStore from "@/store/auth";
 import useInfoStore from "@/store/user";
+
+import translate from "../assets/translate.svg";
+import theme from "@/assets/theme.svg";
 
 const authStore = useAuthStore();
 const userInfoStore = useInfoStore();
@@ -143,7 +146,7 @@ const submitForm = async () => {
 
 /**
  * @description 登录结果提示
- * @param {*} type 弹出类型 err ? success
+ * @param {*} type 弹出类型 err ? su                       ccess
  * @param {*} msg 失败信息
  */
 const notification = (type, msg) => {
@@ -158,9 +161,6 @@ const notification = (type, msg) => {
 
 <template>
   <div id="loginPage">
-    <button @click="changeTheme()">切换主题</button>
-
-    <button @click="changeLang()">切换语言</button>
     <el-row class="login-form">
       <el-col :xs="0" :sm="0" :md="12" :lg="12" class="login-left">
         <div class="logo-con">
@@ -221,6 +221,14 @@ const notification = (type, msg) => {
                 {{ $t("loginPage.noAccount") }}，
                 <router-link to="">{{ $t("loginPage.register") }}</router-link>
               </div>
+            </div>
+            <div class="changeButton relative">
+              <button @click="changeTheme()">
+                <img :src="theme" alt="theme" />
+              </button>
+              <button @click="changeLang()">
+                <img :src="translate" alt="translate" />
+              </button>
             </div>
           </div>
         </div>
@@ -433,6 +441,28 @@ const notification = (type, msg) => {
               font-size: 10px;
             }
           }
+
+          .changeButton {
+            position: relative;
+            left: 80%;
+
+            button {
+              height: 40px;
+              width: 40px;
+              border-radius: 50%;
+              outline: none;
+              border: none;
+              cursor: pointer;
+              overflow: hidden;
+              background-color: #fff;
+              margin-right: 10px;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
         }
       }
 
@@ -441,6 +471,7 @@ const notification = (type, msg) => {
       }
     }
   }
+
   .footer {
     width: 100%;
     display: flex;
