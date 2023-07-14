@@ -18,6 +18,7 @@ const UserCenter = () => import("../components/UserCenter.vue");
 const ArticleManage = () => import("../components/ArticleManage.vue");
 
 const ChartTest = () => import("../views/ChartTest.vue");
+const MapTest = () => import("../views/MapTest.vue");
 const routes = [
   {
     path: "/",
@@ -49,6 +50,10 @@ const routes = [
       {
         path: "/userCenter",
         component: UserCenter,
+      },
+      {
+        path: "/mapTest",
+        component: MapTest,
       },
     ],
   },

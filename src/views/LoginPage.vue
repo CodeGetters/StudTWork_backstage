@@ -13,9 +13,11 @@ import i18n from "@/i18n";
 import { changeTheme, recallTheme } from "@/utils/index";
 import { postLogin } from "@/api/user";
 import { useRouter } from "vue-router";
-import useAuthStore from "../store/auth";
+import useAuthStore from "@/store/auth";
+import useInfoStore from "@/store/user";
 
 const authStore = useAuthStore();
+const userInfoStore = useInfoStore();
 const router = useRouter();
 
 onMounted(() => {
@@ -123,9 +125,10 @@ const submitForm = async () => {
     await postLogin(isRight)
       .then((res) => {
         notification("success");
-        // TODO:检查是否有 token 有则删除
-        // token 持久化
+        // token 和 userInfo 持久化
         authStore.setToken(JSON.stringify(res.data.token));
+        userInfoStore.setUserInfo(res.data.userInfo);
+
         router.push({
           path: "/home",
         });
@@ -151,8 +154,6 @@ const notification = (type, msg) => {
     type,
   });
 };
-
-// console.log("mode：", import.meta.env.MODE);
 </script>
 
 <template>

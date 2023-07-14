@@ -1,12 +1,17 @@
 <script setup>
 import { avatarGroup } from "@/utils/assets";
 import translate from "../assets/layout/translate.svg";
+import avatar from "../assets/layout/avatar.png";
 
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
 
 import { useRouter } from "vue-router";
 const router = useRouter();
+
+import UseInfoStore from "../store/user";
+
+const infoStore = UseInfoStore();
 
 /**
  * @description 语言切换
@@ -39,7 +44,7 @@ const toHome = () => {
       <el-col :xs="16" :sm="12" :md="10" :lg="6" class="right">
         <div class="avatarGroup">
           <div class="icon" @click="changeLang()">
-            <img :src="translate" alt="" />
+            <img :src="translate" alt="语言切换" />
           </div>
           <div
             class="icon"
@@ -47,7 +52,11 @@ const toHome = () => {
             :key="item"
             @click="item.onPress"
           >
-            <img :src="item.src" alt="" />
+            <img :src="item.src" :alt="item.alt" />
+          </div>
+          <div class="avatar w30% flex flex-row items-center justify-around">
+            <span class="userName">{{ infoStore.userInfo.userName }}</span>
+            <img :src="avatar" alt="头像" />
           </div>
         </div>
       </el-col>
@@ -67,7 +76,6 @@ const toHome = () => {
     height: 100%;
     background-color: var(--navbar-bgc);
 
-    // 480
     .left {
       width: 100%;
       height: 100%;
@@ -111,7 +119,6 @@ const toHome = () => {
       height: 100%;
     }
 
-    // 640
     .right {
       width: 100%;
       height: 100%;
@@ -125,7 +132,7 @@ const toHome = () => {
         flex-direction: row;
         align-items: center;
         justify-content: flex-end;
-        margin-right: 2%;
+        margin-right: 4%;
 
         .icon {
           width: 30px;
@@ -139,6 +146,18 @@ const toHome = () => {
           img {
             width: 100%;
             height: 100%;
+          }
+        }
+
+        .avatar {
+          border-radius: 15px;
+          font-size: 12px;
+          align-items: center;
+          background-color: #f2f3f5;
+          cursor: pointer;
+
+          .userName {
+            padding: 6%;
           }
         }
       }

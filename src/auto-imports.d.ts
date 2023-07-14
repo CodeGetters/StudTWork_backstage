@@ -63,6 +63,7 @@ declare global {
   const useRoute: typeof import("vue-router")["useRoute"];
   const useRouter: typeof import("vue-router")["useRouter"];
   const useSlots: typeof import("vue")["useSlots"];
+  const user: typeof import("./store/user.js")["default"];
   const watch: typeof import("vue")["watch"];
   const watchEffect: typeof import("vue")["watchEffect"];
   const watchPostEffect: typeof import("vue")["watchPostEffect"];
@@ -86,6 +87,9 @@ import { UnwrapRef } from "vue";
 declare module "vue" {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import("vue")["EffectScope"]>;
+    readonly ElNotification: UnwrapRef<
+      typeof import("element-plus/es")["ElNotification"]
+    >;
     readonly auth: UnwrapRef<typeof import("./store/auth.js")["default"]>;
     readonly computed: UnwrapRef<typeof import("vue")["computed"]>;
     readonly createApp: UnwrapRef<typeof import("vue")["createApp"]>;
@@ -170,6 +174,7 @@ declare module "vue" {
     readonly useRoute: UnwrapRef<typeof import("vue-router")["useRoute"]>;
     readonly useRouter: UnwrapRef<typeof import("vue-router")["useRouter"]>;
     readonly useSlots: UnwrapRef<typeof import("vue")["useSlots"]>;
+    readonly user: UnwrapRef<typeof import("./store/user.js")["default"]>;
     readonly watch: UnwrapRef<typeof import("vue")["watch"]>;
     readonly watchEffect: UnwrapRef<typeof import("vue")["watchEffect"]>;
     readonly watchPostEffect: UnwrapRef<
@@ -183,6 +188,9 @@ declare module "vue" {
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import("vue")["EffectScope"]>;
+    readonly ElNotification: UnwrapRef<
+      typeof import("element-plus/es")["ElNotification"]
+    >;
     readonly auth: UnwrapRef<typeof import("./store/auth.js")["default"]>;
     readonly computed: UnwrapRef<typeof import("vue")["computed"]>;
     readonly createApp: UnwrapRef<typeof import("vue")["createApp"]>;
@@ -267,6 +275,7 @@ declare module "@vue/runtime-core" {
     readonly useRoute: UnwrapRef<typeof import("vue-router")["useRoute"]>;
     readonly useRouter: UnwrapRef<typeof import("vue-router")["useRouter"]>;
     readonly useSlots: UnwrapRef<typeof import("vue")["useSlots"]>;
+    readonly user: UnwrapRef<typeof import("./store/user.js")["default"]>;
     readonly watch: UnwrapRef<typeof import("vue")["watch"]>;
     readonly watchEffect: UnwrapRef<typeof import("vue")["watchEffect"]>;
     readonly watchPostEffect: UnwrapRef<

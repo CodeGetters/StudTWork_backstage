@@ -31,8 +31,8 @@ Mock.mock(BaseURL + "/router", "get", {
 });
 
 // 登录
-Mock.mock(BaseURL + "/user/login", "post", {
-  status: 200,
-  data: {},
-  msg: "登录成功！",
-});
+// Mock.mock(BaseURL + "/user/login", "post", {
+//   status: 200,
+//   data: {},
+//   msg: "登录成功！",
+// });
