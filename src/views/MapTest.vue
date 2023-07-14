@@ -439,8 +439,6 @@ const initMap = () => {
     backgroundColor: "transparent",
     title: {
       text: "全国主要城市空气质量",
-      subtext: "data from PM25.in",
-      sublink: "http://www.pm25.in",
       left: "center",
       textStyle: {
         color: "#fff",

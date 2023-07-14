@@ -19,6 +19,7 @@ const ArticleManage = () => import("../components/ArticleManage.vue");
 
 const ChartTest = () => import("../views/ChartTest.vue");
 const MapTest = () => import("../views/MapTest.vue");
+const ArticleTest = () => import("../views/ArticleTest.vue");
 const routes = [
   {
     path: "/",
@@ -28,7 +29,7 @@ const routes = [
     meta: { transition: "slide-right" },
     children: [
       {
-        path: "",
+        path: "/",
         component: UserHome,
       },
       {
@@ -54,6 +55,10 @@ const routes = [
       {
         path: "/mapTest",
         component: MapTest,
+      },
+      {
+        path: "/articleTest",
+        component: ArticleTest,
       },
     ],
   },

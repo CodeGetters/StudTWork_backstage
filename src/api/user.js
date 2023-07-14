@@ -5,11 +5,9 @@
  * @version:
  * @Date: 2023-06-29 22:05:35
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-04 21:53:24
+ * @LastEditTime: 2023-07-14 12:19:34
  */
 import service from "./index";
-
-// TODO:将 token 放在请求头中
 
 /**
  * @description 用户登录
