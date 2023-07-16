@@ -10,7 +10,16 @@ import {
   Expand,
 } from "@element-plus/icons-vue";
 
-const isCollapse = ref(false);
+import globalConfig from "../utils/globalConfig";
+
+const isCollapse = ref(globalConfig.layout.isCollapse);
+
+const emits = defineEmits(["updateValue"]);
+
+const changeCollapse = () => {
+  isCollapse.value = !isCollapse.value;
+  emits("updateValue", isCollapse.value);
+};
 
 import { useRouter } from "vue-router";
 const router = useRouter();
@@ -40,7 +49,7 @@ const handleClose = (key, keyPath) => {
       @close="handleClose"
       active-text-color="#165DFF"
     >
-      <el-menu-item index="1" @click="routerJump('/home', {})">
+      <el-menu-item index="1" @click="routerJump('/', {})">
         <el-icon><Odometer /></el-icon>
         <template #title>{{ $t("layout.homePage") }}</template>
       </el-menu-item>
@@ -78,7 +87,7 @@ const handleClose = (key, keyPath) => {
         <template #title>{{ $t("layout.userCenter") }}</template>
       </el-menu-item>
     </el-menu>
-    <button class="isOpen" @click="isCollapse = !isCollapse">
+    <button class="isOpen flex items-center" @click="changeCollapse()">
       <el-icon v-if="isCollapse"><Expand /></el-icon>
       <el-icon v-else><Fold /></el-icon>
     </button>
@@ -89,6 +98,8 @@ const handleClose = (key, keyPath) => {
 #LeftMenu {
   height: 100%;
   display: flex;
+  position: fixed;
+  top: 5.5%;
   flex-direction: column;
 
   .el-menu {
@@ -115,8 +126,6 @@ const handleClose = (key, keyPath) => {
     border: none;
     background-color: #fff;
     cursor: pointer;
-    display: flex;
-    align-items: center;
     justify-content: flex-end;
     padding: 0 10%;
   }

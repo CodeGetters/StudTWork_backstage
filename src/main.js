@@ -17,6 +17,8 @@ import i18n from "./i18n/index.js";
 
 import App from "./App.vue";
 
+import "virtual:uno.css";
+
 import "@/mock/index";
 
 import "animate.css";

@@ -28,8 +28,11 @@
     ]
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@bytemd/vue-next": "^1.21.0",
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
+    "echarts": "^5.4.2",
     "element-plus": "^2.3.6",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.4",
@@ -41,6 +44,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.6",
     "@commitlint/config-conventional": "^17.6.6",
+    "@unocss/preset-uno": "^0.53.5",
     "@vitejs/plugin-vue": "^4.1.0",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
@@ -53,12 +57,14 @@
     "postcss": "^8.4.24",
     "postcss-preset-env": "^8.5.0",
     "prettier": "^3.0.0",
+    "unocss": "^0.53.5",
     "unplugin-auto-import": "^0.16.4",
     "unplugin-icons": "^0.16.3",
     "unplugin-vue-components": "^0.25.1",
     "vite": "^4.3.9",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-pwa": "^0.16.4",
+    "vite-plugin-vue-devtools": "^0.5.1",
     "vitest": "^0.32.2"
   }
 }
