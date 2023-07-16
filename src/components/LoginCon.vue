@@ -1,3 +1,12 @@
+<!--
+ * @Description-en: 
+ * @Description-zh: 登录页
+ * @Author: CodeGetters
+ * @version: 
+ * @Date: 2023-07-16 10:15:41
+ * @LastEditors: CodeGetters
+ * @LastEditTime: 2023-07-16 18:32:48
+-->
 <script setup>
 import { ref } from "vue";
 import i18n from "@/i18n";
@@ -49,15 +58,20 @@ const ruleFormRef = ref();
 const checkAccount = (rule, value, callback) => {
   let usernameReg = /^(?=.*[a-zA-Z]).{4,11}$/;
   let emailReg = /^([a-zA-Z\d][\w-]{2,})@(\w{2,})\.([a-z]{2,})(\.[a-z]{2,})?$/;
-  if (value === "") {
+  let timer = null;
+
+  if (!value) {
     callback(new Error(i18n.global.t("loginPage.noNone")));
   } else {
-    if (usernameReg.test(value) || emailReg.test(value)) {
-      if (!ruleFormRef.value) return;
-      isRight.value.account = true;
-      callback();
-    }
-    callback(new Error(i18n.global.t("loginPage.accountVerify")));
+    timer = setTimeout(() => {
+      if (usernameReg.test(value) || emailReg.test(value)) {
+        if (!ruleFormRef.value) return;
+        isRight.value.account = true;
+        callback();
+      }
+      callback(new Error(i18n.global.t("loginPage.accountVerify")));
+      clearTimeout(timer);
+    }, 1000);
   }
 };
 
@@ -69,15 +83,20 @@ const checkAccount = (rule, value, callback) => {
  */
 const checkPass = (rule, value, callback) => {
   let passReg = /^(?=.*[a-zA-Z])(?=.*\d).{4,11}$/;
-  if (value === "") {
+  let timer = null;
+
+  if (!value) {
     callback(new Error(i18n.global.t("loginPage.noNone")));
   } else {
-    if (passReg.test(value)) {
-      if (!ruleFormRef.value) return;
-      isRight.value.pwd = true;
-      callback();
-    }
-    callback(new Error(i18n.global.t("loginPage.pwdVerify")));
+    timer = setTimeout(() => {
+      if (passReg.test(value)) {
+        if (!ruleFormRef.value) return;
+        isRight.value.pwd = true;
+        callback();
+      }
+      callback(new Error(i18n.global.t("loginPage.pwdVerify")));
+      clearTimeout(timer);
+    }, 1000);
   }
 };
 
@@ -173,7 +192,9 @@ const notification = (type, msg) => {
       <div
         class="login-form-container w76% h76% flex justify-center m-auto flex-col"
       >
-        <h1 class="m0 text-center">{{ $t("loginPage.loginTitle") }}</h1>
+        <h1 class="m0 text-center text-25px">
+          {{ $t("loginPage.loginTitle") }}
+        </h1>
         <div class="login-form-right-con h90%">
           <el-form
             ref="ruleFormRef"
@@ -223,7 +244,7 @@ const notification = (type, msg) => {
             >
               {{ $t("loginPage.noAccount") }}，
               <div class="cursor-pointer" @click="linkTo('/register')">
-                {{ $t("loginPage.register") }}
+                {{ $t("loginPage.goRegister") }}
               </div>
             </div>
           </div>
@@ -271,7 +292,6 @@ const notification = (type, msg) => {
     .login-form-container {
       h1 {
         color: var(--from-right-textColor);
-        font-size: 25px;
         padding-bottom: 3%;
       }
 

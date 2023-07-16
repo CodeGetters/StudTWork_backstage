@@ -1,11 +1,11 @@
 <!--
  * @Description-en:Login Page
- * @Description-zh:登录页
+ * @Description-zh:前置页面
  * @Author: CodeGetters
  * @version:
  * @Date: 2023-06-21 18:10:04
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-16 14:00:47
+ * @LastEditTime: 2023-07-16 15:29:20
 -->
 <script setup>
 import { onMounted } from "vue";

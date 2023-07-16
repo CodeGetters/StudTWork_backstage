@@ -1,10 +1,11 @@
 /*
  * @Description:
  * @Author: CodeGetters
+    matchAgainPwd: "两次密码输入不匹配!",
  * @version:
  * @Date: 2023-06-21 20:00:09
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-06 23:14:22
+ * @LastEditTime: 2023-07-16 18:15:10
  */
 const zhCN = {
   admin: "admin",
@@ -22,7 +23,7 @@ const zhCN = {
     loginForm: "submit",
     otherPlatform: "other login methods",
     noAccount: "no account",
-    register: "go register",
+    goRegister: "go register",
     privateCon: "private content",
     policyAgree: "policy agreement",
     accountIpt: "Please enter userName/email",
@@ -31,6 +32,14 @@ const zhCN = {
     pwdVerify:
       "Please enter a 5-12 digit password containing letters and numbers",
     noNone: "The input field cannot be empty",
+    register: "register",
+    againPwd: "Please enter the password again!",
+    gender: "gender",
+    gentleman: "gentleman",
+    lady: "lady",
+    secret: "keep secret",
+    matchAgainPwd: "Two entered passwords do not match!",
+    goHome: "back to homepage",
   },
   layout: {
     homePage: "homePage",

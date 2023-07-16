@@ -69,6 +69,7 @@ const routes = [
     ],
   },
   {
+    // TODO:用户不能反复登录注册！(只能注销后才可以)
     path: "/login",
     name: "Login",
     component: Login,

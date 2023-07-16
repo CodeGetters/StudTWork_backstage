@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-29 22:05:35
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-14 12:19:34
+ * @LastEditTime: 2023-07-16 20:23:59
  */
 import service from "./index";
 
@@ -61,6 +61,7 @@ export const postRegister = async (data) => {
   const response = await service.post("/user/register", {
     userName: data.value.userName,
     pwd: data.value.pwd,
+    gender: data.value.gender,
   });
   return response.data;
 };
