@@ -21,6 +21,7 @@ declare module "vue" {
     ElMenuItemGroup: typeof import("element-plus/es")["ElMenuItemGroup"];
     ElRow: typeof import("element-plus/es")["ElRow"];
     ElSubMenu: typeof import("element-plus/es")["ElSubMenu"];
+    ForgetPwd: typeof import("./components/ForgetPwd.vue")["default"];
     LoginCon: typeof import("./components/LoginCon.vue")["default"];
     RegisterCon: typeof import("./components/RegisterCon.vue")["default"];
     RouterLink: typeof import("vue-router")["RouterLink"];

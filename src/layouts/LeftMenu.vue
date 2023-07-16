@@ -49,7 +49,7 @@ const handleClose = (key, keyPath) => {
       @close="handleClose"
       active-text-color="#165DFF"
     >
-      <el-menu-item index="1" @click="routerJump('/home', {})">
+      <el-menu-item index="1" @click="routerJump('/', {})">
         <el-icon><Odometer /></el-icon>
         <template #title>{{ $t("layout.homePage") }}</template>
       </el-menu-item>

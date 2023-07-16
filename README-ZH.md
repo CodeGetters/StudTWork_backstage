@@ -54,6 +54,8 @@ $ yarn lint
 ## TODO
 
 - homepage refactor with login and register component
+- article upload api
+- forget pwd component
 
 ## 许可证
 

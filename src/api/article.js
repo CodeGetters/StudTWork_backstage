@@ -5,11 +5,17 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-14 12:23:21
+ * @LastEditTime: 2023-07-14 19:52:07
  */
-// import service from "./index";
+import service from "./index";
 
-// export const uploadArticle = async (data) => {
-//   const response = await service.post("/article/upload", {});
-//   return response.data;
-// };
+/**
+ * @description:
+ * @param {*} data
+ */
+export const uploadArticle = async (data) => {
+  const response = await service.post("/article/upload", {
+    articleCon: data.value.articleCon,
+  });
+  return response.data;
+};

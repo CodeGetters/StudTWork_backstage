@@ -25,7 +25,7 @@ const changeLang = () => {
 
 // 路由跳转
 const toHome = () => {
-  router.push("/home");
+  router.push("/");
 };
 </script>
 
