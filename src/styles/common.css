@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-21 15:04:04
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-05 21:22:20
+ * @LastEditTime: 2023-07-18 00:32:56
  */
 @font-face {
   font-family: "CascadiaCode";
@@ -88,4 +88,7 @@
     #031f47;
   --footer-textColor: #e1e4ea;
   /* ------------------loginPage---------------------------- */
+  /* ------------------TopNavbar---------------------------- */
+  --navbar-bgc: #2964b0;
+  /* ------------------TopNavbar---------------------------- */
 }

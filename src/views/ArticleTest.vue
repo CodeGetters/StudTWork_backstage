@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 11:27:27
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-17 22:36:44
+ * @LastEditTime: 2023-07-17 23:50:34
 -->
 <script setup>
 // TODO:国际化以及布局主题切换
@@ -14,6 +14,8 @@ import { ref } from "vue";
 import { Editor } from "@bytemd/vue-next";
 import gfm from "@bytemd/plugin-gfm";
 import "bytemd/dist/index.css";
+
+import i18n from "@/i18n";
 
 import { uploadArticle } from "@/api/article";
 
@@ -30,7 +32,7 @@ const handleChange = (v) => {
 const messageTip = (type, msg) => {
   // eslint-disable-next-line no-undef
   ElMessage({
-    message: msg === "" ? "网络连接失败，请检查网络后再试" : msg,
+    message: msg === "" ? i18n.global.t("uploadArticle.networkError") : msg,
     type,
   });
 };
@@ -38,12 +40,12 @@ const messageTip = (type, msg) => {
 // 文章上传
 const uploadFile = async (visualRange) => {
   if (!articleCon.value) {
-    messageTip("error", "上传或保存文章，内容不能为空");
+    messageTip("error", i18n.global.t("uploadArticle.emptyArticle"));
     return;
   }
 
   if (visualRange === 0 && titleName.value === "") {
-    messageTip("error", "发布文章标调不能为空");
+    messageTip("error", i18n.global.t("uploadArticle.emptyTitle"));
     return;
   }
 
@@ -69,12 +71,16 @@ const uploadFile = async (visualRange) => {
       <input
         v-model="titleName"
         type="text"
-        placeholder="请输入文章标题"
+        :placeholder="$t('uploadArticle.iptTitle')"
         class="h100% outline-0 border-0 text-30px indent-2 w65%"
       />
       <div class="flex flex-row w30% h100% items-center ml-5%">
-        <button class="h50px w50px" @click="uploadFile(-1)">保存至草稿</button>
-        <button class="h50px w50px" @click="uploadFile(0)">发布</button>
+        <button class="h50px w50px" @click="uploadFile(-1)">
+          {{ $t("uploadArticle.saveToDraft") }}
+        </button>
+        <button class="h50px w50px" @click="uploadFile(0)">
+          {{ $t("uploadArticle.publish") }}
+        </button>
       </div>
     </div>
     <div class="mt-1% w96% h70%">
