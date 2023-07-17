@@ -25,7 +25,7 @@ $ pnpm install
 
 ```
 
-## 贡献
+## Contribute
 
 If you would like to work on the TODO project, please submit your pr to the dev branch 👀
 
@@ -33,8 +33,20 @@ Most important: Run a command to check your code before committing it 🤞
 
 ```shell
 # This will prevent your code from being reset
-$ yarn lint
 
+$ yarn lint
+```
+
+## docker
+
+```shell
+docker buildx build .
+
+# get the images_id
+docker images
+
+# open the http://localhost:8080
+docker run -p 8080:80 images_id
 ```
 
 ## License
