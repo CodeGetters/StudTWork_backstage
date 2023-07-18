@@ -333,3 +333,11 @@ export default ({ mode }) => {
 ```js
 pnpm build:front-mock
 ```
+
+### docker esbuild bug
+
+在对根目录进行构建的时候出现 docker esbuild platform 问题
+
+原因是在复制文件的时候把 node_modules 也复制过去了导致 esbuild 出现问题(win 系统和 linux 的系统所下的包不一样)
+
+最后直接是新建一个 .dockerfile 把 node_modules 忽略即可

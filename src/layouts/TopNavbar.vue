@@ -59,7 +59,7 @@ const toHome = () => {
             <img :src="item.src" :alt="item.alt" />
           </div>
           <div
-            class="avatar w30% flex flex-row items-center justify-around rounded-15px text-12px items-center"
+            class="avatar w30% flex flex-row items-center justify-around rounded-15px text-12px items-center cursor-pointer bg-#f2f3f5"
           >
             <span class="p6%">{{ infoStore.userInfo.userName }}</span>
             <img :src="avatar" alt="头像" />
@@ -71,8 +71,6 @@ const toHome = () => {
 </template>
 <style lang="less" scoped>
 #TopNavbar {
-  border-bottom: 1px solid #e5e6eb;
-
   .el-row {
     width: 100%;
     height: 100%;
@@ -116,11 +114,21 @@ const toHome = () => {
             width: 100%;
             height: 100%;
           }
+          &:hover {
+            opacity: 0.8;
+          }
+          &:active {
+            opacity: 0.5;
+          }
         }
 
         .avatar {
-          background-color: #f2f3f5;
-          cursor: pointer;
+          &:hover {
+            opacity: 0.9;
+          }
+          &:active {
+            opacity: 0.7;
+          }
         }
       }
     }

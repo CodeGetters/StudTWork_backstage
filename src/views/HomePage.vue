@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-20 16:51:34
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-17 17:03:32
+ * @LastEditTime: 2023-07-18 09:54:34
 -->
 <script setup>
 import { ref } from "vue";
@@ -39,7 +39,7 @@ const collapse = ref(globalConfig.layout.isCollapse);
 #HomePage {
   width: 100%;
   height: 100vh;
-  background-color: #f7f8fa;
+  background-color: var(--homePage-bgc);
 
   .topBar {
     height: 5%;

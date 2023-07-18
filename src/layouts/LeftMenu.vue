@@ -102,13 +102,15 @@ const handleClose = (key, keyPath) => {
   .el-menu {
     height: 90%;
     padding: 3.3% 3.6%;
+    border-right: none;
+    background-color: var(--navbar-bgc);
 
     .el-menu-item {
       border-radius: 2px;
     }
   }
 
-  // 表示一个具有 menuCon 类但不具有 el-menu--collapse 类的元素
+  // 具有 menuCon 类但不具有 el-menu--collapse 类的元素
   .menuCon:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
@@ -119,8 +121,8 @@ const handleClose = (key, keyPath) => {
   }
 
   .isOpen {
-    background-color: #fff;
     padding: 0 10%;
+    background-color: var(--navbar-bgc);
   }
 }
 </style>
