@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-20 16:51:34
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-07 10:52:30
+ * @LastEditTime: 2023-07-18 09:54:34
 -->
 <script setup>
 import { ref } from "vue";
@@ -39,6 +39,7 @@ const collapse = ref(globalConfig.layout.isCollapse);
 #HomePage {
   width: 100%;
   height: 100vh;
+  background-color: var(--homePage-bgc);
 
   .topBar {
     height: 5%;
@@ -65,7 +66,7 @@ const collapse = ref(globalConfig.layout.isCollapse);
     }
 
     .main {
-      flex: 1;
+      // flex: 1;
       position: relative;
       left: 13%;
       top: 5.5%;
@@ -74,7 +75,7 @@ const collapse = ref(globalConfig.layout.isCollapse);
       overflow-y: auto;
       box-sizing: border-box;
       transition: all 0.3s ease-in;
-      padding: 2%;
+      margin: 2%;
     }
 
     .mainOff {

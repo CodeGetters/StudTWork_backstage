@@ -6,6 +6,7 @@
 export {}
 declare global {
   const EffectScope: typeof import("vue")["EffectScope"];
+  const ElMessage: typeof import("element-plus/es")["ElMessage"];
   const ElNotification: typeof import("element-plus/es")["ElNotification"];
   const auth: typeof import("./store/auth.js")["default"];
   const computed: typeof import("vue")["computed"];
@@ -87,6 +88,9 @@ import { UnwrapRef } from "vue";
 declare module "vue" {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import("vue")["EffectScope"]>;
+    readonly ElMessage: UnwrapRef<
+      typeof import("element-plus/es")["ElMessage"]
+    >;
     readonly ElNotification: UnwrapRef<
       typeof import("element-plus/es")["ElNotification"]
     >;
@@ -188,6 +192,9 @@ declare module "vue" {
 declare module "@vue/runtime-core" {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import("vue")["EffectScope"]>;
+    readonly ElMessage: UnwrapRef<
+      typeof import("element-plus/es")["ElMessage"]
+    >;
     readonly ElNotification: UnwrapRef<
       typeof import("element-plus/es")["ElNotification"]
     >;

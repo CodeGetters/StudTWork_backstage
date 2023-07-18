@@ -22,15 +22,16 @@ export const changeTheme = () => {
       document.documentElement.setAttribute("theme", "dark");
       // 切换
       theme.toggleTheme();
+      clearTimeout(timer);
     }, 500);
   } else {
     timer = setTimeout(() => {
       document.documentElement.removeAttribute("theme");
       theme.toggleTheme();
+      clearTimeout(timer);
     }, 500);
   }
 };
-clearTimeout(timer);
 
 /**
  * @description 用于首次渲染时获取 localStorage 的值渲染主题

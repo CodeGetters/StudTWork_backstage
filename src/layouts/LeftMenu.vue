@@ -40,7 +40,7 @@ const handleClose = (key, keyPath) => {
 </script>
 
 <template>
-  <div id="LeftMenu">
+  <div id="LeftMenu" class="h100% flex fixed top-5.5% flex-col">
     <el-menu
       default-active="1"
       class="menuCon"
@@ -87,7 +87,10 @@ const handleClose = (key, keyPath) => {
         <template #title>{{ $t("layout.userCenter") }}</template>
       </el-menu-item>
     </el-menu>
-    <button class="isOpen flex items-center" @click="changeCollapse()">
+    <button
+      class="isOpen flex items-center h5% outline-none border-none cursor-pointer justify-end"
+      @click="changeCollapse()"
+    >
       <el-icon v-if="isCollapse"><Expand /></el-icon>
       <el-icon v-else><Fold /></el-icon>
     </button>
@@ -96,21 +99,18 @@ const handleClose = (key, keyPath) => {
 
 <style lang="less">
 #LeftMenu {
-  height: 100%;
-  display: flex;
-  position: fixed;
-  top: 5.5%;
-  flex-direction: column;
-
   .el-menu {
     height: 90%;
     padding: 3.3% 3.6%;
+    border-right: none;
+    background-color: var(--navbar-bgc);
 
     .el-menu-item {
       border-radius: 2px;
     }
   }
 
+  // 具有 menuCon 类但不具有 el-menu--collapse 类的元素
   .menuCon:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
@@ -121,13 +121,8 @@ const handleClose = (key, keyPath) => {
   }
 
   .isOpen {
-    height: 5%;
-    outline: none;
-    border: none;
-    background-color: #fff;
-    cursor: pointer;
-    justify-content: flex-end;
     padding: 0 10%;
+    background-color: var(--navbar-bgc);
   }
 }
 </style>
