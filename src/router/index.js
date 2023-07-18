@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-16 13:42:51
+ * @LastEditTime: 2023-07-18 10:27:44
  */
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -31,11 +31,12 @@ const routes = [
     path: "/",
     alias: "/home",
     name: "Home",
+    redirect: "/homePage",
     component: Home,
     meta: { transition: "slide-right" },
     children: [
       {
-        path: "/",
+        path: "/homePage",
         component: UserHome,
       },
       {
@@ -72,6 +73,7 @@ const routes = [
     // TODO:用户不能反复登录注册！(只能注销后才可以)
     path: "/login",
     name: "Login",
+    redirect: "/loginPage",
     component: Login,
     meta: { transition: "slide-right" },
     children: [
