@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-24 17:11:59
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-17 22:43:44
+ * @LastEditTime: 2023-07-18 10:06:23
  */
 import Mock from "mockjs";
 
@@ -30,41 +30,41 @@ Mock.mock(BaseURL + "/router", "get", {
   // data: "Mock successful!",
 });
 
-// // 登录
-// Mock.mock(BaseURL + "/user/login", "post", {
-//   status: 200,
-//   data: {
-//     token: "@string",
-//     userInfo: {
-//       id: "@natural",
-//       userName: "@cname",
-//       authority: 2,
-//       role: "普通用户",
-//       sex: "@string",
-//     },
-//   },
-//   msg: "登录成功！",
-// });
+// 登录
+Mock.mock(BaseURL + "/user/login", "post", {
+  status: 200,
+  data: {
+    token: "@string",
+    userInfo: {
+      id: "@natural",
+      userName: "@cname",
+      authority: 2,
+      role: "普通用户",
+      sex: "@string",
+    },
+  },
+  msg: "登录成功！",
+});
 
-// // 注册
-// Mock.mock(BaseURL + "/user/register", "post", {
-//   status: 200,
-//   data: {
-//     token: "@string",
-//     userInfo: {
-//       id: "@natural",
-//       userName: "@cname",
-//       authority: 2,
-//       role: "普通用户",
-//       sex: "@string",
-//     },
-//   },
-//   msg: "登录成功！",
-// });
+// 注册
+Mock.mock(BaseURL + "/user/register", "post", {
+  status: 200,
+  data: {
+    token: "@string",
+    userInfo: {
+      id: "@natural",
+      userName: "@cname",
+      authority: 2,
+      role: "普通用户",
+      sex: "@string",
+    },
+  },
+  msg: "登录成功！",
+});
 
-// // 上传文章
-// Mock.mock(BaseURL + "/article/upload", "post", {
-//   status: 200,
-//   data: {},
-//   msg: "上传成功",
-// });
+// 上传文章
+Mock.mock(BaseURL + "/article/upload", "post", {
+  status: 200,
+  data: {},
+  msg: "上传成功",
+});
