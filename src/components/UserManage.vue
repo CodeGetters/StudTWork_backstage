@@ -5,65 +5,55 @@
  * @version:
  * @Date: 2023-07-06 23:34:42
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-18 20:52:20
+ * @LastEditTime: 2023-07-18 23:43:15
 -->
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { getAllUser } from "@/api/user";
 
-const tableData = ref([
-  {
-    date: "2016-05-01",
-    name: "Tom",
-    state: "California",
-    city: "Los Angeles",
-    address: "No. 189, Grove St, Los Angeles",
-    zip: "CA 90036",
-  },
-  {
-    date: "2016-05-02",
-    name: "Tom",
-    state: "California",
-    city: "Los Angeles",
-    address: "No. 189, Grove St, Los Angeles",
-    zip: "CA 90036",
-  },
-  {
-    date: "2016-05-03",
-    name: "Tom",
-    state: "California",
-    city: "Los Angeles",
-    address: "No. 189, Grove St, Los Angeles",
-    zip: "CA 90036",
-  },
-]);
+const tableData = ref();
 
 // 删除行
 const deleteRow = (index) => {
   tableData.value.splice(index, 1);
 };
+
+onMounted(async () => {
+  const user = await getAllUser();
+  tableData.value = user.data.users;
+});
 </script>
 
 <template>
   <div id="UserManage" class="w100% h100%">
-    <el-table :data="tableData" style="width: 100%" max-height="600">
-      <el-table-column fixed prop="date" label="Date" width="150" />
-      <el-table-column prop="name" label="Name" width="120" />
-      <el-table-column prop="state" label="State" width="120" />
-      <el-table-column prop="city" label="City" width="120" />
-      <el-table-column prop="address" label="Address" width="600" />
-      <el-table-column prop="zip" label="Zip" width="120" />
-      <el-table-column fixed="right" label="Operations" width="120">
+    <el-table
+      :data="tableData"
+      stripe
+      style="width: 100%"
+      max-height="600"
+      border
+    >
+      <el-table-column fixed prop="userName" label="userName" width="250" />
+      <el-table-column prop="role" label="role" width="200" />
+      <el-table-column prop="registerTime" label="registerTime" width="300" />
+      <el-table-column label="operate" width="660">
         <template #default="scope">
-          <el-button
-            link
-            type="primary"
-            size="small"
+          <el-check-tag checked class="ml-2">修改用户权限</el-check-tag>
+          <el-check-tag checked class="ml-2">修改用户信息</el-check-tag>
+          <el-check-tag
+            checked
+            class="ml-2"
             @click.prevent="deleteRow(scope.$index)"
           >
-            Remove
-          </el-button>
+            移除用户
+          </el-check-tag>
         </template>
       </el-table-column>
     </el-table>
   </div>
 </template>
+
+<style scoped lang="less">
+#UserManage {
+}
+</style>

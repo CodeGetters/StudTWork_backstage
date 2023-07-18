@@ -12,7 +12,9 @@ declare module "vue" {
     ArticleManage: typeof import("./components/ArticleManage.vue")["default"];
     CommentManage: typeof import("./components/CommentManage.vue")["default"];
     ElButton: typeof import("element-plus/es")["ElButton"];
+    ElCheckTag: typeof import("element-plus/es")["ElCheckTag"];
     ElCol: typeof import("element-plus/es")["ElCol"];
+    ElDialog: typeof import("element-plus/es")["ElDialog"];
     ElDivider: typeof import("element-plus/es")["ElDivider"];
     ElForm: typeof import("element-plus/es")["ElForm"];
     ElFormItem: typeof import("element-plus/es")["ElFormItem"];
@@ -27,6 +29,7 @@ declare module "vue" {
     ElSubMenu: typeof import("element-plus/es")["ElSubMenu"];
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
+    ElTag: typeof import("element-plus/es")["ElTag"];
     ForgetPwd: typeof import("./components/ForgetPwd.vue")["default"];
     LoginCon: typeof import("./components/LoginCon.vue")["default"];
     RegisterCon: typeof import("./components/RegisterCon.vue")["default"];
