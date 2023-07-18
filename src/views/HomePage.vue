@@ -4,18 +4,30 @@
  * @version:
  * @Date: 2023-06-20 16:51:34
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-18 20:07:36
+ * @LastEditTime: 2023-07-18 21:13:46
 -->
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import LeftMenu from "../layouts/LeftMenu.vue";
 import TopNavbar from "../layouts/TopNavbar.vue";
 import globalConfig from "../utils/globalConfig";
 const collapse = ref(globalConfig.layout.isCollapse);
 
-// watch(collapse, (preValue, newValue) => {
-//   console.log("old,new", preValue, newValue);
-// });
+import router from "../router";
+
+const loading = ref(false);
+
+watch(
+  () => router.currentRoute.value.path,
+  (newValue, oldValue) => {
+    setTimeout(() => {
+      loading.value = false;
+    }, 1000);
+    loading.value = true;
+    console.log(`router address changed from ${oldValue} to ${newValue}`);
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -35,7 +47,13 @@ const collapse = ref(globalConfig.layout.isCollapse);
         class="main relative left-13% top-5.5% h100vh m-2%"
         :class="{ mainOff: collapse }"
       >
-        <router-view />
+        <div
+          class="main-container h80% w96% h88%"
+          element-loading-text="Loading..."
+          v-loading="loading"
+        >
+          <router-view />
+        </div>
       </div>
     </div>
   </div>
@@ -57,7 +75,6 @@ const collapse = ref(globalConfig.layout.isCollapse);
     }
 
     .main {
-      // flex: 1;
       width: calc(100% - 13%);
       overflow-y: auto;
       box-sizing: border-box;
