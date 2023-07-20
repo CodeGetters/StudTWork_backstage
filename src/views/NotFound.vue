@@ -36,19 +36,6 @@ onMounted(() => {});
 
 // ip 定位
 // https://lbs.amap.com/api/webservice/guide/api/ipconfig
-
-const gaoDeKey = import.meta.env.VITE_GAODE_API;
-
-console.log("--------------", gaoDeKey);
-const getIp = async () => {
-  const response = await fetch(
-    `https://restapi.amap.com/v3/ip?key=${gaoDeKey}`,
-  );
-
-  const data = await response.json();
-  // TODO:将返回的城市信息进行切割处理
-  console.log("data", data);
-};
 </script>
 
 <template>
@@ -61,8 +48,6 @@ const getIp = async () => {
     <!-- 我们还可以通过添加如下列出的类之一来控制动画速度。 -->
     <div class="animated slideInLeft slow|slower|fast|faster">sadfasdfasdf</div>
   </div>
-  <button @click="getIp()">定位</button>
-
   <div>
     <p v-if="location">location:{{ status.location }}</p>
     <p v-else>正在获取你的位置</p>

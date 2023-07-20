@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-16 10:15:41
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-16 18:32:48
+ * @LastEditTime: 2023-07-20 22:11:16
 -->
 <script setup>
 import { ref } from "vue";
@@ -26,6 +26,8 @@ const router = useRouter();
 // TODO:语言切换持久全局化
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
+
+import { getIp } from "../utils/getLocal";
 
 /**
  * @description 语言切换
@@ -123,27 +125,33 @@ const rules = ref({
  */
 const submitForm = async () => {
   if (isRight.value.account && isRight.value.pwd) {
-    const userName = ruleForm.value.account;
-    const pwd = ruleForm.value.pass;
-    isRight.value = {
-      userName,
-      pwd,
-    };
-    // 调用登录接口
-    await postLogin(isRight)
-      .then((res) => {
-        notification("success");
-        // token 和 userInfo 持久化
-        authStore.setToken(JSON.stringify(res.data.token));
-        userInfoStore.setUserInfo(res.data.userInfo);
+    const ipInfo = await getIp();
 
-        linkTo("/home");
-      })
-      .catch((err) => {
-        notification(err, err.response.data.msg);
-      });
+    isRight.value = {
+      userName: ruleForm.value.account,
+      pwd: ruleForm.value.pass,
+      city: ipInfo.city,
+      province: ipInfo.province,
+    };
+
+    // 调用登录接口
+    const loginRes = await postLogin(isRight).catch((err) => {
+      notification(err, err.response.data.msg);
+    });
+
+    // 登录成功
+    if (loginRes.msg === "success") {
+      notification("success");
+      // token 和 userInfo 持久化
+      authStore.setToken(JSON.stringify(loginRes.data.token));
+      userInfoStore.setUserInfo(loginRes.data.userInfo);
+      // 登录成功
+      linkTo("/home");
+    } else {
+      notification("error", "登录失败，请检查网络后重试");
+    }
   } else {
-    notification("error");
+    notification("error", "请填写账号密码");
   }
 };
 
@@ -159,10 +167,14 @@ const linkTo = (path) => {
  * @param {*} msg 失败信息
  */
 const notification = (type, msg) => {
+  if (msg === "") msg = "登录失败";
   // eslint-disable-next-line no-undef
   ElNotification({
     title: "消息提示",
-    message: type === "success" ? `欢迎回来 ${ruleForm.value.account}` : msg,
+    message:
+      type === "success"
+        ? `欢迎回来，远在${isRight.value.province}的 ${ruleForm.value.account}`
+        : msg,
     type,
   });
 };
