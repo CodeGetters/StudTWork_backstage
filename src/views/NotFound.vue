@@ -16,36 +16,39 @@ const status = ref({
   location: null,
 });
 
-const getLocation = (shoPosition) => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(shoPosition);
-  }
-};
+onMounted(() => {});
 
-const showPosition = (position) => {
-  console.log("纬度：", position.coords.latitude);
-  console.log("经度：", position.coords.longitude);
-};
+// if (navigator.geolocation) {
+//   navigator.geolocation.getCurrentPosition(
+//     (position) => {
+//       const latitude = position.coords.latitude;
+//       const longitude = position.coords.longitude;
+//       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+//       // 在这里可以将用户的地理位置信息发送到服务器端进行处理
+//     },
+//     (error) => {
+//       console.error(error);
+//     },
+//   );
+// } else {
+//   console.error("Geolocation is not supported by this browser.");
+// }
 
-onMounted(() => {
-  getLocation(showPosition);
-});
+// ip 定位
+// https://lbs.amap.com/api/webservice/guide/api/ipconfig
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const latitude = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-      // 在这里可以将用户的地理位置信息发送到服务器端进行处理
-    },
-    (error) => {
-      console.error(error);
-    },
+const gaoDeKey = import.meta.env.VITE_GAODE_API;
+
+console.log("--------------", gaoDeKey);
+const getIp = async () => {
+  const response = await fetch(
+    `https://restapi.amap.com/v3/ip?key=${gaoDeKey}`,
   );
-} else {
-  console.error("Geolocation is not supported by this browser.");
-}
+
+  const data = await response.json();
+  // TODO:将返回的城市信息进行切割处理
+  console.log("data", data);
+};
 </script>
 
 <template>
@@ -58,6 +61,7 @@ if (navigator.geolocation) {
     <!-- 我们还可以通过添加如下列出的类之一来控制动画速度。 -->
     <div class="animated slideInLeft slow|slower|fast|faster">sadfasdfasdf</div>
   </div>
+  <button @click="getIp()">定位</button>
 
   <div>
     <p v-if="location">location:{{ status.location }}</p>

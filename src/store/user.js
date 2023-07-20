@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 10:18:29
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-16 21:25:44
+ * @LastEditTime: 2023-07-20 20:25:00
  */
 import { defineStore } from "pinia";
 
@@ -19,6 +19,10 @@ const UseInfoStore = defineStore("userInfo", {
     async setUserInfo(userInfo) {
       this.userInfo = userInfo;
       localStorage.setItem("userInfo", JSON.stringify(userInfo));
+    },
+    async clearUserInfo() {
+      this.userInfo = null;
+      localStorage.clear("userInfo");
     },
   },
   getters: {

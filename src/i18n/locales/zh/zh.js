@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:16
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-17 23:49:38
+ * @LastEditTime: 2023-07-20 20:38:12
  */
 const zhCN = {
   admin: "后台管理系统",
@@ -54,6 +54,7 @@ const zhCN = {
     commentManage: "评论管理",
     articleManage: "文章管理",
     userCenter: "用户中心",
+    exitAccount: "退出",
   },
 };
 

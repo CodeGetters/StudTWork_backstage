@@ -5,12 +5,12 @@
  * @version:
  * @Date: 2023-07-06 23:34:42
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-18 23:43:15
+ * @LastEditTime: 2023-07-20 15:07:01
 -->
 <script setup>
 import { ref, onMounted } from "vue";
 import { getAllUser } from "@/api/user";
-
+import { dayjs } from "element-plus";
 const tableData = ref();
 
 // 删除行
@@ -20,6 +20,9 @@ const deleteRow = (index) => {
 
 onMounted(async () => {
   const user = await getAllUser();
+  user.data.users.forEach((item) => {
+    item.registerTime = dayjs().format("YYYY-MM-DD HH-mm:ss");
+  });
   tableData.value = user.data.users;
 });
 </script>
@@ -33,10 +36,10 @@ onMounted(async () => {
       max-height="600"
       border
     >
-      <el-table-column fixed prop="userName" label="userName" width="250" />
-      <el-table-column prop="role" label="role" width="200" />
-      <el-table-column prop="registerTime" label="registerTime" width="300" />
-      <el-table-column label="operate" width="660">
+      <el-table-column fixed prop="userName" label="用户名" width="250" />
+      <el-table-column prop="role" label="角色" width="200" />
+      <el-table-column prop="registerTime" label="注册时间" width="300" />
+      <el-table-column label="操作" width="660">
         <template #default="scope">
           <el-check-tag checked class="ml-2">修改用户权限</el-check-tag>
           <el-check-tag checked class="ml-2">修改用户信息</el-check-tag>
@@ -53,7 +56,4 @@ onMounted(async () => {
   </div>
 </template>
 
-<style scoped lang="less">
-#UserManage {
-}
-</style>
+<style scoped lang="less"></style>

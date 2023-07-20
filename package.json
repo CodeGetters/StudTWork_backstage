@@ -9,8 +9,8 @@
     "blog"
   ],
   "scripts": {
-    "dev": "vite --open --port 4000",
-    "build": "vite build",
+    "dev": "vite --open --port 5051",
+    "build": "vite build --mode production",
     "build:mock": "vite build --mode development",
     "preview": "vite preview --open --port 3000",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",

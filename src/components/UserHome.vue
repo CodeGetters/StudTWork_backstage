@@ -10,7 +10,10 @@
 <script setup></script>
 
 <template>
-  <div id="UserHome">{{ $t("layout.homePage") }}</div>
+  <div id="UserHome">
+    {{ $t("layout.homePage") }}
+    <router-link to="/articleTest">上传文章 测试中！</router-link>
+  </div>
 </template>
 
 <style lang="less"></style>
