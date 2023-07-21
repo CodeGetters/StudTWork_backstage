@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 11:27:27
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-17 23:50:34
+ * @LastEditTime: 2023-07-21 22:04:41
 -->
 <script setup>
 // TODO:国际化以及布局主题切换
@@ -14,6 +14,9 @@ import { ref } from "vue";
 import { Editor } from "@bytemd/vue-next";
 import gfm from "@bytemd/plugin-gfm";
 import "bytemd/dist/index.css";
+
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 import i18n from "@/i18n";
 
@@ -26,6 +29,13 @@ const articleInfo = ref(null);
 const plugins = [gfm()];
 const handleChange = (v) => {
   articleCon.value = v;
+};
+
+const JumpTo = (path, param) => {
+  router.push({
+    path,
+    query: param,
+  });
 };
 
 // 上传反馈
@@ -58,6 +68,7 @@ const uploadFile = async (visualRange) => {
   await uploadArticle(articleInfo)
     .then((res) => {
       messageTip("success", res.msg);
+      JumpTo("/homePage");
     })
     .catch((err) => {
       messageTip("error", err.response.data.msg);

@@ -12,7 +12,8 @@ declare module "vue" {
     ElButton: typeof import("element-plus/es")["ElButton"];
     ElCheckTag: typeof import("element-plus/es")["ElCheckTag"];
     ElCol: typeof import("element-plus/es")["ElCol"];
-    ElDivider: typeof import("element-plus/es")["ElDivider"];
+    ElDatePicker: typeof import("element-plus/es")["ElDatePicker"];
+    ElDialog: typeof import("element-plus/es")["ElDialog"];
     ElDropdown: typeof import("element-plus/es")["ElDropdown"];
     ElDropdownItem: typeof import("element-plus/es")["ElDropdownItem"];
     ElDropdownMenu: typeof import("element-plus/es")["ElDropdownMenu"];
@@ -23,12 +24,13 @@ declare module "vue" {
     ElMenu: typeof import("element-plus/es")["ElMenu"];
     ElMenuItem: typeof import("element-plus/es")["ElMenuItem"];
     ElMenuItemGroup: typeof import("element-plus/es")["ElMenuItemGroup"];
-    ElOption: typeof import("element-plus/es")["ElOption"];
+    ElRadio: typeof import("element-plus/es")["ElRadio"];
+    ElRadioGroup: typeof import("element-plus/es")["ElRadioGroup"];
     ElRow: typeof import("element-plus/es")["ElRow"];
-    ElSelect: typeof import("element-plus/es")["ElSelect"];
     ElSubMenu: typeof import("element-plus/es")["ElSubMenu"];
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
+    ElTimePicker: typeof import("element-plus/es")["ElTimePicker"];
     ForgetPwd: typeof import("./components/ForgetPwd.vue")["default"];
     LoginCon: typeof import("./components/LoginCon.vue")["default"];
     RegisterCon: typeof import("./components/RegisterCon.vue")["default"];
