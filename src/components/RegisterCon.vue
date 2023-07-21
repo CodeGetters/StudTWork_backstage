@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 13:38:57
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-16 21:32:02
+ * @LastEditTime: 2023-07-21 19:03:38
 -->
 <script setup>
 import { postRegister } from "@/api/user";
@@ -16,6 +16,8 @@ import translate from "../assets/translate.svg";
 import theme from "@/assets/theme.svg";
 import useAuthStore from "../store/auth";
 import useInfoStore from "../store/user";
+
+import { getIp } from "../utils/getLocal";
 
 const authStore = useAuthStore();
 const userStore = useInfoStore();
@@ -43,11 +45,18 @@ const ruleForm = ref({
   pass: "",
   checkPass: "",
   userName: "",
+  city: "",
+  province: "",
 });
 
 const genderValue = ref("");
 
-// 用户名检查
+/**
+ * @description 用户名检查
+ * @param {*} rule
+ * @param {*} value
+ * @param {*} callback
+ */
 const checkName = (rule, value, callback) => {
   let usernameReg = /^(?=.*[a-zA-Z]).{4,11}$/;
   let emailReg = /^([a-zA-Z\d][\w-]{2,})@(\w{2,})\.([a-z]{2,})(\.[a-z]{2,})?$/;
@@ -67,7 +76,12 @@ const checkName = (rule, value, callback) => {
   }
 };
 
-// 密码校验
+/**
+ * @description 密码检查
+ * @param {*} rule
+ * @param {*} value
+ * @param {*} callback
+ */
 const validatePass = (rule, value, callback) => {
   let passReg = /^(?=.*[a-zA-Z])(?=.*\d).{4,11}$/;
   let timer = null;
@@ -86,7 +100,12 @@ const validatePass = (rule, value, callback) => {
   }
 };
 
-// 再次输入密码
+/**
+ * @description 二次密码检查
+ * @param {*} rule
+ * @param {*} value
+ * @param {*} callback
+ */
 const checkPass = (rule, value, callback) => {
   if (!value) {
     callback(new Error(i18n.global.t("loginPage.noNone")));
@@ -95,27 +114,6 @@ const checkPass = (rule, value, callback) => {
   } else {
     callback();
   }
-};
-
-const linkTo = (path) => {
-  router.push({
-    path,
-  });
-};
-
-const newUser = ref(null);
-
-const createUser = async (userInfo) => {
-  await postRegister(userInfo)
-    .then((res) => {
-      notification("success");
-      authStore.setToken(JSON.stringify(res.data.token));
-      userStore.setUserInfo(res.data.userInfo);
-      linkTo("/home");
-    })
-    .catch((err) => {
-      notification("error", err.response.data.msg);
-    });
 };
 
 // 检验规则
@@ -143,14 +141,54 @@ const rules = ref({
   ],
 });
 
-const submitForm = (formEl) => {
+const linkTo = (path) => {
+  router.push({
+    path,
+  });
+};
+
+const newUser = ref(null);
+
+/**
+ * @description 注册用户
+ * @param {*} userInfo
+ */
+const createUser = async (userInfo) => {
+  const createRes = await postRegister(userInfo).catch((err) => {
+    notification("error", err.response.data.msg);
+  });
+
+  if (createRes.msg === "success") {
+    notification("success");
+    authStore.setToken(JSON.stringify(createRes.data.token));
+    userStore.setUserInfo(createRes.data.userInfo);
+    linkTo("/home");
+  } else {
+    notification("error", "请输入账号或密码");
+  }
+};
+
+/**
+ * @description: 注册填写表单
+ * @param {*} formEl
+ */
+const submitForm = async (formEl) => {
   if (!formEl) return;
+  const ipInfo = await getIp().catch((err) => {
+    return err;
+  });
+  ruleForm.value.city = ipInfo.city;
+  ruleForm.value.province = ipInfo.province;
+
+  // 校验
   formEl.validate(async (valid) => {
     if (valid) {
       newUser.value = {
         userName: ruleForm.value.userName,
         pwd: ruleForm.value.pass,
         gender: genderValue.value,
+        city: ruleForm.value.city,
+        province: ruleForm.value.province,
       };
       await createUser(newUser);
     } else {
@@ -169,7 +207,7 @@ const notification = (type, msg) => {
     title: "消息提示",
     message:
       type === "success"
-        ? `欢迎加入 StudTWork ${ruleForm.value.userName}`
+        ? `欢迎加入 StudTWork 远在${ruleForm.value.city}的 ${ruleForm.value.userName}`
         : msg,
     type,
   });
@@ -238,7 +276,6 @@ const options = [
         />
       </el-form-item>
 
-      <!-- TODO:用户注册成功就会获得 token，保存这个 token 并自动登录 -->
       <el-form-item class="flex items-center mt-8%">
         <el-button type="primary" @click="submitForm(ruleFormRef)">
           {{ $t("loginPage.register") }}

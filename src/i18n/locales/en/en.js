@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:09
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-17 23:49:52
+ * @LastEditTime: 2023-07-20 20:38:32
  */
 const zhCN = {
   admin: "admin",
@@ -57,6 +57,7 @@ const zhCN = {
     commentManage: "comment manage",
     articleManage: "article manage",
     userCenter: "user center",
+    exitAccount: "sign out",
   },
 };
 

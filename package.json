@@ -9,8 +9,8 @@
     "blog"
   ],
   "scripts": {
-    "dev": "vite --open --port 4000",
-    "build": "vite build",
+    "dev": "vite --open --port 5001",
+    "build": "vite build --mode production",
     "build:mock": "vite build --mode development",
     "preview": "vite preview --open --port 3000",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
@@ -32,6 +32,7 @@
     "@bytemd/vue-next": "^1.21.0",
     "animate.css": "^4.1.1",
     "axios": "^1.4.0",
+    "dayjs": "^1.11.9",
     "echarts": "^5.4.2",
     "element-plus": "^2.3.6",
     "normalize.css": "^8.0.1",

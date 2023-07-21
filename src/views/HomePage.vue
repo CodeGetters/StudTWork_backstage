@@ -4,32 +4,56 @@
  * @version:
  * @Date: 2023-06-20 16:51:34
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-18 09:54:34
+ * @LastEditTime: 2023-07-18 21:13:46
 -->
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import LeftMenu from "../layouts/LeftMenu.vue";
 import TopNavbar from "../layouts/TopNavbar.vue";
 import globalConfig from "../utils/globalConfig";
 const collapse = ref(globalConfig.layout.isCollapse);
 
-// watch(collapse, (preValue, newValue) => {
-//   console.log("old,new", preValue, newValue);
-// });
+import router from "../router";
+
+const loading = ref(false);
+
+watch(
+  () => router.currentRoute.value.path,
+  (newValue, oldValue) => {
+    setTimeout(() => {
+      loading.value = false;
+    }, 1000);
+    loading.value = true;
+    console.log(`router address changed from ${oldValue} to ${newValue}`);
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
-  <div id="HomePage">
-    <div class="topBar">
+  <div id="HomePage" class="w100% h100vh">
+    <div class="h5% w100% fixed">
       <TopNavbar />
     </div>
 
-    <div class="main-content">
-      <div class="sideBar" :class="{ sidebarOff: collapse }">
+    <div class="main-content w100% flex flex-row">
+      <div
+        class="sideBar h94.5% top-5.5% w13% fixed"
+        :class="{ sidebarOff: collapse }"
+      >
         <LeftMenu @update-value="collapse = $event" />
       </div>
-      <div class="main" :class="{ mainOff: collapse }">
-        <router-view />
+      <div
+        class="main relative left-13% top-5.5% h100vh m-2%"
+        :class="{ mainOff: collapse }"
+      >
+        <div
+          class="main-container h80% w96% h88%"
+          element-loading-text="Loading..."
+          v-loading="loading"
+        >
+          <router-view />
+        </div>
       </div>
     </div>
   </div>
@@ -37,27 +61,12 @@ const collapse = ref(globalConfig.layout.isCollapse);
 
 <style lang="less">
 #HomePage {
-  width: 100%;
-  height: 100vh;
   background-color: var(--homePage-bgc);
-
-  .topBar {
-    height: 5%;
-    width: 100%;
-    position: fixed;
-  }
 
   .main-content {
     height: calc(100vh - 5.5%);
-    width: 100%;
-    display: flex;
-    flex-direction: row;
 
     .sideBar {
-      height: 94.5%;
-      top: 5.5%;
-      width: 13%;
-      position: fixed;
       overflow-y: auto;
     }
 
@@ -66,16 +75,10 @@ const collapse = ref(globalConfig.layout.isCollapse);
     }
 
     .main {
-      // flex: 1;
-      position: relative;
-      left: 13%;
-      top: 5.5%;
-      height: 100vh;
       width: calc(100% - 13%);
       overflow-y: auto;
       box-sizing: border-box;
       transition: all 0.3s ease-in;
-      margin: 2%;
     }
 
     .mainOff {
