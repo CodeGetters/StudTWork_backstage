@@ -5,12 +5,12 @@
  * @version:
  * @Date: 2023-07-06 23:34:42
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 15:07:01
+ * @LastEditTime: 2023-07-21 19:41:36
 -->
 <script setup>
 import { ref, onMounted } from "vue";
 import { getAllUser } from "@/api/user";
-import { dayjs } from "element-plus";
+import * as dayjs from "dayjs";
 const tableData = ref();
 
 // 删除行

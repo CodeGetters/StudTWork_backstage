@@ -5,12 +5,12 @@
  * @version: 
  * @Date: 2023-07-09 13:24:41
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 15:03:09
+ * @LastEditTime: 2023-07-21 19:39:34
 -->
 <script setup>
 import { ref, onMounted } from "vue";
 import { showArticle } from "@/api/article";
-import { dayjs } from "element-plus";
+import * as dayjs from "dayjs";
 
 const tableData = ref();
 

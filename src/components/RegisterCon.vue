@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 13:38:57
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 22:44:00
+ * @LastEditTime: 2023-07-21 19:03:38
 -->
 <script setup>
 import { postRegister } from "@/api/user";
@@ -50,31 +50,6 @@ const ruleForm = ref({
 });
 
 const genderValue = ref("");
-
-// 检验规则
-const rules = ref({
-  userName: [
-    {
-      required: true,
-      validator: checkName,
-      trigger: "blur",
-    },
-  ],
-  pass: [
-    {
-      required: true,
-      validator: validatePass,
-      trigger: "blur",
-    },
-  ],
-  checkPass: [
-    {
-      required: true,
-      validator: checkPass,
-      trigger: "blur",
-    },
-  ],
-});
 
 /**
  * @description 用户名检查
@@ -140,6 +115,31 @@ const checkPass = (rule, value, callback) => {
     callback();
   }
 };
+
+// 检验规则
+const rules = ref({
+  userName: [
+    {
+      required: true,
+      validator: checkName,
+      trigger: "blur",
+    },
+  ],
+  pass: [
+    {
+      required: true,
+      validator: validatePass,
+      trigger: "blur",
+    },
+  ],
+  checkPass: [
+    {
+      required: true,
+      validator: checkPass,
+      trigger: "blur",
+    },
+  ],
+});
 
 const linkTo = (path) => {
   router.push({
@@ -207,7 +207,7 @@ const notification = (type, msg) => {
     title: "消息提示",
     message:
       type === "success"
-        ? `欢迎加入 StudTWork 远在${ruleForm.value.city}的${ruleForm.value.userName}`
+        ? `欢迎加入 StudTWork 远在${ruleForm.value.city}的 ${ruleForm.value.userName}`
         : msg,
     type,
   });
@@ -276,7 +276,6 @@ const options = [
         />
       </el-form-item>
 
-      <!-- TODO:用户注册成功就会获得 token，保存这个 token 并自动登录 -->
       <el-form-item class="flex items-center mt-8%">
         <el-button type="primary" @click="submitForm(ruleFormRef)">
           {{ $t("loginPage.register") }}
