@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-19 14:57:28
+ * @LastEditTime: 2023-07-22 13:14:23
  */
 import service from "./index";
 
@@ -27,6 +27,24 @@ export const uploadArticle = async (data) => {
  */
 export const showArticle = async () => {
   const response = await service.get("/article/showArticle");
+
+  return response.data;
+};
+
+/**
+ * @description 查看权限内可见文章
+ */
+export const findArticle = async () => {
+  const response = await service.get("/article/findArticle");
+
+  return response.data;
+};
+
+/**
+ * @description 查看用户自己的文章
+ */
+export const personalArticle = async () => {
+  const response = await service.get("/article/findPersonal");
 
   return response.data;
 };

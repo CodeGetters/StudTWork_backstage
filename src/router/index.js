@@ -16,7 +16,10 @@ const UserManage = () => import("../components/UserManage.vue");
 const UserHome = () => import("../components/UserHome.vue");
 const CommentManage = () => import("../components/CommentManage.vue");
 const UserCenter = () => import("../components/UserCenter.vue");
-const ArticleManage = () => import("../components/ArticleManage.vue");
+
+const PublicArticle = () => import("../components/PublicArticle.vue");
+const VisibleArticle = () => import("../components/VisibleArticle.vue");
+const MyArticle = () => import("../components/MyArticle.vue");
 
 const LoginPage = () => import("../components/LoginCon.vue");
 const registerPage = () => import("../components/RegisterCon.vue");
@@ -48,8 +51,16 @@ const routes = [
         component: CommentManage,
       },
       {
-        path: "/articleManage",
-        component: ArticleManage,
+        path: "/publicArticle",
+        component: PublicArticle,
+      },
+      {
+        path: "/visibleArticle",
+        component: VisibleArticle,
+      },
+      {
+        path: "/MyArticle",
+        component: MyArticle,
       },
       {
         path: "/charTest",

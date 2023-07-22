@@ -10,10 +10,13 @@ declare module "vue" {
     ArticleManage: typeof import("./components/ArticleManage.vue")["default"];
     CommentManage: typeof import("./components/CommentManage.vue")["default"];
     ElButton: typeof import("element-plus/es")["ElButton"];
+    ElCheckbox: typeof import("element-plus/es")["ElCheckbox"];
+    ElCheckboxGroup: typeof import("element-plus/es")["ElCheckboxGroup"];
     ElCheckTag: typeof import("element-plus/es")["ElCheckTag"];
     ElCol: typeof import("element-plus/es")["ElCol"];
     ElDatePicker: typeof import("element-plus/es")["ElDatePicker"];
     ElDialog: typeof import("element-plus/es")["ElDialog"];
+    ElDivider: typeof import("element-plus/es")["ElDivider"];
     ElDropdown: typeof import("element-plus/es")["ElDropdown"];
     ElDropdownItem: typeof import("element-plus/es")["ElDropdownItem"];
     ElDropdownMenu: typeof import("element-plus/es")["ElDropdownMenu"];
@@ -30,15 +33,19 @@ declare module "vue" {
     ElSubMenu: typeof import("element-plus/es")["ElSubMenu"];
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
+    ElText: typeof import("element-plus/es")["ElText"];
     ElTimePicker: typeof import("element-plus/es")["ElTimePicker"];
     ForgetPwd: typeof import("./components/ForgetPwd.vue")["default"];
     LoginCon: typeof import("./components/LoginCon.vue")["default"];
+    MyArticle: typeof import("./components/MyArticle.vue")["default"];
+    PublicArticle: typeof import("./components/PublicArticle.vue")["default"];
     RegisterCon: typeof import("./components/RegisterCon.vue")["default"];
     RouterLink: typeof import("vue-router")["RouterLink"];
     RouterView: typeof import("vue-router")["RouterView"];
     UserCenter: typeof import("./components/UserCenter.vue")["default"];
     UserHome: typeof import("./components/UserHome.vue")["default"];
     UserManage: typeof import("./components/UserManage.vue")["default"];
+    VisibleArticle: typeof import("./components/VisibleArticle.vue")["default"];
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import("element-plus/es")["ElLoadingDirective"];
