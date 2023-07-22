@@ -1,29 +1,48 @@
+<!--
+ * @Description-en: public article
+ * @Description-zh: 公开文章
+ * @Author: CodeGetters
+ * @version: 
+ * @Date: 2023-07-09 13:24:41
+ * @LastEditors: CodeGetters
+ * @LastEditTime: 2023-07-22 20:44:48
+-->
 <script setup>
 import { ref, onMounted } from "vue";
-import { findArticle } from "@/api/article";
+import { showArticle } from "@/api/article";
 import * as dayjs from "dayjs";
 
 const tableData = ref();
-
+// TODO：visualRange 对自己的文章进行是否公开、修改观看权限等。。。
+// TODO：将文章分离出来单独做一个文章管理菜单：包括：管理自己的文章，管理权限内可修改的文章
+// 当然，这个要经过超管同意(也就是给超管发送站内信)
 onMounted(async () => {
-  const articleList = await findArticle();
+  const articleList = await showArticle();
   let count = 1;
-  let articleLength = articleList.data.articleList.length;
+  let articleId = articleList.data.articleList.length;
   articleList.data.articleList.forEach((item) => {
     item.releaseTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-    if (count <= articleLength) item.articleId = count++;
+    item.lastUpdate = dayjs().format("YYYY-MM-DD HH:mm:ss");
+    if (count <= articleId) item.articleId = count++;
   });
-  // TODO：visualRange 对自己的文章进行是否公开、修改观看权限等。。。
-  // TODO：将文章分离出来单独做一个文章管理菜单：包括：管理自己的文章，管理权限内可修改的文章
-  // 当然，这个要经过超管同意(也就是给超管发送站内信)
+
   tableData.value = articleList.data.articleList;
 });
 
 // 修改文章信息
 const dialogArticleInfo = ref(false);
+const formLabelWidth = "140px";
+const articleInfo = ref({
+  articleName: "",
+  author: "",
+  date1: "",
+  date2: "",
+  visualRange: "",
+});
 
 // 修改文章内容
 const dialogArticleCon = ref(false);
+const articleCon = ref("");
 
 // 删除文章
 const articleDelete = ref(false);
@@ -36,7 +55,7 @@ const deleteRow = () => {
 </script>
 
 <template>
-  <div id="VisibleArticle" class="w100% h100%">
+  <div id="PublicArticle" class="w100% h100%">
     <el-table
       :data="tableData"
       stripe
@@ -44,11 +63,12 @@ const deleteRow = () => {
       max-height="600"
       border
     >
-      <el-table-column fixed prop="articleId" label="id" width="100" />
-      <el-table-column prop="articleName" label="文章名" width="230" />
-      <el-table-column prop="author" label="作者" width="180" />
-      <el-table-column prop="releaseTime" label="发布时间" width="250" />
-      <el-table-column prop="readers" label="阅读量" width="150" />
+      <el-table-column fixed prop="articleId" label="id" width="60" />
+      <el-table-column prop="articleName" label="文章名" width="200" />
+      <el-table-column prop="author" label="作者" width="130" />
+      <el-table-column prop="releaseTime" label="发布时间" width="210" />
+      <el-table-column prop="lastUpdate" label="最后更新时间" width="210" />
+      <el-table-column prop="readers" label="阅读量" width="100" />
       <el-table-column label="操作" width="660">
         <template #default="scope">
           <el-check-tag checked class="ml-2" @click="dialogArticleInfo = true"
@@ -67,6 +87,7 @@ const deleteRow = () => {
         </template>
       </el-table-column>
     </el-table>
+
     <!-- 弹出框：修改文章信息 -->
     <el-dialog v-model="dialogArticleInfo" title="Shipping address">
       <el-form :model="articleInfo">
@@ -91,6 +112,47 @@ const deleteRow = () => {
         <span class="dialog-footer">
           <el-button @click="dialogArticleInfo = false">取消</el-button>
           <el-button type="primary" @click="dialogArticleInfo = false">
+            提交
+          </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+    <el-dialog
+      v-model="dialogArticleCon"
+      title="Tips"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-input
+        v-model="articleCon"
+        autosize
+        type="textarea"
+        placeholder="Please input"
+      />
+      <!-- 尾部 -->
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogArticleCon = false">取消</el-button>
+          <el-button type="primary" @click="dialogArticleCon = false">
+            提交
+          </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+    <el-dialog
+      v-model="articleDelete"
+      title="Tips"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <span>此操作不可逆，是否继续</span>
+      <!-- 尾部 -->
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="articleDelete = false">取消</el-button>
+          <el-button type="primary" @click="articleDelete = false">
             提交
           </el-button>
         </span>

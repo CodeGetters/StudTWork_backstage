@@ -91,6 +91,10 @@ const handleClose = (key, keyPath) => {
           <el-menu-item index="2-3" @click="routerJump('/MyArticle', {})"
             >我的文章</el-menu-item
           >
+          <!-- 创建文章 -->
+          <el-menu-item index="2-4" @click="routerJump('/CreateArticle', {})"
+            >创建文章</el-menu-item
+          >
         </el-menu-item-group>
       </el-sub-menu>
       <!-- 管理台 -->
