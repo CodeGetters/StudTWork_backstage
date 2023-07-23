@@ -1,6 +1,11 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { personalArticle, updatePersonal } from "@/api/article";
+import {
+  personalArticle,
+  updatePersonal,
+  updateCon,
+  deletePersonal,
+} from "@/api/article";
 import { getArticleList } from "@/utils/articleList";
 
 const tableData = ref();
@@ -15,6 +20,7 @@ const dialogSwitch = ref({
 
 // 修改文章
 const articleInfo = ref({
+  id: "",
   articleName: "",
   author: "",
   isPublic: "",
@@ -101,12 +107,41 @@ const getArticleCon = (info) => {
   dialogSwitch.value.dialogArticleCon = true;
 };
 
-// 删除文章
-const deleteArticle = (id, row) => {
-  console.log(id, row);
-  dialogSwitch.value.articleDelete = true;
+// 提交修改后的文章内容
+const articleConSubmit = async () => {
+  const res = await updateCon(articleInfo).catch((err) => {
+    messageTip("error", "修改失败");
+    console.log(err);
+  });
+  if (res.msg !== "success") {
+    messageTip("error", "修改失败");
+  } else {
+    // 刷新页面数据
+    getArticleList(tableData, personalArticle);
+    messageTip("success");
+  }
+  dialogSwitch.value.dialogArticleCon = false;
+};
 
-  // tableData.value.splice(row, 1);
+// 删除文章
+const deleteArticle = (id) => {
+  articleInfo.value.id = id;
+  dialogSwitch.value.articleDelete = true;
+};
+
+// 确认删除文章
+const delSubmit = async () => {
+  const res = await deletePersonal(articleInfo).catch((err) => {
+    messageTip("error", "删除失败");
+    console.log(err);
+  });
+  if (res.msg === "success") {
+    getArticleList(tableData, personalArticle);
+    messageTip("success");
+  } else {
+    messageTip("error", "删除失败");
+  }
+  dialogSwitch.value.articleDelete = false;
 };
 
 // TODO：将文章分离出来单独做一个文章管理菜单：包括：管理自己的文章，管理权限内可修改的文章
@@ -222,10 +257,7 @@ onMounted(() => {
           <el-button @click="dialogSwitch.dialogArticleCon = false"
             >取消</el-button
           >
-          <el-button
-            type="primary"
-            @click="dialogSwitch.dialogArticleCon = false"
-          >
+          <el-button type="primary" @click="articleConSubmit()">
             提交
           </el-button>
         </span>
@@ -245,9 +277,7 @@ onMounted(() => {
           <el-button @click="dialogSwitch.articleDelete = false"
             >取消</el-button
           >
-          <el-button type="primary" @click="dialogSwitch.articleDelete = false">
-            提交
-          </el-button>
+          <el-button type="primary" @click="delSubmit()"> 提交 </el-button>
         </span>
       </template>
     </el-dialog>
