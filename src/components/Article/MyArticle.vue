@@ -7,29 +7,31 @@ import {
   deletePersonal,
 } from "@/api/article";
 import { getArticleList } from "@/utils/articleList";
-import i18n from "@/i18n";
+
+// 表格数据
 const tableData = ref();
+
+// 表单宽度
 const formLabelWidth = "100px";
 
 // 弹出框控制
 const dialogSwitch = ref({
-  dialogArticleCon: false,
-  dialogArticleInfo: false,
-  articleDelete: false,
+  dialogArticleCon: false, // 修改文章内容
+  dialogArticleInfo: false, // 修改文章信息
+  articleDelete: false, // 删除文章
 });
 
-// 修改文章
 const articleInfo = ref({
-  id: "",
-  articleName: "",
-  author: "",
-  isPublic: "",
-  visualArr: [],
-  visualRange: "",
-  articleCon: "",
+  id: "", //数据库中的文章 id
+  articleName: "", // 文章名
+  author: "", // 作者
+  isPublic: "", // 是否公开
+  visualArr: [], // 文章可见范围
+  visualRange: "", // 文章可见范围
+  articleCon: "", // 文章内容
 });
 
-// 修改结果
+// 修改结果提示
 const messageTip = (type, msg) => {
   // eslint-disable-next-line no-undef
   ElMessage({
@@ -38,18 +40,20 @@ const messageTip = (type, msg) => {
   });
 };
 
-// 自动显示文章信息
+// 自动填充文章信息
 // -1 -> 隐藏||0 -> 公开(1234)||1 -> 游客||2 -> 普通用户||3 -> 管理员||4 -> 超级管理员
 const getArticleInfo = (info) => {
   const proxyInfo = new Proxy(info, {});
 
-  // 自动填充原有的信息
+  // 文章不公开
   if (proxyInfo.visualRange === "-1") {
     proxyInfo.isPublic = "-1";
+    // 文章全部公开
   } else if (proxyInfo.visualRange === "0") {
     proxyInfo.isPublic = "0";
     proxyInfo.visualArr = ["1", "2", "3", "4"];
   } else {
+    // 文章部分公开
     proxyInfo.isPublic = "0";
     proxyInfo.visualArr = proxyInfo.visualRange.split("");
   }
@@ -64,7 +68,9 @@ const getArticleInfo = (info) => {
 // 提交修改后的文章信息
 const articleSubmit = async () => {
   const visArr = articleInfo.value.visualArr;
+  // 处理点击公开缺没有选择范围的情况
   let isReq = true;
+
   // 隐藏文章
   if (articleInfo.value.isPublic === "-1") {
     articleInfo.value.visualRange = "-1";
@@ -96,10 +102,11 @@ const articleSubmit = async () => {
   dialogSwitch.value.dialogArticleInfo = false;
 };
 
-// 自动显示文章内容
+// 自动填充文章内容
 const getArticleCon = (info) => {
-  const proxyInfo = new Proxy(info, {});
+  // 自动填充原有的信息
 
+  const proxyInfo = new Proxy(info, {});
   articleInfo.value = {
     ...proxyInfo,
   };
@@ -133,7 +140,6 @@ const deleteArticle = (id) => {
 const delSubmit = async () => {
   const res = await deletePersonal(articleInfo).catch((err) => {
     messageTip("error", "操作失败");
-
     console.log(err);
   });
   if (res.msg === "success") {
@@ -145,9 +151,8 @@ const delSubmit = async () => {
   dialogSwitch.value.articleDelete = false;
 };
 
-// TODO：将文章分离出来单独做一个文章管理菜单：包括：管理自己的文章，管理权限内可修改的文章
-// 当然，这个要经过超管同意(也就是给超管发送站内信)
 onMounted(() => {
+  // 渲染图表数据
   getArticleList(tableData, personalArticle);
 });
 </script>
@@ -217,7 +222,7 @@ onMounted(() => {
             class="ml-2"
             @click="deleteArticle(scope.row.id, scope.$index)"
           >
-            {{ $t("article.deleteArticle") }}
+            {{ $t("article.viewArticle") }}
           </el-check-tag>
         </template>
       </el-table-column>
