@@ -7,6 +7,16 @@ import {
   deletePersonal,
 } from "@/api/article";
 import { getArticleList } from "@/utils/articleList";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+// TODO：查看文章
+const JumpLinkTo = (path, param) => {
+  router.push({
+    path,
+    query: param,
+  });
+};
 
 // 表格数据
 const tableData = ref();
@@ -217,11 +227,7 @@ onMounted(() => {
             {{ $t("article.deleteArticle") }}
           </el-check-tag>
           <!-- 查看文章 -->
-          <el-check-tag
-            checked
-            class="ml-2"
-            @click="deleteArticle(scope.row.id, scope.$index)"
-          >
+          <el-check-tag checked class="ml-2" @click="JumpLinkTo()">
             {{ $t("article.viewArticle") }}
           </el-check-tag>
         </template>

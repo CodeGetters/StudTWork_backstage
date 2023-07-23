@@ -47,6 +47,7 @@ declare module "vue" {
     UserCenter: typeof import("./components/UserCenter.vue")["default"];
     UserHome: typeof import("./components/UserHome.vue")["default"];
     UserManage: typeof import("./components/User/UserManage.vue")["default"];
+    ViewArticle: typeof import("./components/Article/ViewArticle.vue")["default"];
     VisibleArticle: typeof import("./components/Article/VisibleArticle.vue")["default"];
   }
   export interface ComponentCustomProperties {
