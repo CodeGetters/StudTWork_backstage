@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:16
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 20:38:12
+ * @LastEditTime: 2023-07-23 17:06:06
  */
 const zhCN = {
   admin: "后台管理系统",
@@ -39,14 +39,6 @@ const zhCN = {
     matchAgainPwd: "两次密码输入不匹配!",
     goHome: "回到首页",
   },
-  uploadArticle: {
-    saveToDraft: "保存至草稿",
-    publish: "发布",
-    iptTitle: "请输入文章标题",
-    networkError: "网络连接失败，请检查网络后再试",
-    emptyArticle: "上传或保存文章，内容不能为空",
-    emptyTitle: "发布文章标题不能为空",
-  },
   layout: {
     homePage: "主页",
     controlCenter: "管理台",
@@ -56,6 +48,15 @@ const zhCN = {
     userCenter: "用户中心",
     exitAccount: "退出",
   },
+  uploadArticle: {
+    saveToDraft: "保存至草稿",
+    publish: "发布",
+    iptTitle: "请输入文章标题",
+    networkError: "网络连接失败，请检查网络后再试",
+    emptyArticle: "上传或保存文章，内容不能为空",
+    emptyTitle: "发布文章标题不能为空",
+  },
+  article: {},
 };
 
 export default zhCN;

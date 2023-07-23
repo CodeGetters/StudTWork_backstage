@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-22 13:14:23
+ * @LastEditTime: 2023-07-23 17:05:47
  */
 import service from "./index";
 
@@ -45,6 +45,43 @@ export const findArticle = async () => {
  */
 export const personalArticle = async () => {
   const response = await service.get("/article/findPersonal");
+
+  return response.data;
+};
+
+/**
+ * @description 修改用户自己的文章信息
+ */
+export const updatePersonal = async (data) => {
+  const response = await service.post("/article/updatePersonal", {
+    id: data.value.id,
+    author: data.value.author,
+    articleName: data.value.articleName,
+    visualRange: data.value.visualRange,
+  });
+
+  return response.data;
+};
+
+/**
+ * @description 修改用户自己的文章内容
+ */
+export const updateCon = async (data) => {
+  const response = await service.post("/article/updateCon", {
+    id: data.value.id,
+    articleCon: data.value.articleCon,
+  });
+
+  return response.data;
+};
+
+/**
+ * @description 用户删除自己的文章
+ */
+export const deletePersonal = async (data) => {
+  const response = await service.post("/article/deletePersonal", {
+    id: data.value.id,
+  });
 
   return response.data;
 };

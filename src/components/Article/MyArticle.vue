@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import { personalArticle } from "@/api/article";
-import * as dayjs from "dayjs";
+import { personalArticle, updatePersonal } from "@/api/article";
+import { getArticleList } from "@/utils/articleList";
 
 const tableData = ref();
 const formLabelWidth = "100px";
@@ -13,50 +13,92 @@ const dialogSwitch = ref({
   articleDelete: false,
 });
 
-// 修改文章信息
+// 修改文章
 const articleInfo = ref({
   articleName: "",
   author: "",
   isPublic: "",
-  visualRange: [],
+  visualArr: [],
+  visualRange: "",
+  articleCon: "",
 });
 
+// 修改结果
+const messageTip = (type, msg) => {
+  // eslint-disable-next-line no-undef
+  ElMessage({
+    message: !msg ? "修改成功" : msg,
+    type,
+  });
+};
+
 // 修改文章信息
-const getArticleInfo = (info, row) => {
+// -1 -> 隐藏||0 -> 公开(1234)||1 -> 游客||2 -> 普通用户||3 -> 管理员||4 -> 超级管理员
+const getArticleInfo = (info) => {
   const proxyInfo = new Proxy(info, {});
 
+  // 自动填充原有的信息
   if (proxyInfo.visualRange === "-1") {
     proxyInfo.isPublic = "-1";
   } else if (proxyInfo.visualRange === "0") {
     proxyInfo.isPublic = "0";
-    proxyInfo.visualRange = ["1", "2", "3"];
+    proxyInfo.visualArr = ["1", "2", "3", "4"];
   } else {
     proxyInfo.isPublic = "0";
-    proxyInfo.visualRange = proxyInfo.visualRange.split("");
+    proxyInfo.visualArr = proxyInfo.visualRange.split("");
   }
 
   articleInfo.value = {
     ...proxyInfo,
   };
 
-  console.log(row);
   dialogSwitch.value.dialogArticleInfo = true;
 };
 
-// 提交信息
-const articleSubmit = () => {
+// 提交修改后的文章信息
+const articleSubmit = async () => {
+  const visArr = articleInfo.value.visualArr;
+  let isReq = true;
+  // 隐藏文章
+  if (articleInfo.value.isPublic === "-1") {
+    articleInfo.value.visualRange = "-1";
+  } else {
+    // 处理点击公开缺没有选择范围的情况
+    if (!visArr) {
+      messageTip("error", "修改失败");
+      isReq = false;
+    } else {
+      articleInfo.value.visualRange = Object.values(
+        articleInfo.value.visualArr,
+      ).join("");
+    }
+  }
+
+  if (isReq) {
+    const res = await updatePersonal(articleInfo).catch((err) => {
+      messageTip("error", "修改失败");
+      console.log(err);
+    });
+    if (res.msg !== "success") {
+      messageTip("error", "修改失败");
+    } else {
+      // 刷新页面数据
+      getArticleList(tableData, personalArticle);
+      messageTip("success");
+    }
+  }
   dialogSwitch.value.dialogArticleInfo = false;
-  console.log(articleInfo.value.visualRange);
-  const visualRange = Object.values(articleInfo.value.visualRange);
-  console.log("拼接好的字符串：", visualRange.join(""));
 };
 
 // 修改文章内容
-const getArticleCon = (id, row) => {
-  // 打开弹出框
+const getArticleCon = (info) => {
+  const proxyInfo = new Proxy(info, {});
+
+  articleInfo.value = {
+    ...proxyInfo,
+  };
+
   dialogSwitch.value.dialogArticleCon = true;
-  // 获取原始文章 id
-  console.log("当前所在行的文章对应 id 和文章行号：", id, row);
 };
 
 // 删除文章
@@ -67,22 +109,10 @@ const deleteArticle = (id, row) => {
   // tableData.value.splice(row, 1);
 };
 
-// 修改文章内容
-const articleCon = ref("");
-
 // TODO：将文章分离出来单独做一个文章管理菜单：包括：管理自己的文章，管理权限内可修改的文章
 // 当然，这个要经过超管同意(也就是给超管发送站内信)
-onMounted(async () => {
-  const articleList = await personalArticle();
-  let articleLength = articleList.data.articleList.length;
-  let count = 1;
-  articleList.data.articleList.forEach((item) => {
-    item.releaseTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-    item.lastUpdate = dayjs().format("YYYY-MM-DD HH:mm:ss");
-    if (count <= articleLength) item.articleId = count++;
-  });
-
-  tableData.value = articleList.data.articleList;
+onMounted(() => {
+  getArticleList(tableData, personalArticle);
 });
 </script>
 
@@ -112,7 +142,7 @@ onMounted(async () => {
           <el-check-tag
             checked
             class="ml-2"
-            @click="getArticleCon(scope.row.id, scope.$index)"
+            @click="getArticleCon(scope.row, scope.$index)"
             >修改文章内容</el-check-tag
           >
           <el-check-tag
@@ -156,7 +186,7 @@ onMounted(async () => {
           :label-width="formLabelWidth"
           v-if="articleInfo.isPublic !== '-1'"
         >
-          <el-checkbox-group v-model="articleInfo.visualRange">
+          <el-checkbox-group v-model="articleInfo.visualArr">
             <el-checkbox label="1" size="large" border>游客</el-checkbox>
             <el-checkbox label="2" size="large" border>普通用户</el-checkbox>
             <el-checkbox label="3" size="large" border>超级管理员</el-checkbox>
@@ -178,11 +208,11 @@ onMounted(async () => {
     <el-dialog
       v-model="dialogSwitch.dialogArticleCon"
       title="修改文章内容"
-      width="30%"
+      width="50%"
     >
       <el-input
-        v-model="articleCon"
-        autosize
+        v-model="articleInfo.articleCon"
+        :autosize="{ minRows: 2, maxRows: 18 }"
         type="textarea"
         placeholder="Please input"
       />

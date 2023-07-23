@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:09
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 20:38:32
+ * @LastEditTime: 2023-07-23 17:09:12
  */
 const zhCN = {
   admin: "admin",
@@ -41,15 +41,6 @@ const zhCN = {
     matchAgainPwd: "Two entered passwords do not match!",
     goHome: "back to homepage",
   },
-  uploadArticle: {
-    saveToDraft: "save to draft",
-    publish: "publish",
-    iptTitle: "Please enter the title of the article",
-    networkError:
-      "The network connection failed. Please check the network and try again",
-    emptyArticle: "Upload or save an article. The content cannot be empty",
-    emptyTitle: "The post title cannot be empty",
-  },
   layout: {
     homePage: "homePage",
     controlCenter: "manage board",
@@ -58,6 +49,15 @@ const zhCN = {
     articleManage: "article manage",
     userCenter: "user center",
     exitAccount: "sign out",
+  },
+  uploadArticle: {
+    saveToDraft: "save to draft",
+    publish: "publish",
+    iptTitle: "Please enter the title of the article",
+    networkError:
+      "The network connection failed. Please check the network and try again",
+    emptyArticle: "Upload or save an article. The content cannot be empty",
+    emptyTitle: "The post title cannot be empty",
   },
 };
 
