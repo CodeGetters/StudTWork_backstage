@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:09
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-23 17:09:12
+ * @LastEditTime: 2023-07-23 18:44:10
  */
 const zhCN = {
   admin: "admin",
@@ -58,6 +58,30 @@ const zhCN = {
       "The network connection failed. Please check the network and try again",
     emptyArticle: "Upload or save an article. The content cannot be empty",
     emptyTitle: "The post title cannot be empty",
+  },
+  article: {
+    cancel: "cancel",
+    confirm: "confirm",
+    tourist: "tourist",
+    normalUser: "normalUser",
+    manager: "manager",
+    superAdmin: "superAdmin",
+    articleTitle: "title",
+    articleCon: "content",
+    author: "author",
+    lastUpdate: "last update",
+    releaseTime: "release time",
+    readers: "readers",
+    operation: "operation",
+    modifyCon: "modify content",
+    modifyInfo: "modify info",
+    deleteArticle: "delete",
+    viewArticle: "view article",
+    isVisible: "visible",
+    public: "public",
+    conceal: "conceal",
+    ArticleVisibility: "visibility",
+    keepDelete: "The article is so good, are you sure to delete it",
   },
 };
 
