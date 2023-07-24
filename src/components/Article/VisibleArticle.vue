@@ -2,13 +2,18 @@
 import { ref, onMounted } from "vue";
 import {
   findArticle,
-  updatePersonal,
-  updateCon,
-  deletePersonal,
+  updatePublicInfo,
+  updatePublicCon,
+  deletePublic,
 } from "@/api/article";
 import { getArticleList } from "@/utils/articleList";
 import { useRouter } from "vue-router";
 const router = useRouter();
+
+// 从 token 中获取用户权限信息
+// import UseInfoStore from "@/store/user";
+// const infoStore = UseInfoStore();
+// const userAuthority = infoStore.userInfo.authority;
 
 // TODO：查看文章
 const JumpLinkTo = (path, param) => {
@@ -17,6 +22,11 @@ const JumpLinkTo = (path, param) => {
     query: param,
   });
 };
+
+// 获取修改理由并发送请求
+// const getReason = (postAPI) => {
+//   console.log(infoStore.userInfo.id);
+// };
 
 // 表格数据
 const tableData = ref();
@@ -29,6 +39,7 @@ const dialogSwitch = ref({
   dialogArticleCon: false, // 修改文章内容
   dialogArticleInfo: false, // 修改文章信息
   articleDelete: false, // 删除文章
+  dialogReason: true, // 填写修改
 });
 
 const articleInfo = ref({
@@ -39,13 +50,15 @@ const articleInfo = ref({
   visualArr: [], // 文章可见范围
   visualRange: "", // 文章可见范围
   articleCon: "", // 文章内容
+  // TODO：判断是否是本人操作或者是超级管理员
+  modifyReason: "", // 修改理由
 });
 
 // 修改结果提示
 const messageTip = (type, msg) => {
   // eslint-disable-next-line no-undef
   ElMessage({
-    message: !msg ? "操作成功" : msg,
+    message: !msg ? "操作成功，请耐心等待超管大大的审核~" : msg,
     type,
   });
 };
@@ -97,7 +110,7 @@ const articleSubmit = async () => {
   }
 
   if (isReq) {
-    const res = await updatePersonal(articleInfo).catch((err) => {
+    const res = await updatePublicInfo(articleInfo).catch((err) => {
       messageTip("error", "操作失败");
       console.log(err);
     });
@@ -126,7 +139,7 @@ const getArticleCon = (info) => {
 
 // 提交修改后的文章内容
 const articleConSubmit = async () => {
-  const res = await updateCon(articleInfo).catch((err) => {
+  const res = await updatePublicCon(articleInfo).catch((err) => {
     messageTip("error", "操作失败");
     console.log(err);
   });
@@ -148,7 +161,7 @@ const deleteArticle = (id) => {
 
 // 确认删除文章
 const delSubmit = async () => {
-  const res = await deletePersonal(articleInfo).catch((err) => {
+  const res = await deletePublic(articleInfo).catch((err) => {
     messageTip("error", "操作失败");
     console.log(err);
   });
@@ -296,6 +309,7 @@ onMounted(() => {
           </el-checkbox-group>
         </el-form-item>
       </el-form>
+
       <!-- 尾部内容 -->
       <template #footer>
         <span class="dialog-footer">
@@ -348,6 +362,31 @@ onMounted(() => {
             {{ $t("article.cancel") }}
           </el-button>
           <el-button type="primary" @click="delSubmit()">
+            {{ $t("article.confirm") }}
+          </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+    <!-- 修改理由 -->
+    <el-dialog
+      v-model="dialogSwitch.dialogReason"
+      title="请您填写修改理由喔 亲~"
+      width="30%"
+      :before-close="handleClose"
+    >
+      <el-input
+        v-model="articleInfo.modifyReason"
+        :autosize="{ minRows: 2, maxRows: 10 }"
+        type="textarea"
+        placeholder="请填写修改理由"
+      />
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogReason = false">
+            {{ $t("article.cancel") }}</el-button
+          >
+          <el-button type="primary" @click="dialogReason = false">
             {{ $t("article.confirm") }}
           </el-button>
         </span>

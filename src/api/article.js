@@ -60,7 +60,7 @@ export const deletePublic = async (data) => {
 };
 
 /**
- * @description 修改对外公开文章信息
+ * @description 修改对外公开文章内容
  * @param {*} data
  */
 export const updatePublicCon = async (data) => {
