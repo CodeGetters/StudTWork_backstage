@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-24 00:26:03
+ * @LastEditTime: 2023-07-25 23:47:20
  */
 import service from "./index";
 
@@ -41,6 +41,7 @@ export const updatePublicInfo = async (data) => {
     author: data.value.author,
     articleName: data.value.articleName,
     visualRange: data.value.visualRange,
+    modifyReason: data.value.modifyReason,
   });
 
   return response.data;
@@ -53,7 +54,7 @@ export const updatePublicInfo = async (data) => {
 export const deletePublic = async (data) => {
   const response = await service.post("/article/deletePublic", {
     id: data.value.id,
-    articleCon: data.value.articleCon,
+    deleteReason: data.value.modifyReason,
   });
 
   return response.data;
@@ -67,6 +68,7 @@ export const updatePublicCon = async (data) => {
   const response = await service.post("/article/updatePublicCon", {
     id: data.value.id,
     articleCon: data.value.articleCon,
+    modifyReason: data.value.modifyReason,
   });
 
   return response.data;
