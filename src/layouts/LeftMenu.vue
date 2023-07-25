@@ -11,19 +11,24 @@ import {
 } from "@element-plus/icons-vue";
 
 import globalConfig from "../utils/globalConfig";
-
 const isCollapse = ref(globalConfig.layout.isCollapse);
-
 const emits = defineEmits(["updateValue"]);
+import { useRouter } from "vue-router";
+const router = useRouter();
 
+/**
+ * @description 是否折叠侧边菜单
+ */
 const changeCollapse = () => {
   isCollapse.value = !isCollapse.value;
   emits("updateValue", isCollapse.value);
 };
 
-import { useRouter } from "vue-router";
-const router = useRouter();
-
+/**
+ * @description 路由跳转
+ * @param {*} url
+ * @param {*} param
+ */
 const routerJump = (url, param) => {
   router.push({
     path: url,
@@ -31,6 +36,7 @@ const routerJump = (url, param) => {
   });
 };
 
+// 处理折叠
 const handleOpen = (key, keyPath) => {
   console.log(key, keyPath);
 };
@@ -49,22 +55,49 @@ const handleClose = (key, keyPath) => {
       @close="handleClose"
       active-text-color="#165DFF"
     >
+      <!-- 主页 -->
       <el-menu-item index="1" @click="routerJump('/', {})">
         <el-icon><Odometer /></el-icon>
         <template #title>{{ $t("layout.homePage") }}</template>
       </el-menu-item>
+      <!-- 用户管理 -->
       <el-sub-menu index="2">
         <template #title>
           <el-icon><Menu /></el-icon>
-          <span>分析看板</span>
+          <span>{{ $t("layout.userManage") }}</span>
         </template>
+        <el-menu-item-group>
+          <el-menu-item index="1-1" @click="routerJump('/userManage', {})">{{
+            $t("layout.userManage")
+          }}</el-menu-item>
+        </el-menu-item-group>
       </el-sub-menu>
+      <!-- 文章管理 -->
       <el-sub-menu index="3">
         <template #title>
           <el-icon><Operation /></el-icon>
-          <span>工作台</span>
+          <span>{{ $t("layout.articleManage") }}</span>
         </template>
+        <el-menu-item-group>
+          <!-- 所有公开的文章 -->
+          <el-menu-item index="2-1" @click="routerJump('/publicArticle', {})"
+            >公开文章</el-menu-item
+          >
+          <!-- 权限内可见文章 -->
+          <el-menu-item index="2-2" @click="routerJump('/visibleArticle', {})"
+            >可见文章</el-menu-item
+          >
+          <!-- 个人文章 -->
+          <el-menu-item index="2-3" @click="routerJump('/MyArticle', {})"
+            >我的文章</el-menu-item
+          >
+          <!-- 创建文章 -->
+          <el-menu-item index="2-4" @click="routerJump('/CreateArticle', {})"
+            >创建文章</el-menu-item
+          >
+        </el-menu-item-group>
       </el-sub-menu>
+      <!-- 管理台 -->
       <el-sub-menu index="4">
         <template #title>
           <el-icon><setting /></el-icon>
@@ -82,6 +115,7 @@ const handleClose = (key, keyPath) => {
           }}</el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
+      <!-- 用户中心 -->
       <el-menu-item index="5" @click="routerJump('/userCenter', {})">
         <el-icon><User /></el-icon>
         <template #title>{{ $t("layout.userCenter") }}</template>

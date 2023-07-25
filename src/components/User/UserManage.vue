@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-06 23:34:42
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-22 00:26:30
+ * @LastEditTime: 2023-07-22 11:35:32
 -->
 <script setup>
 import { ref, onMounted } from "vue";
@@ -18,8 +18,6 @@ const dialogUserInfo = ref(false);
 const userInfo = ref({
   userName: "",
   role: "",
-  date1: "",
-  date2: "",
 });
 // 修改用户权限
 const radio1 = ref("");
@@ -36,8 +34,11 @@ const deleteRow = () => {
 
 onMounted(async () => {
   const user = await getAllUser();
+  let count = 1;
+  let userLength = user.data.users.length;
   user.data.users.forEach((item) => {
     item.registerTime = dayjs().format("YYYY-MM-DD HH-mm:ss");
+    if (count <= userLength) item.userId = count++;
   });
   tableData.value = user.data.users;
 });
@@ -52,7 +53,8 @@ onMounted(async () => {
       max-height="600"
       border
     >
-      <el-table-column fixed prop="userName" label="用户名" width="250" />
+      <el-table-column fixed prop="userId" label="id" width="100" />
+      <el-table-column prop="userName" label="用户名" width="250" />
       <el-table-column prop="role" label="角色" width="200" />
       <el-table-column prop="registerTime" label="注册时间" width="300" />
       <el-table-column label="操作" width="660">
@@ -85,26 +87,6 @@ onMounted(async () => {
         </el-form-item>
         <el-form-item label="角色" :label-width="formLabelWidth">
           <el-input v-model="userInfo.role" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="注册时间">
-          <el-col :span="11">
-            <el-date-picker
-              v-model="userInfo.date1"
-              type="date"
-              placeholder="Pick a date"
-              style="width: 100%"
-            />
-          </el-col>
-          <el-col :span="2" class="text-center">
-            <span class="text-gray-500">-</span>
-          </el-col>
-          <el-col :span="11">
-            <el-time-picker
-              v-model="userInfo.date2"
-              placeholder="Pick a time"
-              style="width: 100%"
-            />
-          </el-col>
         </el-form-item>
       </el-form>
       <template #footer>

@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:09
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 20:38:32
+ * @LastEditTime: 2023-07-23 18:44:10
  */
 const zhCN = {
   admin: "admin",
@@ -41,6 +41,15 @@ const zhCN = {
     matchAgainPwd: "Two entered passwords do not match!",
     goHome: "back to homepage",
   },
+  layout: {
+    homePage: "homePage",
+    controlCenter: "manage board",
+    userManage: "user manage",
+    commentManage: "comment manage",
+    articleManage: "article manage",
+    userCenter: "user center",
+    exitAccount: "sign out",
+  },
   uploadArticle: {
     saveToDraft: "save to draft",
     publish: "publish",
@@ -50,14 +59,29 @@ const zhCN = {
     emptyArticle: "Upload or save an article. The content cannot be empty",
     emptyTitle: "The post title cannot be empty",
   },
-  layout: {
-    homePage: "homePage",
-    controlCenter: "manage board",
-    userManage: "user manage",
-    commentManage: "comment manage",
-    articleManage: "article manage",
-    userCenter: "user center",
-    exitAccount: "sign out",
+  article: {
+    cancel: "cancel",
+    confirm: "confirm",
+    tourist: "tourist",
+    normalUser: "normalUser",
+    manager: "manager",
+    superAdmin: "superAdmin",
+    articleTitle: "title",
+    articleCon: "content",
+    author: "author",
+    lastUpdate: "last update",
+    releaseTime: "release time",
+    readers: "readers",
+    operation: "operation",
+    modifyCon: "modify content",
+    modifyInfo: "modify info",
+    deleteArticle: "delete",
+    viewArticle: "view article",
+    isVisible: "visible",
+    public: "public",
+    conceal: "conceal",
+    ArticleVisibility: "visibility",
+    keepDelete: "The article is so good, are you sure to delete it",
   },
 };
 

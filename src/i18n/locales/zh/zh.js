@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:16
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 20:38:12
+ * @LastEditTime: 2023-07-23 18:40:28
  */
 const zhCN = {
   admin: "后台管理系统",
@@ -39,14 +39,6 @@ const zhCN = {
     matchAgainPwd: "两次密码输入不匹配!",
     goHome: "回到首页",
   },
-  uploadArticle: {
-    saveToDraft: "保存至草稿",
-    publish: "发布",
-    iptTitle: "请输入文章标题",
-    networkError: "网络连接失败，请检查网络后再试",
-    emptyArticle: "上传或保存文章，内容不能为空",
-    emptyTitle: "发布文章标题不能为空",
-  },
   layout: {
     homePage: "主页",
     controlCenter: "管理台",
@@ -55,6 +47,38 @@ const zhCN = {
     articleManage: "文章管理",
     userCenter: "用户中心",
     exitAccount: "退出",
+  },
+  uploadArticle: {
+    saveToDraft: "保存至草稿",
+    publish: "发布",
+    iptTitle: "请输入文章标题",
+    networkError: "网络连接失败，请检查网络后再试",
+    emptyArticle: "上传或保存文章，内容不能为空",
+    emptyTitle: "发布文章标题不能为空",
+  },
+  article: {
+    cancel: "取消",
+    confirm: "提交",
+    tourist: "游客",
+    normalUser: "普通用户",
+    manager: "管理员",
+    superAdmin: "超级管理员",
+    articleTitle: "文章名",
+    articleCon: "文章内容",
+    author: "作者",
+    lastUpdate: "最后更新时间",
+    releaseTime: "发布时间",
+    readers: "阅读量",
+    operation: "操作",
+    modifyCon: "修改文章内容",
+    modifyInfo: "修改文章信息",
+    deleteArticle: "删除文章",
+    viewArticle: "查看文章",
+    isVisible: "文章是否可见",
+    public: "公开",
+    conceal: "隐藏",
+    ArticleVisibility: "文章可见范围",
+    keepDelete: "文章写的这么好，确定删除吗",
   },
 };
 

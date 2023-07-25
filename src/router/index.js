@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-18 10:27:44
+ * @LastEditTime: 2023-07-22 20:28:46
  */
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -12,11 +12,15 @@ const Home = () => import("../views/HomePage.vue");
 const Login = () => import("../views/LoginPage.vue");
 const NotFound = () => import("../views/NotFound.vue");
 
-const UserManage = () => import("../components/UserManage.vue");
+const UserManage = () => import("../components/User/UserManage.vue");
 const UserHome = () => import("../components/UserHome.vue");
 const CommentManage = () => import("../components/CommentManage.vue");
 const UserCenter = () => import("../components/UserCenter.vue");
-const ArticleManage = () => import("../components/ArticleManage.vue");
+
+const PublicArticle = () => import("../components/Article/PublicArticle.vue");
+const VisibleArticle = () => import("../components/Article/VisibleArticle.vue");
+const MyArticle = () => import("../components/Article/MyArticle.vue");
+const CreateArticle = () => import("../components/Article/CreateArticle.vue");
 
 const LoginPage = () => import("../components/LoginCon.vue");
 const registerPage = () => import("../components/RegisterCon.vue");
@@ -24,7 +28,6 @@ const forgetPwd = () => import("../components/ForgetPwd.vue");
 
 const ChartTest = () => import("../views/ChartTest.vue");
 const MapTest = () => import("../views/MapTest.vue");
-const ArticleTest = () => import("../views/ArticleTest.vue");
 
 const routes = [
   {
@@ -48,8 +51,20 @@ const routes = [
         component: CommentManage,
       },
       {
-        path: "/articleManage",
-        component: ArticleManage,
+        path: "/publicArticle",
+        component: PublicArticle,
+      },
+      {
+        path: "/visibleArticle",
+        component: VisibleArticle,
+      },
+      {
+        path: "/MyArticle",
+        component: MyArticle,
+      },
+      {
+        path: "/CreateArticle",
+        component: CreateArticle,
       },
       {
         path: "/charTest",
@@ -62,10 +77,6 @@ const routes = [
       {
         path: "/mapTest",
         component: MapTest,
-      },
-      {
-        path: "/articleTest",
-        component: ArticleTest,
       },
     ],
   },
