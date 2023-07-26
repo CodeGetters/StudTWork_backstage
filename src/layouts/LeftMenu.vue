@@ -60,6 +60,7 @@ const handleClose = (key, keyPath) => {
         <el-icon><Odometer /></el-icon>
         <template #title>{{ $t("layout.homePage") }}</template>
       </el-menu-item>
+
       <!-- 用户管理 -->
       <el-sub-menu index="2">
         <template #title>
@@ -72,6 +73,7 @@ const handleClose = (key, keyPath) => {
           }}</el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
+
       <!-- 文章管理 -->
       <el-sub-menu index="3">
         <template #title>

@@ -9,11 +9,14 @@ declare module "vue" {
   export interface GlobalComponents {
     CommentManage: typeof import("./components/CommentManage.vue")["default"];
     CreateArticle: typeof import("./components/Article/CreateArticle.vue")["default"];
+    ElBadge: typeof import("element-plus/es")["ElBadge"];
     ElButton: typeof import("element-plus/es")["ElButton"];
     ElCheckbox: typeof import("element-plus/es")["ElCheckbox"];
     ElCheckboxGroup: typeof import("element-plus/es")["ElCheckboxGroup"];
     ElCheckTag: typeof import("element-plus/es")["ElCheckTag"];
     ElCol: typeof import("element-plus/es")["ElCol"];
+    ElDescriptions: typeof import("element-plus/es")["ElDescriptions"];
+    ElDescriptionsItem: typeof import("element-plus/es")["ElDescriptionsItem"];
     ElDialog: typeof import("element-plus/es")["ElDialog"];
     ElDivider: typeof import("element-plus/es")["ElDivider"];
     ElDropdown: typeof import("element-plus/es")["ElDropdown"];
@@ -34,6 +37,7 @@ declare module "vue" {
     ElSubMenu: typeof import("element-plus/es")["ElSubMenu"];
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
+    ElTag: typeof import("element-plus/es")["ElTag"];
     ForgetPwd: typeof import("./components/ForgetPwd.vue")["default"];
     LoginCon: typeof import("./components/LoginCon.vue")["default"];
     MyArticle: typeof import("./components/Article/MyArticle.vue")["default"];

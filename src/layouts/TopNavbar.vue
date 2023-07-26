@@ -1,7 +1,13 @@
 <script setup>
-import { avatarGroup } from "@/utils/assets";
+import { ref, onMounted } from "vue";
 import translate from "../assets/layout/translate.svg";
 import avatar from "../assets/layout/avatar.png";
+
+import search from "../assets/layout/search.svg";
+import notification from "../assets/layout/notification.svg";
+import theme from "../assets/layout/theme.svg";
+import setting from "../assets/layout/setting.svg";
+import motif from "../assets/layout/motif.svg";
 
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
@@ -13,6 +19,8 @@ import UseInfoStore from "../store/user";
 const infoStore = UseInfoStore();
 import useAuthStore from "../store/auth";
 const authStore = useAuthStore();
+
+import { changeTheme } from "../utils/index";
 
 /**
  * @description 语言切换
@@ -36,6 +44,13 @@ const exitAccount = () => {
   infoStore.clearUserInfo();
   authStore.clearToken();
 };
+
+// 是否显示待处理事件
+const hasNotification = ref(false);
+
+// 获取是否有待处理事件
+// 请求通知 api:每次刷新都会请求一次？？？
+onMounted(() => {});
 </script>
 
 <template>
@@ -57,16 +72,28 @@ const exitAccount = () => {
         <div
           class="avatarGroup w100% h100% flex flex-row items-center justify-end mr-4%"
         >
+          <div class="icon">
+            <img :src="search" alt="搜索" />
+          </div>
+
           <div class="icon" @click="changeLang()">
             <img :src="translate" alt="语言切换" />
           </div>
-          <div
-            class="icon"
-            v-for="item in avatarGroup"
-            :key="item"
-            @click="item.onPress"
-          >
-            <img :src="item.src" :alt="item.alt" />
+
+          <el-badge :is-dot="hasNotification" class="mr-2%">
+            <div class="icon">
+              <img :src="notification" alt="提示" />
+            </div>
+          </el-badge>
+
+          <div class="icon">
+            <img :src="theme" @click="changeTheme()" alt="主题" />
+          </div>
+          <div class="icon">
+            <img :src="setting" alt="设置" />
+          </div>
+          <div class="icon">
+            <img :src="motif" alt="皮肤" />
           </div>
           <div
             class="avatar w30% flex flex-row items-center justify-around rounded-15px text-12px items-center cursor-pointer bg-#f2f3f5"
@@ -125,6 +152,11 @@ const exitAccount = () => {
       height: 100%;
       display: flex;
       align-items: center;
+
+      .el-tooltip__trigger:focus-visible {
+        border: none;
+        outline: none;
+      }
 
       .avatarGroup {
         .icon {
