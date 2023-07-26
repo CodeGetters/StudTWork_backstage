@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-24 17:11:59
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-18 19:57:22
+ * @LastEditTime: 2023-07-26 15:02:36
  */
 import Mock from "mockjs";
 
@@ -21,14 +21,14 @@ Mock.mock(BaseURL + "/", "get", {
   data: "Mock successful!",
 });
 
-Mock.mock(BaseURL + "/router", "get", {
-  status: 200,
-  data: {
-    name: "@cname",
-    info: "Mock successful!",
-  },
-  // data: "Mock successful!",
-});
+// Mock.mock(BaseURL + "/router", "get", {
+//   status: 200,
+//   data: {
+//     name: "@cname",
+//     info: "Mock successful!",
+//   },
+//   // data: "Mock successful!",
+// });
 
 // 登录
 // Mock.mock(BaseURL + "/user/login", "post", {

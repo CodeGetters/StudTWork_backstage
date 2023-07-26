@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-22 20:28:46
+ * @LastEditTime: 2023-07-26 21:55:40
  */
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -32,7 +32,10 @@ const MapTest = () => import("../views/MapTest.vue");
 const routes = [
   {
     path: "/",
-    alias: "/home",
+    redirect: "/home",
+  },
+  {
+    path: "/home",
     name: "Home",
     redirect: "/homePage",
     component: Home,
