@@ -3,7 +3,6 @@ import { ref } from "vue";
 import {
   Setting,
   Odometer,
-  Menu,
   Operation,
   User,
   Fold,
@@ -64,13 +63,18 @@ const handleClose = (key, keyPath) => {
       <!-- 用户管理 -->
       <el-sub-menu index="2">
         <template #title>
-          <el-icon><Menu /></el-icon>
+          <el-icon><User /></el-icon>
           <span>{{ $t("layout.userManage") }}</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="1-1" @click="routerJump('/userManage', {})">{{
+          <el-menu-item index="2-1" @click="routerJump('/userManage', {})">{{
             $t("layout.userManage")
           }}</el-menu-item>
+
+          <!-- 用户中心 -->
+          <el-menu-item index="2-2" @click="routerJump('/userCenter', {})">
+            {{ $t("layout.userCenter") }}
+          </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
 
@@ -82,46 +86,39 @@ const handleClose = (key, keyPath) => {
         </template>
         <el-menu-item-group>
           <!-- 所有公开的文章 -->
-          <el-menu-item index="2-1" @click="routerJump('/publicArticle', {})"
+          <el-menu-item index="3-1" @click="routerJump('/publicArticle', {})"
             >公开文章</el-menu-item
           >
           <!-- 权限内可见文章 -->
-          <el-menu-item index="2-2" @click="routerJump('/visibleArticle', {})"
+          <el-menu-item index="3-2" @click="routerJump('/visibleArticle', {})"
             >可见文章</el-menu-item
           >
           <!-- 个人文章 -->
-          <el-menu-item index="2-3" @click="routerJump('/MyArticle', {})"
+          <el-menu-item index="3-3" @click="routerJump('/MyArticle', {})"
             >我的文章</el-menu-item
           >
           <!-- 创建文章 -->
-          <el-menu-item index="2-4" @click="routerJump('/CreateArticle', {})"
+          <el-menu-item index="3-4" @click="routerJump('/CreateArticle', {})"
             >创建文章</el-menu-item
           >
         </el-menu-item-group>
       </el-sub-menu>
-      <!-- 管理台 -->
+
+      <!-- 小组管理 -->
       <el-sub-menu index="4">
         <template #title>
           <el-icon><setting /></el-icon>
-          <span>{{ $t("layout.controlCenter") }}</span>
+          <span>小组管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="4-1" @click="routerJump('/userManage', {})">{{
-            $t("layout.userManage")
-          }}</el-menu-item>
-          <el-menu-item index="4-2" @click="routerJump('/articleManage', {})">{{
-            $t("layout.articleManage")
-          }}</el-menu-item>
-          <el-menu-item index="4-3" @click="routerJump('/commentManage', {})">{{
-            $t("layout.commentManage")
-          }}</el-menu-item>
+          <el-menu-item index="4-1" @click="routerJump('/userManage', {})"
+            >创建小组</el-menu-item
+          >
+          <el-menu-item index="4-2" @click="routerJump('/userManage', {})"
+            >小组管理</el-menu-item
+          >
         </el-menu-item-group>
       </el-sub-menu>
-      <!-- 用户中心 -->
-      <el-menu-item index="5" @click="routerJump('/userCenter', {})">
-        <el-icon><User /></el-icon>
-        <template #title>{{ $t("layout.userCenter") }}</template>
-      </el-menu-item>
     </el-menu>
     <button
       class="isOpen flex items-center h5% outline-none border-none cursor-pointer justify-end"

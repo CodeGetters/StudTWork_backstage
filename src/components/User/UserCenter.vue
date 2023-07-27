@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-06 23:48:32
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-26 23:59:44
+ * @LastEditTime: 2023-07-27 23:44:03
 -->
 <script setup>
 import { computed, ref } from "vue";
@@ -39,7 +39,7 @@ console.log(infoStore.userInfo);
 const show = ref(false);
 
 const registerTime = dayjs(infoStore.userInfo.userRegister).format(
-  "YYYY-MM-DD hh-mm",
+  "YYYY-MM-DD hh:mm",
 );
 </script>
 

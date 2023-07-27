@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-26 21:55:40
+ * @LastEditTime: 2023-07-28 00:01:49
  */
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -15,7 +15,7 @@ const NotFound = () => import("../views/NotFound.vue");
 const UserManage = () => import("../components/User/UserManage.vue");
 const UserHome = () => import("../components/UserHome.vue");
 const CommentManage = () => import("../components/CommentManage.vue");
-const UserCenter = () => import("../components/UserCenter.vue");
+const UserCenter = () => import("../components/User/UserCenter.vue");
 
 const PublicArticle = () => import("../components/Article/PublicArticle.vue");
 const VisibleArticle = () => import("../components/Article/VisibleArticle.vue");

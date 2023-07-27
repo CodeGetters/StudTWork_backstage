@@ -45,7 +45,7 @@ declare module "vue" {
     RegisterCon: typeof import("./components/RegisterCon.vue")["default"];
     RouterLink: typeof import("vue-router")["RouterLink"];
     RouterView: typeof import("vue-router")["RouterView"];
-    UserCenter: typeof import("./components/UserCenter.vue")["default"];
+    UserCenter: typeof import("./components/User/UserCenter.vue")["default"];
     UserHome: typeof import("./components/UserHome.vue")["default"];
     UserManage: typeof import("./components/User/UserManage.vue")["default"];
     ViewArticle: typeof import("./components/Article/ViewArticle.vue")["default"];
