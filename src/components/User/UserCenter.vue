@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-06 23:48:32
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-27 23:44:03
+ * @LastEditTime: 2023-07-28 00:07:14
 -->
 <script setup>
 import { computed, ref } from "vue";
@@ -17,7 +17,7 @@ import {
   Clock,
 } from "@element-plus/icons-vue";
 
-import UseInfoStore from "../store/user.js";
+import UseInfoStore from "@/store/user.js";
 import dayjs from "dayjs";
 
 const infoStore = UseInfoStore();

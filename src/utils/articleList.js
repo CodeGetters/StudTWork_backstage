@@ -5,9 +5,9 @@
  * @version:
  * @Date: 2023-07-23 17:07:26
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-23 19:27:03
+ * @LastEditTime: 2023-07-28 00:12:46
  */
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 /**
  *

@@ -8,9 +8,9 @@
  */
 import axios from "axios";
 
-import useAuthStore from "../store/auth";
+import useAuthStore from "@/store/auth";
 
-import router from "../router/index";
+import router from "@/router/index";
 
 const authStore = useAuthStore();
 

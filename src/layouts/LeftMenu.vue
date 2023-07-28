@@ -9,7 +9,7 @@ import {
   Expand,
 } from "@element-plus/icons-vue";
 
-import globalConfig from "../utils/globalConfig";
+import globalConfig from "@/utils/globalConfig";
 const isCollapse = ref(globalConfig.layout.isCollapse);
 const emits = defineEmits(["updateValue"]);
 import { useRouter } from "vue-router";

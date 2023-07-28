@@ -8,12 +8,12 @@
 -->
 <script setup>
 import { ref, watch } from "vue";
-import LeftMenu from "../layouts/LeftMenu.vue";
-import TopNavbar from "../layouts/TopNavbar.vue";
-import globalConfig from "../utils/globalConfig";
+import LeftMenu from "@/layouts/LeftMenu.vue";
+import TopNavbar from "@/layouts/TopNavbar.vue";
+import globalConfig from "@/utils/globalConfig";
 const collapse = ref(globalConfig.layout.isCollapse);
 
-import router from "../router";
+import router from "@/router";
 
 const loading = ref(false);
 

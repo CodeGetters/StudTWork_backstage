@@ -8,7 +8,7 @@
  * @LastEditTime: 2023-07-07 10:42:20
  */
 
-import useThemeStore from "../store/theme";
+import useThemeStore from "@/store/theme";
 
 const theme = useThemeStore();
 let timer = null;

@@ -1,13 +1,13 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import translate from "../assets/layout/translate.svg";
-import avatar from "../assets/layout/avatar.png";
+import translate from "@/assets/layout/translate.svg";
+import avatar from "@/assets/layout/avatar.png";
 
-import search from "../assets/layout/search.svg";
-import notification from "../assets/layout/notification.svg";
-import theme from "../assets/layout/theme.svg";
-import setting from "../assets/layout/setting.svg";
-import motif from "../assets/layout/motif.svg";
+import search from "@/assets/layout/search.svg";
+import notification from "@/assets/layout/notification.svg";
+import theme from "@/assets/layout/theme.svg";
+import setting from "@/assets/layout/setting.svg";
+import motif from "@/assets/layout/motif.svg";
 
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
@@ -15,12 +15,12 @@ const { locale } = useI18n();
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-import UseInfoStore from "../store/user";
+import UseInfoStore from "@/store/user";
 const infoStore = UseInfoStore();
-import useAuthStore from "../store/auth";
+import useAuthStore from "@/store/auth";
 const authStore = useAuthStore();
 
-import { changeTheme } from "../utils/index";
+import { changeTheme } from "@/utils/index";
 
 /**
  * @description 语言切换

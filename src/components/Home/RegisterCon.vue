@@ -5,19 +5,19 @@
  * @version: 
  * @Date: 2023-07-14 13:38:57
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-21 19:03:38
+ * @LastEditTime: 2023-07-28 00:05:46
 -->
 <script setup>
 import { postRegister } from "@/api/user";
 import { ref } from "vue";
 import i18n from "@/i18n";
 import { useRouter } from "vue-router";
-import translate from "../assets/translate.svg";
+import translate from "@/assets/translate.svg";
 import theme from "@/assets/theme.svg";
-import useAuthStore from "../store/auth";
-import useInfoStore from "../store/user";
+import useAuthStore from "@/store/auth";
+import useInfoStore from "@/store/user";
 
-import { getIp } from "../utils/getLocal";
+import { getIp } from "@/utils/getLocal";
 
 const authStore = useAuthStore();
 const userStore = useInfoStore();

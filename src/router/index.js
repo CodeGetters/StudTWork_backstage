@@ -4,30 +4,30 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-28 00:01:49
+ * @LastEditTime: 2023-07-28 00:11:53
  */
 import { createRouter, createWebHistory } from "vue-router";
 
-const Home = () => import("../views/HomePage.vue");
-const Login = () => import("../views/LoginPage.vue");
-const NotFound = () => import("../views/NotFound.vue");
+const Home = () => import("@/views/HomePage.vue");
+const Login = () => import("@/views/LoginPage.vue");
+const NotFound = () => import("@/views/NotFound.vue");
 
-const UserManage = () => import("../components/User/UserManage.vue");
-const UserHome = () => import("../components/UserHome.vue");
-const CommentManage = () => import("../components/CommentManage.vue");
-const UserCenter = () => import("../components/User/UserCenter.vue");
+const UserManage = () => import("@/components/User/UserManage.vue");
+const UserHome = () => import("@/components/UserHome.vue");
+const CommentManage = () => import("@/components/CommentManage.vue");
+const UserCenter = () => import("@/components/User/UserCenter.vue");
 
-const PublicArticle = () => import("../components/Article/PublicArticle.vue");
-const VisibleArticle = () => import("../components/Article/VisibleArticle.vue");
-const MyArticle = () => import("../components/Article/MyArticle.vue");
-const CreateArticle = () => import("../components/Article/CreateArticle.vue");
+const PublicArticle = () => import("@/components/Article/PublicArticle.vue");
+const VisibleArticle = () => import("@/components/Article/VisibleArticle.vue");
+const MyArticle = () => import("@/components/Article/MyArticle.vue");
+const CreateArticle = () => import("@/components/Article/CreateArticle.vue");
 
-const LoginPage = () => import("../components/LoginCon.vue");
-const registerPage = () => import("../components/RegisterCon.vue");
-const forgetPwd = () => import("../components/ForgetPwd.vue");
+const LoginPage = () => import("@/components/Home/LoginCon.vue");
+const registerPage = () => import("@/components/Home/RegisterCon.vue");
+const forgetPwd = () => import("@/components/Home/ForgetPwd.vue");
 
-const ChartTest = () => import("../views/ChartTest.vue");
-const MapTest = () => import("../views/MapTest.vue");
+const ChartTest = () => import("@/views/ChartTest.vue");
+const MapTest = () => import("@/views/MapTest.vue");
 
 const routes = [
   {

@@ -38,11 +38,11 @@ declare module "vue" {
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
     ElTag: typeof import("element-plus/es")["ElTag"];
-    ForgetPwd: typeof import("./components/ForgetPwd.vue")["default"];
-    LoginCon: typeof import("./components/LoginCon.vue")["default"];
+    ForgetPwd: typeof import("./components/Home/ForgetPwd.vue")["default"];
+    LoginCon: typeof import("./components/Home/LoginCon.vue")["default"];
     MyArticle: typeof import("./components/Article/MyArticle.vue")["default"];
     PublicArticle: typeof import("./components/Article/PublicArticle.vue")["default"];
-    RegisterCon: typeof import("./components/RegisterCon.vue")["default"];
+    RegisterCon: typeof import("./components/Home/RegisterCon.vue")["default"];
     RouterLink: typeof import("vue-router")["RouterLink"];
     RouterView: typeof import("vue-router")["RouterView"];
     UserCenter: typeof import("./components/User/UserCenter.vue")["default"];
