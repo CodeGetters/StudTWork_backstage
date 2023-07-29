@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-28 00:11:53
+ * @LastEditTime: 2023-07-29 15:31:30
  */
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -25,6 +25,9 @@ const CreateArticle = () => import("@/components/Article/CreateArticle.vue");
 const LoginPage = () => import("@/components/Home/LoginCon.vue");
 const registerPage = () => import("@/components/Home/RegisterCon.vue");
 const forgetPwd = () => import("@/components/Home/ForgetPwd.vue");
+
+const CreateTeam = () => import("@/components/Department/CreateTeam.vue");
+const ManageTeam = () => import("@/components/Department/ManageTeam.vue");
 
 const ChartTest = () => import("@/views/ChartTest.vue");
 const MapTest = () => import("@/views/MapTest.vue");
@@ -68,6 +71,14 @@ const routes = [
       {
         path: "/CreateArticle",
         component: CreateArticle,
+      },
+      {
+        path: "/createTeam",
+        component: CreateTeam,
+      },
+      {
+        path: "/manageTeam",
+        component: ManageTeam,
       },
       {
         path: "/charTest",

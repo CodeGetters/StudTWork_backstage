@@ -1,10 +1,16 @@
-# StudTWork
+<p align="center">
+    <img src="./public/favicon.svg">
+</p>
+
+<h1 align="center">StudTWork</h1>
 
 [English](./README.md) | 简体中文
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCodeGetters%2FStudTWork2.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCodeGetters%2FStudTWork2?ref=badge_shield)
 
 > 一个使用前后台使用 [Vue3.3](https://github.com/vuejs/core) + [Vite4](https://github.com/element-plus/element-plus)，后端使用 [koa2](https://github.com/koajs/koa) 构建打造的博客前后台系统。
+
+---
 
 ## 下载
 
@@ -40,6 +46,18 @@ $ yarn build
 $ yarn build:mock
 ```
 
+## docker
+
+```shell
+docker buildx build .
+
+# 获取镜像 id
+docker images
+
+# http://localhost:8080
+docker run -p 8080:80 images_id
+```
+
 ## 贡献
 
 如果你愿意做项目中的 `TODO` 中的内容，请将你的 `pr` 提交到 `dev` 分支 👀
@@ -50,12 +68,6 @@ $ yarn build:mock
 # 这样会避免让你的代码不会被重置
 $ yarn lint
 ```
-
-## TODO
-
-- homepage refactor with login and register component
-- article upload api
-- forget pwd component
 
 ## 许可证
 

@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-16 10:15:41
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 11:08:27
+ * @LastEditTime: 2023-07-29 11:54:59
 -->
 <script setup>
 import { ref } from "vue";
@@ -125,6 +125,7 @@ const rules = ref({
  */
 const submitForm = async () => {
   if (isRight.value.account && isRight.value.pwd) {
+    // 获取 ip 地址
     const ipInfo = await getIp();
 
     isRight.value = {
@@ -136,7 +137,6 @@ const submitForm = async () => {
 
     // 调用登录接口
     const loginRes = await postLogin(isRight).catch((err) => {
-      console.log("--------------", err);
       notification(err, err.response.data.msg);
     });
 

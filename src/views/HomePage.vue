@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-20 16:51:34
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-18 21:13:46
+ * @LastEditTime: 2023-07-29 11:31:15
 -->
 <script setup>
 import { ref, watch } from "vue";
@@ -48,7 +48,7 @@ watch(
         :class="{ mainOff: collapse }"
       >
         <div
-          class="main-container h80% w96% h88%"
+          class="main-container w96% h88%"
           element-loading-text="Loading..."
           v-loading="loading"
         >

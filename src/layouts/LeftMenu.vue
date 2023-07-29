@@ -111,10 +111,10 @@ const handleClose = (key, keyPath) => {
           <span>小组管理</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="4-1" @click="routerJump('/userManage', {})"
+          <el-menu-item index="4-1" @click="routerJump('/createTeam', {})"
             >创建小组</el-menu-item
           >
-          <el-menu-item index="4-2" @click="routerJump('/userManage', {})"
+          <el-menu-item index="4-2" @click="routerJump('/manageTeam', {})"
             >小组管理</el-menu-item
           >
         </el-menu-item-group>

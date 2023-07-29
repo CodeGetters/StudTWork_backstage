@@ -1,10 +1,16 @@
-# StudTWork2
+<p align="center">
+    <img src="./public/favicon.svg">
+</p>
+
+<h1 align="center">StudTWork</h1>
 
 English | [简体中文](./README-ZH.md)
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCodeGetters%2FStudTWork2.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCodeGetters%2FStudTWork2?ref=badge_shield)
 
-## Usage
+---
+
+## Install
 
 require:
 
@@ -23,6 +29,19 @@ $ npm install
 # There may be some problems with using pnpm ❗
 $ pnpm install
 
+```
+
+## Usage
+
+```shell
+# dev
+$ yarn dev
+
+# build
+$ yarn build
+
+# Or maybe you want to package a background project with mock data
+$ yarn build:mock
 ```
 
 ## Contribute

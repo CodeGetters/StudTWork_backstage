@@ -9,6 +9,7 @@ declare module "vue" {
   export interface GlobalComponents {
     CommentManage: typeof import("./components/CommentManage.vue")["default"];
     CreateArticle: typeof import("./components/Article/CreateArticle.vue")["default"];
+    CreateTeam: typeof import("./components/Department/CreateTeam.vue")["default"];
     ElBadge: typeof import("element-plus/es")["ElBadge"];
     ElButton: typeof import("element-plus/es")["ElButton"];
     ElCheckbox: typeof import("element-plus/es")["ElCheckbox"];
@@ -40,6 +41,7 @@ declare module "vue" {
     ElTag: typeof import("element-plus/es")["ElTag"];
     ForgetPwd: typeof import("./components/Home/ForgetPwd.vue")["default"];
     LoginCon: typeof import("./components/Home/LoginCon.vue")["default"];
+    ManageTeam: typeof import("./components/Department/ManageTeam.vue")["default"];
     MyArticle: typeof import("./components/Article/MyArticle.vue")["default"];
     PublicArticle: typeof import("./components/Article/PublicArticle.vue")["default"];
     RegisterCon: typeof import("./components/Home/RegisterCon.vue")["default"];

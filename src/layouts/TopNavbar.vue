@@ -38,6 +38,7 @@ const routerJump = (path) => {
   });
 };
 
+// 退出账号
 const exitAccount = () => {
   routerJump("/loginPage");
   // 清除 Auth
@@ -110,6 +111,7 @@ onMounted(() => {});
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item>个人中心</el-dropdown-item>
+                  <el-dropdown-item>修改密码</el-dropdown-item>
                   <el-dropdown-item @click.prevent="exitAccount()">{{
                     $t("layout.exitAccount")
                   }}</el-dropdown-item>
