@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-16 10:15:41
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-28 00:05:06
+ * @LastEditTime: 2023-07-29 11:08:27
 -->
 <script setup>
 import { ref } from "vue";
@@ -136,6 +136,7 @@ const submitForm = async () => {
 
     // 调用登录接口
     const loginRes = await postLogin(isRight).catch((err) => {
+      console.log("--------------", err);
       notification(err, err.response.data.msg);
     });
 

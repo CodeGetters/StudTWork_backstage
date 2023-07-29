@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-21 14:39:04
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 10:40:44
+ * @LastEditTime: 2023-07-29 11:07:37
  */
 import axios from "axios";
 
@@ -45,7 +45,6 @@ service.interceptors.request.use(
 );
 
 // 响应拦截器
-// TODO：如果返回 401 即 token 过期，退出登录
 service.interceptors.response.use(
   function (response) {
     return response;
@@ -55,6 +54,7 @@ service.interceptors.response.use(
       messageTip("error", "token 已过期，请重新登录");
       router.push("/loginPage");
     }
+    return Promise.reject(error);
   },
 );
 

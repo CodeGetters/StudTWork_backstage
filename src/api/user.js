@@ -23,6 +23,7 @@ export const postLogin = async (data) => {
     city: data.value.city,
     province: data.value.province,
   });
+
   return response.data;
 };
 
@@ -39,6 +40,7 @@ export const postRegister = async (data) => {
     city: data.value.city,
     province: data.value.province,
   });
+
   return response.data;
 };
 
@@ -48,6 +50,7 @@ export const postChange = async (data) => {
     userName: data.value.userName,
     newPwd: data.value.newPwd,
   });
+
   return response.data;
 };
 
@@ -68,5 +71,6 @@ export const deleteUser = async (data) => {
     userName: data.value.userName,
     reason: data.value.reason,
   });
+
   return response.data;
 };

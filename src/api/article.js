@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 10:39:33
+ * @LastEditTime: 2023-07-29 11:03:35
  */
 import service from "./index";
 
@@ -116,10 +116,14 @@ export const updatePersonal = async (data) => {
  * @description 修改用户自己的文章内容
  */
 export const updateCon = async (data) => {
-  const response = await service.post("/article/updateCon", {
-    id: data.value.id,
-    articleCon: data.value.articleCon,
-  });
+  const response = await service
+    .post("/article/updateCon", {
+      id: data.value.id,
+      articleCon: data.value.articleCon,
+    })
+    .catch((err) => {
+      return err;
+    });
 
   return response.data;
 };
@@ -128,9 +132,13 @@ export const updateCon = async (data) => {
  * @description 用户删除自己的文章
  */
 export const deletePersonal = async (data) => {
-  const response = await service.post("/article/deletePersonal", {
-    id: data.value.id,
-  });
+  const response = await service
+    .post("/article/deletePersonal", {
+      id: data.value.id,
+    })
+    .catch((err) => {
+      return err;
+    });
 
   return response.data;
 };
