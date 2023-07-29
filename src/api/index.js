@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-21 14:39:04
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-26 22:20:32
+ * @LastEditTime: 2023-07-29 10:40:44
  */
 import axios from "axios";
 
@@ -20,6 +20,14 @@ const service = axios.create({
     "Access-Control-Allow-Origin": "*",
   },
 });
+
+const messageTip = (type, msg) => {
+  // eslint-disable-next-line no-undef
+  ElMessage({
+    message: msg,
+    type,
+  });
+};
 
 // 请求拦截器
 service.interceptors.request.use(
@@ -39,20 +47,14 @@ service.interceptors.request.use(
 // 响应拦截器
 // TODO：如果返回 401 即 token 过期，退出登录
 service.interceptors.response.use(
-  function (config) {
-    if (config.status === 401) {
+  function (response) {
+    return response;
+  },
+  async function (error) {
+    if (error.response.status === 401) {
+      messageTip("error", "token 已过期，请重新登录");
       router.push("/loginPage");
     }
-    return config;
-  },
-  {
-    function(error) {
-      if (error.response && error.response.status === 401) {
-        // router.push("/loginPage");
-        console.log("--------------响应拦截器 401------------------");
-      }
-      return Promise.reject(error);
-    },
   },
 );
 

@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-25 23:47:20
+ * @LastEditTime: 2023-07-29 10:39:33
  */
 import service from "./index";
 
@@ -14,11 +14,15 @@ import service from "./index";
  * @param {*} data
  */
 export const uploadArticle = async (data) => {
-  const response = await service.post("/article/upload", {
-    articleName: data.value.articleName,
-    articleCon: data.value.articleCon,
-    visualRange: data.value.visualRange,
-  });
+  const response = await service
+    .post("/article/upload", {
+      articleName: data.value.articleName,
+      articleCon: data.value.articleCon,
+      visualRange: data.value.visualRange,
+    })
+    .catch((err) => {
+      return err;
+    });
   return response.data;
 };
 
@@ -26,7 +30,9 @@ export const uploadArticle = async (data) => {
  * @description 查看对外公开文章
  */
 export const showArticle = async () => {
-  const response = await service.get("/article/showArticle");
+  const response = await service.get("/article/showArticle").catch((err) => {
+    return err;
+  });
 
   return response.data;
 };
