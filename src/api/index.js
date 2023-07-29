@@ -4,13 +4,15 @@
  * @version:
  * @Date: 2023-06-21 14:39:04
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 11:07:37
+ * @LastEditTime: 2023-07-29 17:23:30
  */
 import axios from "axios";
 
 import useAuthStore from "@/store/auth";
 
 import router from "@/router/index";
+
+import { messageTip } from "@/utils/reminder";
 
 const authStore = useAuthStore();
 
@@ -20,14 +22,6 @@ const service = axios.create({
     "Access-Control-Allow-Origin": "*",
   },
 });
-
-const messageTip = (type, msg) => {
-  // eslint-disable-next-line no-undef
-  ElMessage({
-    message: msg,
-    type,
-  });
-};
 
 // 请求拦截器
 service.interceptors.request.use(

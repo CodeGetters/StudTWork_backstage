@@ -4,9 +4,11 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 15:31:30
+ * @LastEditTime: 2023-07-29 17:58:52
  */
 import { createRouter, createWebHistory } from "vue-router";
+
+import { messageTip } from "@/utils/reminder";
 
 const Home = () => import("@/views/HomePage.vue");
 const Login = () => import("@/views/LoginPage.vue");
@@ -135,12 +137,26 @@ router.beforeEach((to, from, next) => {
   if (to.path === "/register") return next();
   if (to.path === "/forgetPwd") return next();
 
-  // token 不存在强制跳转到登录页 login
+  // 匹配 authorization
+  const userInfoReg =
+    /^(?=.*userInfo)(?=.*id)(?=.*userName)(?=.*sex)(?=.*userRegister)(?=.*departmentId)(?=.*authority).*$/;
+  // 匹配 token
+  const tokenReg = /.*Authorization.*/;
+  let userInfo = localStorage.getItem("userInfo");
   let token = localStorage.getItem("Authorization");
-  if (!token) return next("/loginPage");
 
-  // 4.tokenStr 存在放行
+  const userRes = userInfoReg.test(userInfo);
+  const tokenRes = tokenReg.test(token);
+
+  // 如果匹配不成功则返回首页重新登录
+  // localStorage 为空需要重新登录
+  if (!userRes || !tokenRes) {
+    messageTip("error", "发生错误了，要不你重新登录一下试试~");
+    router.push("/loginPage");
+    localStorage.clear("userInfo");
+  }
+
+  // 放行
   next();
 });
-
 export default router;

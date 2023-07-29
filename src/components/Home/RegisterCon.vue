@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 13:38:57
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-28 00:05:46
+ * @LastEditTime: 2023-07-29 17:56:59
 -->
 <script setup>
 import { postRegister } from "@/api/user";
@@ -280,7 +280,7 @@ const options = [
         <el-button type="primary" @click="submitForm(ruleFormRef)">
           {{ $t("loginPage.register") }}
         </el-button>
-        <el-button type="primary" @click="linkTo('home')">
+        <el-button type="primary" @click="linkTo('/loginPage')">
           {{ $t("loginPage.goHome") }}
         </el-button>
       </el-form-item>

@@ -157,6 +157,7 @@ export default ({ mode }) => {
       // https://github.com/vite-pwa/vite-plugin-pwa/blob/main/src/types.ts
       VitePWA({
         registerType: "autoUpdate",
+        mode: "production",
         devOptions: {
           enabled: true,
         },

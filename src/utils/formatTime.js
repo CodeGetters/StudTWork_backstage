@@ -12,3 +12,7 @@ import dayjs from "dayjs";
 export const normalDate = (oldDate) => {
   return dayjs(oldDate).format("YYYY-MM-DD hh:mm");
 };
+
+export const includeSecond = (oldDate) => {
+  return dayjs(oldDate).format("YYYY-MM-DD hh:mm:ss");
+};
