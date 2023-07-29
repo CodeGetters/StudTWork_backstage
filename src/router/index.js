@@ -4,35 +4,43 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-22 20:28:46
+ * @LastEditTime: 2023-07-29 17:58:52
  */
 import { createRouter, createWebHistory } from "vue-router";
 
-const Home = () => import("../views/HomePage.vue");
-const Login = () => import("../views/LoginPage.vue");
-const NotFound = () => import("../views/NotFound.vue");
+import { messageTip } from "@/utils/reminder";
 
-const UserManage = () => import("../components/User/UserManage.vue");
-const UserHome = () => import("../components/UserHome.vue");
-const CommentManage = () => import("../components/CommentManage.vue");
-const UserCenter = () => import("../components/UserCenter.vue");
+const Home = () => import("@/views/HomePage.vue");
+const Login = () => import("@/views/LoginPage.vue");
+const NotFound = () => import("@/views/NotFound.vue");
 
-const PublicArticle = () => import("../components/Article/PublicArticle.vue");
-const VisibleArticle = () => import("../components/Article/VisibleArticle.vue");
-const MyArticle = () => import("../components/Article/MyArticle.vue");
-const CreateArticle = () => import("../components/Article/CreateArticle.vue");
+const UserManage = () => import("@/components/User/UserManage.vue");
+const UserHome = () => import("@/components/UserHome.vue");
+const CommentManage = () => import("@/components/CommentManage.vue");
+const UserCenter = () => import("@/components/User/UserCenter.vue");
 
-const LoginPage = () => import("../components/LoginCon.vue");
-const registerPage = () => import("../components/RegisterCon.vue");
-const forgetPwd = () => import("../components/ForgetPwd.vue");
+const PublicArticle = () => import("@/components/Article/PublicArticle.vue");
+const VisibleArticle = () => import("@/components/Article/VisibleArticle.vue");
+const MyArticle = () => import("@/components/Article/MyArticle.vue");
+const CreateArticle = () => import("@/components/Article/CreateArticle.vue");
 
-const ChartTest = () => import("../views/ChartTest.vue");
-const MapTest = () => import("../views/MapTest.vue");
+const LoginPage = () => import("@/components/Home/LoginCon.vue");
+const registerPage = () => import("@/components/Home/RegisterCon.vue");
+const forgetPwd = () => import("@/components/Home/ForgetPwd.vue");
+
+const CreateTeam = () => import("@/components/Department/CreateTeam.vue");
+const ManageTeam = () => import("@/components/Department/ManageTeam.vue");
+
+const ChartTest = () => import("@/views/ChartTest.vue");
+const MapTest = () => import("@/views/MapTest.vue");
 
 const routes = [
   {
     path: "/",
-    alias: "/home",
+    redirect: "/home",
+  },
+  {
+    path: "/home",
     name: "Home",
     redirect: "/homePage",
     component: Home,
@@ -65,6 +73,14 @@ const routes = [
       {
         path: "/CreateArticle",
         component: CreateArticle,
+      },
+      {
+        path: "/createTeam",
+        component: CreateTeam,
+      },
+      {
+        path: "/manageTeam",
+        component: ManageTeam,
       },
       {
         path: "/charTest",
@@ -121,12 +137,26 @@ router.beforeEach((to, from, next) => {
   if (to.path === "/register") return next();
   if (to.path === "/forgetPwd") return next();
 
-  // token 不存在强制跳转到登录页 login
+  // 匹配 authorization
+  const userInfoReg =
+    /^(?=.*userInfo)(?=.*id)(?=.*userName)(?=.*sex)(?=.*userRegister)(?=.*departmentId)(?=.*authority).*$/;
+  // 匹配 token
+  const tokenReg = /.*Authorization.*/;
+  let userInfo = localStorage.getItem("userInfo");
   let token = localStorage.getItem("Authorization");
-  if (!token) return next("/loginPage");
 
-  // 4.tokenStr 存在放行
+  const userRes = userInfoReg.test(userInfo);
+  const tokenRes = tokenReg.test(token);
+
+  // 如果匹配不成功则返回首页重新登录
+  // localStorage 为空需要重新登录
+  if (!userRes || !tokenRes) {
+    messageTip("error", "发生错误了，要不你重新登录一下试试~");
+    router.push("/loginPage");
+    localStorage.clear("userInfo");
+  }
+
+  // 放行
   next();
 });
-
 export default router;

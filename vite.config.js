@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-19 22:16:29
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-01 07:24:10
+ * @LastEditTime: 2023-07-27 22:14:46
  */
 
 import { defineConfig, loadEnv } from "vite";
@@ -157,6 +157,7 @@ export default ({ mode }) => {
       // https://github.com/vite-pwa/vite-plugin-pwa/blob/main/src/types.ts
       VitePWA({
         registerType: "autoUpdate",
+        mode: "production",
         devOptions: {
           enabled: true,
         },

@@ -10,7 +10,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { getAllUser } from "@/api/user";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 const tableData = ref();
 
 // 修改用户信息

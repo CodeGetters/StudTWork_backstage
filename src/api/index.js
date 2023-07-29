@@ -4,11 +4,16 @@
  * @version:
  * @Date: 2023-06-21 14:39:04
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-06-23 17:00:57
+ * @LastEditTime: 2023-07-29 17:23:30
  */
 import axios from "axios";
 
-import useAuthStore from "../store/auth";
+import useAuthStore from "@/store/auth";
+
+import router from "@/router/index";
+
+import { messageTip } from "@/utils/reminder";
+
 const authStore = useAuthStore();
 
 const service = axios.create({
@@ -29,6 +34,20 @@ service.interceptors.request.use(
     return config;
   },
   function (error) {
+    return Promise.reject(error);
+  },
+);
+
+// 响应拦截器
+service.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  async function (error) {
+    if (error.response.status === 401) {
+      messageTip("error", "token 已过期，请重新登录");
+      router.push("/loginPage");
+    }
     return Promise.reject(error);
   },
 );

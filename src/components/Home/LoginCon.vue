@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-16 10:15:41
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-20 22:11:16
+ * @LastEditTime: 2023-07-29 11:54:59
 -->
 <script setup>
 import { ref } from "vue";
@@ -16,7 +16,7 @@ import { useRouter } from "vue-router";
 import useAuthStore from "@/store/auth";
 import useInfoStore from "@/store/user";
 
-import translate from "../assets/translate.svg";
+import translate from "@/assets/translate.svg";
 import theme from "@/assets/theme.svg";
 
 const authStore = useAuthStore();
@@ -27,7 +27,7 @@ const router = useRouter();
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
 
-import { getIp } from "../utils/getLocal";
+import { getIp } from "@/utils/getLocal";
 
 /**
  * @description 语言切换
@@ -125,6 +125,7 @@ const rules = ref({
  */
 const submitForm = async () => {
   if (isRight.value.account && isRight.value.pwd) {
+    // 获取 ip 地址
     const ipInfo = await getIp();
 
     isRight.value = {

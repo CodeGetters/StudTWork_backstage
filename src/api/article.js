@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-24 00:26:03
+ * @LastEditTime: 2023-07-29 11:03:35
  */
 import service from "./index";
 
@@ -14,11 +14,15 @@ import service from "./index";
  * @param {*} data
  */
 export const uploadArticle = async (data) => {
-  const response = await service.post("/article/upload", {
-    articleName: data.value.articleName,
-    articleCon: data.value.articleCon,
-    visualRange: data.value.visualRange,
-  });
+  const response = await service
+    .post("/article/upload", {
+      articleName: data.value.articleName,
+      articleCon: data.value.articleCon,
+      visualRange: data.value.visualRange,
+    })
+    .catch((err) => {
+      return err;
+    });
   return response.data;
 };
 
@@ -26,7 +30,9 @@ export const uploadArticle = async (data) => {
  * @description 查看对外公开文章
  */
 export const showArticle = async () => {
-  const response = await service.get("/article/showArticle");
+  const response = await service.get("/article/showArticle").catch((err) => {
+    return err;
+  });
 
   return response.data;
 };
@@ -41,6 +47,7 @@ export const updatePublicInfo = async (data) => {
     author: data.value.author,
     articleName: data.value.articleName,
     visualRange: data.value.visualRange,
+    modifyReason: data.value.modifyReason,
   });
 
   return response.data;
@@ -53,7 +60,7 @@ export const updatePublicInfo = async (data) => {
 export const deletePublic = async (data) => {
   const response = await service.post("/article/deletePublic", {
     id: data.value.id,
-    articleCon: data.value.articleCon,
+    deleteReason: data.value.modifyReason,
   });
 
   return response.data;
@@ -67,6 +74,7 @@ export const updatePublicCon = async (data) => {
   const response = await service.post("/article/updatePublicCon", {
     id: data.value.id,
     articleCon: data.value.articleCon,
+    modifyReason: data.value.modifyReason,
   });
 
   return response.data;
@@ -108,10 +116,14 @@ export const updatePersonal = async (data) => {
  * @description 修改用户自己的文章内容
  */
 export const updateCon = async (data) => {
-  const response = await service.post("/article/updateCon", {
-    id: data.value.id,
-    articleCon: data.value.articleCon,
-  });
+  const response = await service
+    .post("/article/updateCon", {
+      id: data.value.id,
+      articleCon: data.value.articleCon,
+    })
+    .catch((err) => {
+      return err;
+    });
 
   return response.data;
 };
@@ -120,9 +132,13 @@ export const updateCon = async (data) => {
  * @description 用户删除自己的文章
  */
 export const deletePersonal = async (data) => {
-  const response = await service.post("/article/deletePersonal", {
-    id: data.value.id,
-  });
+  const response = await service
+    .post("/article/deletePersonal", {
+      id: data.value.id,
+    })
+    .catch((err) => {
+      return err;
+    });
 
   return response.data;
 };

@@ -5,9 +5,9 @@
  * @version:
  * @Date: 2023-07-23 17:07:26
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-23 19:27:03
+ * @LastEditTime: 2023-07-29 17:18:56
  */
-import * as dayjs from "dayjs";
+import { includeSecond } from "./formatTime";
 
 /**
  *
@@ -21,8 +21,8 @@ export const getArticleList = async (tableData, articleApi) => {
 
   // 处理 api 数据中的发布时间和最后更新时间以及添加文章列表 id
   articleList.data.articleList.forEach((item) => {
-    item.releaseTime = dayjs().format("YYYY-MM-DD HH:mm:ss");
-    item.lastUpdate = dayjs().format("YYYY-MM-DD HH:mm:ss");
+    item.releaseTime = includeSecond(item.releaseTime);
+    item.lastUpdate = includeSecond(item.lastUpdate);
     if (count <= articleLength) item.articleId = count++;
   });
 

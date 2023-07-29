@@ -7,16 +7,17 @@ export {}
 
 declare module "vue" {
   export interface GlobalComponents {
-    ArticleManage: typeof import("./components/ArticleManage.vue")["default"];
-    ArticleTest: typeof import("./components/ArticleTest.vue")["default"];
     CommentManage: typeof import("./components/CommentManage.vue")["default"];
     CreateArticle: typeof import("./components/Article/CreateArticle.vue")["default"];
+    CreateTeam: typeof import("./components/Department/CreateTeam.vue")["default"];
+    ElBadge: typeof import("element-plus/es")["ElBadge"];
     ElButton: typeof import("element-plus/es")["ElButton"];
     ElCheckbox: typeof import("element-plus/es")["ElCheckbox"];
     ElCheckboxGroup: typeof import("element-plus/es")["ElCheckboxGroup"];
     ElCheckTag: typeof import("element-plus/es")["ElCheckTag"];
     ElCol: typeof import("element-plus/es")["ElCol"];
-    ElDatePicker: typeof import("element-plus/es")["ElDatePicker"];
+    ElDescriptions: typeof import("element-plus/es")["ElDescriptions"];
+    ElDescriptionsItem: typeof import("element-plus/es")["ElDescriptionsItem"];
     ElDialog: typeof import("element-plus/es")["ElDialog"];
     ElDivider: typeof import("element-plus/es")["ElDivider"];
     ElDropdown: typeof import("element-plus/es")["ElDropdown"];
@@ -29,22 +30,24 @@ declare module "vue" {
     ElMenu: typeof import("element-plus/es")["ElMenu"];
     ElMenuItem: typeof import("element-plus/es")["ElMenuItem"];
     ElMenuItemGroup: typeof import("element-plus/es")["ElMenuItemGroup"];
+    ElOption: typeof import("element-plus/es")["ElOption"];
     ElRadio: typeof import("element-plus/es")["ElRadio"];
     ElRadioGroup: typeof import("element-plus/es")["ElRadioGroup"];
     ElRow: typeof import("element-plus/es")["ElRow"];
+    ElSelect: typeof import("element-plus/es")["ElSelect"];
     ElSubMenu: typeof import("element-plus/es")["ElSubMenu"];
     ElTable: typeof import("element-plus/es")["ElTable"];
     ElTableColumn: typeof import("element-plus/es")["ElTableColumn"];
-    ElText: typeof import("element-plus/es")["ElText"];
-    ElTimePicker: typeof import("element-plus/es")["ElTimePicker"];
-    ForgetPwd: typeof import("./components/ForgetPwd.vue")["default"];
-    LoginCon: typeof import("./components/LoginCon.vue")["default"];
+    ElTag: typeof import("element-plus/es")["ElTag"];
+    ForgetPwd: typeof import("./components/Home/ForgetPwd.vue")["default"];
+    LoginCon: typeof import("./components/Home/LoginCon.vue")["default"];
+    ManageTeam: typeof import("./components/Department/ManageTeam.vue")["default"];
     MyArticle: typeof import("./components/Article/MyArticle.vue")["default"];
     PublicArticle: typeof import("./components/Article/PublicArticle.vue")["default"];
-    RegisterCon: typeof import("./components/RegisterCon.vue")["default"];
+    RegisterCon: typeof import("./components/Home/RegisterCon.vue")["default"];
     RouterLink: typeof import("vue-router")["RouterLink"];
     RouterView: typeof import("vue-router")["RouterView"];
-    UserCenter: typeof import("./components/UserCenter.vue")["default"];
+    UserCenter: typeof import("./components/User/UserCenter.vue")["default"];
     UserHome: typeof import("./components/UserHome.vue")["default"];
     UserManage: typeof import("./components/User/UserManage.vue")["default"];
     ViewArticle: typeof import("./components/Article/ViewArticle.vue")["default"];
