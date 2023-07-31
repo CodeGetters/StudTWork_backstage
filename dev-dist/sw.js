@@ -1,8 +1,8 @@
 if (!self.define) {
   let e,
     t = {};
-  const i = (i, r) => (
-    (i = new URL(i + ".js", r).href),
+  const i = (i, n) => (
+    (i = new URL(i + ".js", n).href),
     t[i] ||
       new Promise((t) => {
         if ("document" in self) {
@@ -15,16 +15,16 @@ if (!self.define) {
         return e;
       })
   );
-  self.define = (r, n) => {
-    const o =
+  self.define = (n, o) => {
+    const r =
       e ||
       ("document" in self ? document.currentScript.src : "") ||
       location.href;
-    if (t[o]) return;
+    if (t[r]) return;
     let s = {};
-    const l = (e) => i(e, o),
-      c = { module: { uri: o }, exports: s, require: l };
-    t[o] = Promise.all(r.map((e) => c[e] || l(e))).then((e) => (n(...e), s));
+    const l = (e) => i(e, r),
+      c = { module: { uri: r }, exports: s, require: l };
+    t[r] = Promise.all(n.map((e) => c[e] || l(e))).then((e) => (o(...e), s));
   };
 }
 define(["./workbox-fa446783"], function (e) {
@@ -34,7 +34,7 @@ define(["./workbox-fa446783"], function (e) {
     e.precacheAndRoute(
       [
         { url: "registerSW.js", revision: "22271febdc61e0ae248cd93e3ec01f59" },
-        { url: "index.html", revision: "0.38mk96m2lc8" },
+        { url: "index.html", revision: "0.nk8ts0jchpo" },
       ],
       {},
     ),

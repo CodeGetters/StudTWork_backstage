@@ -34,14 +34,6 @@ const routerJump = (url, param) => {
     query: param,
   });
 };
-
-// 处理折叠
-const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key, keyPath) => {
-  console.log(key, keyPath);
-};
 </script>
 
 <template>
@@ -50,8 +42,6 @@ const handleClose = (key, keyPath) => {
       default-active="1"
       class="menuCon"
       :collapse="isCollapse"
-      @open="handleOpen"
-      @close="handleClose"
       active-text-color="#165DFF"
     >
       <!-- 主页 -->
