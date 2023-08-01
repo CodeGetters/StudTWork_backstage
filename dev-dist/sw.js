@@ -1,30 +1,30 @@
 if (!self.define) {
   let e,
     t = {};
-  const i = (i, n) => (
-    (i = new URL(i + ".js", n).href),
-    t[i] ||
+  const r = (r, i) => (
+    (r = new URL(r + ".js", i).href),
+    t[r] ||
       new Promise((t) => {
         if ("document" in self) {
           const e = document.createElement("script");
-          (e.src = i), (e.onload = t), document.head.appendChild(e);
-        } else (e = i), importScripts(i), t();
+          (e.src = r), (e.onload = t), document.head.appendChild(e);
+        } else (e = r), importScripts(r), t();
       }).then(() => {
-        let e = t[i];
-        if (!e) throw new Error(`Module ${i} didn’t register its module`);
+        let e = t[r];
+        if (!e) throw new Error(`Module ${r} didn’t register its module`);
         return e;
       })
   );
-  self.define = (n, o) => {
-    const r =
+  self.define = (i, n) => {
+    const o =
       e ||
       ("document" in self ? document.currentScript.src : "") ||
       location.href;
-    if (t[r]) return;
+    if (t[o]) return;
     let s = {};
-    const l = (e) => i(e, r),
-      c = { module: { uri: r }, exports: s, require: l };
-    t[r] = Promise.all(n.map((e) => c[e] || l(e))).then((e) => (o(...e), s));
+    const l = (e) => r(e, o),
+      c = { module: { uri: o }, exports: s, require: l };
+    t[o] = Promise.all(i.map((e) => c[e] || l(e))).then((e) => (n(...e), s));
   };
 }
 define(["./workbox-fa446783"], function (e) {
@@ -34,7 +34,7 @@ define(["./workbox-fa446783"], function (e) {
     e.precacheAndRoute(
       [
         { url: "registerSW.js", revision: "22271febdc61e0ae248cd93e3ec01f59" },
-        { url: "index.html", revision: "0.nk8ts0jchpo" },
+        { url: "index.html", revision: "0.1rhvr54v8l8" },
       ],
       {},
     ),
