@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-06-29 22:05:35
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-31 21:15:11
+ * @LastEditTime: 2023-08-01 23:13:40
  */
 import service from "./index";
 
@@ -80,5 +80,16 @@ export const deleteUser = async (data) => {
  */
 export const adminList = async () => {
   const response = await service.get("/user/getManagers");
+  return response.data;
+};
+
+/**
+ * @description 查看特定用户的信息
+ * @param {*} data
+ */
+export const specificUser = async (data) => {
+  const response = await service.get("/user/specificUser", {
+    userId: data.value.id,
+  });
   return response.data;
 };

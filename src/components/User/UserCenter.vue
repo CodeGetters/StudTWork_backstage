@@ -5,13 +5,14 @@
  * @version:
  * @Date: 2023-07-06 23:48:32
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 15:17:43
+ * @LastEditTime: 2023-08-02 12:30:03
 -->
 <script setup>
-import { Tickets, User, View, Clock } from "@element-plus/icons-vue";
+import { Tickets, User, View, Clock, Male } from "@element-plus/icons-vue";
 
 import UseInfoStore from "@/store/user.js";
 import { getLastInfo } from "@/api/location";
+import { findDepartment } from "@/api/department";
 import { onMounted, ref } from "vue";
 import { normalDate } from "@/utils/formatTime";
 
@@ -23,8 +24,24 @@ const loginMsg = ref({
   province: "",
 });
 
-const registerTime = normalDate(infoStore.userInfo.userRegister);
+const userMsg = ref({
+  userSex: infoStore.userInfo.sex,
+  department: "未分配",
+  registerTime: normalDate(infoStore.userInfo.userRegister),
+});
 
+// 小组 id
+const departmentId = infoStore.userInfo.departmentId;
+
+// 查找小组名
+const searchDepartment = async (userMsg, departmentId) => {
+  if (departmentId !== 0) {
+    const res = await findDepartment(departmentId);
+    userMsg.value.department = res.data.info.departmentName;
+  }
+};
+
+// 获取登录信息
 const loginInfo = async (loginMsg) => {
   const res = await getLastInfo().catch((err) => {
     console.log(err);
@@ -36,6 +53,7 @@ const loginInfo = async (loginMsg) => {
 
 onMounted(() => {
   loginInfo(loginMsg);
+  searchDepartment(userMsg, departmentId);
 });
 </script>
 
@@ -52,6 +70,17 @@ onMounted(() => {
           </div>
         </template>
         {{ infoStore.userInfo.userName }}
+      </el-descriptions-item>
+      <el-descriptions-item>
+        <template #label>
+          <div class="cell-item">
+            <el-icon>
+              <Male />
+            </el-icon>
+            性别
+          </div>
+        </template>
+        {{ userMsg.userSex }}
       </el-descriptions-item>
       <el-descriptions-item>
         <template #label>
@@ -74,7 +103,7 @@ onMounted(() => {
             组别
           </div>
         </template>
-        <el-tag size="default">School</el-tag>
+        <el-tag size="default"> {{ userMsg.department }}</el-tag>
       </el-descriptions-item>
       <el-descriptions-item>
         <template #label>
@@ -95,10 +124,10 @@ onMounted(() => {
             <el-icon>
               <Clock />
             </el-icon>
-            加入时间
+            注册时间
           </div>
         </template>
-        {{ registerTime }}
+        {{ userMsg.registerTime }}
       </el-descriptions-item>
       <el-descriptions-item>
         <template #label>

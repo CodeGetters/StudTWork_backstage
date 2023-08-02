@@ -20,3 +20,12 @@ export const showDepartments = async () => {
   const response = await service.get("/department/show");
   return response.data;
 };
+
+/**
+ * @description 查询特定小组信息
+ * @param {*} data
+ */
+export const findDepartment = async (id) => {
+  const response = await service.post("/department/findOne", { id });
+  return response.data;
+};

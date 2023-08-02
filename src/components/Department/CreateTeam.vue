@@ -34,7 +34,9 @@ const submitForm = async (formEl) => {
 
   await formEl.validate(async (valid, fields) => {
     if (valid) {
-      const res = await createDepartment(ruleForm);
+      const res = await createDepartment(ruleForm).catch((err) => {
+        messageTip("error", err.response.data.msg);
+      });
       if (res.msg === "success") {
         messageTip("success", "创建成功🥰");
       } else {
