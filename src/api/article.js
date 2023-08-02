@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-14 12:11:21
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 11:03:35
+ * @LastEditTime: 2023-08-02 14:01:35
  */
 import service from "./index";
 
@@ -140,5 +140,12 @@ export const deletePersonal = async (data) => {
       return err;
     });
 
+  return response.data;
+};
+
+export const specificArticle = async (id) => {
+  const response = await service.get("/article/specific", {
+    params: { id },
+  });
   return response.data;
 };

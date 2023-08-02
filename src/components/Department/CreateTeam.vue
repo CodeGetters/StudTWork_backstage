@@ -53,7 +53,7 @@ const submitForm = async (formEl) => {
 // 获取管理员列表
 const getAdmin = async () => {
   const res = await adminList().catch((err) => {
-    messageTip("error", "获取管理员列表失败😥");
+    messageTip("error", err.response.data.msg);
     console.log(err);
   });
   options.value = res.data.adminList;
