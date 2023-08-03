@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-06 23:38:14
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-08-03 12:16:17
+ * @LastEditTime: 2023-08-03 16:27:02
 -->
 <script setup>
 import ClockChart from "./Echarts/ClockChart.vue";
@@ -13,7 +13,7 @@ import ClockChart from "./Echarts/ClockChart.vue";
 
 <template>
   <div id="UserHome" class="w100% h100% bg-#fff">
-    {{ $t("layout.homePage") }}
+    <!-- {{ $t("layout.homePage") }} -->
     <ClockChart />
   </div>
 </template>

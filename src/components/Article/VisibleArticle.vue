@@ -6,7 +6,7 @@ import {
   updatePublicCon,
   deletePublic,
 } from "@/api/article";
-import { getArticleList } from "@/utils/articleList";
+import { getArticleList } from "@/utils/dataList";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
