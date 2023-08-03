@@ -3,8 +3,7 @@ import { onMounted, onUnmounted } from "vue";
 import { getAllUser } from "@/api/user";
 import * as echart from "echarts";
 
-// import "echarts/extension/bmap/bmap";
-import "echarts-extension-amap";
+import "echarts/extension/bmap/bmap";
 
 const getUsers = async () => {
   await getAllUser()

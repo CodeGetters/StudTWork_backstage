@@ -5,42 +5,39 @@
  * @version:
  * @Date: 2023-07-06 23:34:42
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-31 21:52:44
+ * @LastEditTime: 2023-08-03 16:26:27
 -->
 <script setup>
 import { ref, onMounted } from "vue";
 import { getAllUser } from "@/api/user";
-import dayjs from "dayjs";
+import { findDepartment } from "@/api/department";
+import { getUserList } from "@/utils/dataList";
+
 const tableData = ref();
 
 // 修改用户信息
-const dialogUserInfo = ref(false);
 const userInfo = ref({
   userName: "",
   role: "",
 });
 // 修改用户权限
 const radio1 = ref("");
-const dialogUserRole = ref(false);
 
-// 删除用户
-const dialogDelete = ref(false);
+// 弹出框总控
+const dialogSwitch = ref({
+  userInfo: false,
+  authority: false,
+  remove: false,
+});
 
 // 删除行
 const deleteRow = () => {
-  dialogDelete.value = true;
+  dialogSwitch.value.remove = true;
   // tableData.value.splice(index, 1);
 };
 
-onMounted(async () => {
-  const user = await getAllUser();
-  let count = 1;
-  let userLength = user.data.users.length;
-  user.data.users.forEach((item) => {
-    item.registerTime = dayjs().format("YYYY-MM-DD HH-mm:ss");
-    if (count <= userLength) item.userId = count++;
-  });
-  tableData.value = user.data.users;
+onMounted(() => {
+  getUserList(tableData, getAllUser, findDepartment);
 });
 </script>
 
@@ -53,16 +50,23 @@ onMounted(async () => {
       max-height="600"
       border
     >
-      <el-table-column fixed prop="userId" label="id" width="100" />
-      <el-table-column prop="userName" label="用户名" width="250" />
+      <el-table-column fixed prop="userId" label="id" width="50" />
+      <el-table-column prop="userName" label="用户名" width="200" />
       <el-table-column prop="role" label="角色" width="200" />
-      <el-table-column prop="registerTime" label="注册时间" width="300" />
+      <el-table-column prop="departmentName" label="组别" width="180" />
+      <el-table-column prop="registerTime" label="注册时间" width="240" />
       <el-table-column label="操作" width="660">
         <template #default="scope">
-          <el-check-tag checked class="ml-2" @click="dialogUserInfo = true"
+          <el-check-tag
+            checked
+            class="ml-2"
+            @click="dialogSwitch.userInfo = true"
             >修改用户信息</el-check-tag
           >
-          <el-check-tag checked class="ml-2" @click="dialogUserRole = true"
+          <el-check-tag
+            checked
+            class="ml-2"
+            @click="dialogSwitch.authority = true"
             >修改用户权限</el-check-tag
           >
           <el-check-tag
@@ -75,26 +79,35 @@ onMounted(async () => {
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog v-model="dialogUserInfo" title="Tips" width="30%">
+
+    <!-- 修改用户信息 -->
+    <el-dialog v-model="dialogSwitch.userInfo" title="修改用户信息" width="30%">
       <el-form :model="userInfo">
-        <el-form-item label="用户名" :label-width="formLabelWidth">
+        <el-form-item label="用户名">
           <el-input v-model="userInfo.userName" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="角色" :label-width="formLabelWidth">
+        <el-form-item label="角色">
+          <el-input v-model="userInfo.role" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-input v-model="userInfo.role" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="组别">
           <el-input v-model="userInfo.role" autocomplete="off" />
         </el-form-item>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="dialogUserInfo = false">取消</el-button>
-          <el-button type="primary" @click="dialogUserInfo = false">
+          <el-button @click="dialogSwitch.userInfo = false">取消</el-button>
+          <el-button type="primary" @click="dialogSwitch.userInfo = false">
             提交
           </el-button>
         </span>
       </template>
     </el-dialog>
 
-    <el-dialog v-model="dialogUserRole" title="Tips" width="30%">
+    <!-- 修改用户权限 -->
+    <el-dialog v-model="dialogSwitch.authority" title="Tips" width="30%">
       <el-radio-group v-model="radio1">
         <el-radio label="1" size="large" border>游客</el-radio>
         <el-radio label="2" size="large" border>普通用户</el-radio>
@@ -102,20 +115,20 @@ onMounted(async () => {
       </el-radio-group>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="dialogUserRole = false">取消</el-button>
-          <el-button type="primary" @click="dialogUserRole = false">
+          <el-button @click="dialogSwitch.authority = false">取消</el-button>
+          <el-button type="primary" @click="dialogSwitch.authority = false">
             提交
           </el-button>
         </span>
       </template>
     </el-dialog>
 
-    <el-dialog v-model="dialogDelete" title="Tips" width="30%">
+    <el-dialog v-model="dialogSwitch.remove" title="Tips" width="30%">
       <span>此操作不可逆，是否继续</span>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="dialogDelete = false">取消</el-button>
-          <el-button type="primary" @click="dialogDelete = false">
+          <el-button @click="dialogSwitch.remove = false">取消</el-button>
+          <el-button type="primary" @click="dialogSwitch.remove = false">
             确认
           </el-button>
         </span>
