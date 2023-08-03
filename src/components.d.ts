@@ -7,6 +7,7 @@ export {}
 
 declare module "vue" {
   export interface GlobalComponents {
+    ClockChart: typeof import("./components/Echarts/ClockChart.vue")["default"];
     CommentManage: typeof import("./components/CommentManage.vue")["default"];
     CreateArticle: typeof import("./components/Article/CreateArticle.vue")["default"];
     CreateTeam: typeof import("./components/Department/CreateTeam.vue")["default"];
