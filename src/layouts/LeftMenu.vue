@@ -57,6 +57,7 @@ const routerJump = (url, param) => {
           <span>{{ $t("layout.userManage") }}</span>
         </template>
         <el-menu-item-group>
+          <!-- 用户管理 -->
           <el-menu-item index="2-1" @click="routerJump('/userManage', {})">{{
             $t("layout.userManage")
           }}</el-menu-item>
@@ -64,6 +65,11 @@ const routerJump = (url, param) => {
           <!-- 用户中心 -->
           <el-menu-item index="2-2" @click="routerJump('/userCenter', {})">
             {{ $t("layout.userCenter") }}
+          </el-menu-item>
+
+          <!-- 创建用户 -->
+          <el-menu-item index="2-2" @click="routerJump('/createUser', {})">
+            创建用户
           </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>

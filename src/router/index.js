@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-18 21:18:19
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-08-02 13:33:37
+ * @LastEditTime: 2023-08-03 10:30:09
  */
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -18,6 +18,7 @@ const UserManage = () => import("@/components/User/UserManage.vue");
 const UserHome = () => import("@/components/UserHome.vue");
 const CommentManage = () => import("@/components/CommentManage.vue");
 const UserCenter = () => import("@/components/User/UserCenter.vue");
+const CreateUser = () => import("@/components/User/CreateUser.vue");
 
 const PublicArticle = () => import("@/components/Article/PublicArticle.vue");
 const VisibleArticle = () => import("@/components/Article/VisibleArticle.vue");
@@ -54,6 +55,10 @@ const routes = [
       {
         path: "/userManage",
         component: UserManage,
+      },
+      {
+        path: "/createUser",
+        component: CreateUser,
       },
       {
         path: "/commentManage",
@@ -95,6 +100,7 @@ const routes = [
         path: "/userCenter",
         component: UserCenter,
       },
+
       {
         path: "/mapTest",
         component: MapTest,
@@ -144,7 +150,7 @@ router.beforeEach((to, from, next) => {
 
   // 匹配 authorization
   const userInfoReg =
-    /^(?=.*userInfo)(?=.*id)(?=.*userName)(?=.*sex)(?=.*userRegister)(?=.*departmentId)(?=.*authority).*$/;
+    /^(?=.*userInfo)(?=.*id)(?=.*userName)(?=.*sex)(?=.*departmentId)(?=.*authority).*$/;
   // 匹配 token
   const tokenReg = /.*Authorization.*/;
   let userInfo = localStorage.getItem("userInfo");

@@ -10,6 +10,7 @@ declare module "vue" {
     CommentManage: typeof import("./components/CommentManage.vue")["default"];
     CreateArticle: typeof import("./components/Article/CreateArticle.vue")["default"];
     CreateTeam: typeof import("./components/Department/CreateTeam.vue")["default"];
+    CreateUser: typeof import("./components/User/CreateUser.vue")["default"];
     ElBadge: typeof import("element-plus/es")["ElBadge"];
     ElButton: typeof import("element-plus/es")["ElButton"];
     ElCheckbox: typeof import("element-plus/es")["ElCheckbox"];
