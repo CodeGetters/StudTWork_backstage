@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 13:38:57
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 17:56:59
+ * @LastEditTime: 2023-08-02 18:09:57
 -->
 <script setup>
 import { postRegister } from "@/api/user";
@@ -18,6 +18,8 @@ import useAuthStore from "@/store/auth";
 import useInfoStore from "@/store/user";
 
 import { getIp } from "@/utils/getLocal";
+
+// TODO：注册成功后会返回主页并弹出错误信息
 
 const authStore = useAuthStore();
 const userStore = useInfoStore();

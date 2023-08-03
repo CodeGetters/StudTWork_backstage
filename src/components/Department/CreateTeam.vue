@@ -66,7 +66,7 @@ watch(
     console.log(val);
   },
 );
-
+// TODO:error 信息弹两次
 onMounted(() => {
   getAdmin();
 });
