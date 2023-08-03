@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import { adminList } from "@/api/user";
 import { createDepartment } from "@/api/department";
 import { messageTip } from "@/utils/reminder";
@@ -52,20 +52,26 @@ const submitForm = async (formEl) => {
 
 // 获取管理员列表
 const getAdmin = async () => {
-  // TODO:执行了两次请求
   const res = await adminList().catch((err) => {
     messageTip("error", err.response.data.msg);
+    console.log(err);
   });
-  if (res) {
-    options.value = res.data.adminList;
-  }
+  options.value = res.data.adminList;
 };
-// TODO：路由只跳转了一次！
-console.log("这个组件为什会执行两次？？？？");
 
+// 监听变化
+watch(
+  () => ruleForm.value.state,
+  (val) => {
+    console.log(val);
+  },
+);
+// TODO:error 信息弹两次
 onMounted(() => {
   getAdmin();
 });
+// TODO：执行了两次
+console.log("这个组件会被执行两次吗？");
 </script>
 
 <template>
@@ -80,11 +86,14 @@ onMounted(() => {
       class="p3"
       status-icon
     >
-      <el-form-item label="小组名" prop="departmentName">
-        <el-input v-model="ruleForm.departmentName" placeholder="请输入组名" />
+      <el-form-item label="用户名" prop="departmentName">
+        <el-input
+          v-model="ruleForm.departmentName"
+          placeholder="请输入用户名"
+        />
       </el-form-item>
 
-      <el-form-item label="小组管理员" prop="departmentAdmin">
+      <el-form-item label="性别" prop="departmentAdmin">
         <el-select v-model="ruleForm.departmentAdmin" placeholder="Select">
           <el-option
             v-for="item in options"
@@ -94,16 +103,23 @@ onMounted(() => {
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="小组描述" prop="departmentIntro">
+      <el-form-item label="密码" prop="departmentIntro">
         <el-input
           v-model="ruleForm.departmentIntro"
           type="textarea"
-          placeholder="请输入小组描述"
+          placeholder="请输入登录密码"
+        />
+      </el-form-item>
+      <el-form-item label="密码" prop="departmentIntro">
+        <el-input
+          v-model="ruleForm.departmentIntro"
+          type="textarea"
+          placeholder="请再次输入密码"
         />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)">
-          创建小组
+          创建用户
         </el-button>
       </el-form-item>
     </el-form>

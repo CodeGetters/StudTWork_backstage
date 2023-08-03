@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-06 23:34:42
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-22 11:35:32
+ * @LastEditTime: 2023-07-31 21:52:44
 -->
 <script setup>
 import { ref, onMounted } from "vue";
@@ -75,12 +75,7 @@ onMounted(async () => {
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog
-      v-model="dialogUserInfo"
-      title="Tips"
-      width="30%"
-      :before-close="handleClose"
-    >
+    <el-dialog v-model="dialogUserInfo" title="Tips" width="30%">
       <el-form :model="userInfo">
         <el-form-item label="用户名" :label-width="formLabelWidth">
           <el-input v-model="userInfo.userName" autocomplete="off" />
@@ -99,12 +94,7 @@ onMounted(async () => {
       </template>
     </el-dialog>
 
-    <el-dialog
-      v-model="dialogUserRole"
-      title="Tips"
-      width="30%"
-      :before-close="handleClose"
-    >
+    <el-dialog v-model="dialogUserRole" title="Tips" width="30%">
       <el-radio-group v-model="radio1">
         <el-radio label="1" size="large" border>游客</el-radio>
         <el-radio label="2" size="large" border>普通用户</el-radio>
@@ -120,12 +110,7 @@ onMounted(async () => {
       </template>
     </el-dialog>
 
-    <el-dialog
-      v-model="dialogDelete"
-      title="Tips"
-      width="30%"
-      :before-close="handleClose"
-    >
+    <el-dialog v-model="dialogDelete" title="Tips" width="30%">
       <span>此操作不可逆，是否继续</span>
       <template #footer>
         <span class="dialog-footer">

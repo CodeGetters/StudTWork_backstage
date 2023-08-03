@@ -58,6 +58,22 @@ docker images
 docker run -p 8080:80 images_id
 ```
 
+## 功能
+
+- 用户登录 ✔
+- 用户注册 ✔
+- 登录省份 ✔
+- 创建文章 ✔
+- 预览文章 ✔
+- 文章操作 ✔
+- Token ✔
+- 用户操作 🕐
+- 权限管理 ✔
+- i18n 🕐
+- 主题配置 🕐
+- 图片上传 ✖
+- 消息通知 ✖
+
 ## 贡献
 
 如果你愿意做项目中的 `TODO` 中的内容，请将你的 `pr` 提交到 `dev` 分支 👀
@@ -71,6 +87,4 @@ $ yarn lint
 
 ## 许可证
 
-GNU
-
-> The GNU GPL is the most widely used free software license and has a strong copyleft requirement. When distributing derived works, the source code of the work must be made available under the same license. There are multiple variants of the GNU GPL, each with different requirements.
+> GNU GPL是使用最广泛的自由软件许可证，并且有很强的copyleft要求。当发布衍生作品时，该作品的源代码必须在相同的许可下提供。GNU GPL有多种变体，每种变体都有不同的要求。

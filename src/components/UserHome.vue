@@ -5,14 +5,16 @@
  * @version:
  * @Date: 2023-07-06 23:38:14
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-22 20:25:39
+ * @LastEditTime: 2023-08-03 12:16:17
 -->
-<script setup></script>
+<script setup>
+import ClockChart from "./Echarts/ClockChart.vue";
+</script>
 
 <template>
-  <div id="UserHome">
+  <div id="UserHome" class="w100% h100% bg-#fff">
     {{ $t("layout.homePage") }}
-    <router-link to="/CreateArticle">上传文章 测试中！</router-link>
+    <ClockChart />
   </div>
 </template>
 

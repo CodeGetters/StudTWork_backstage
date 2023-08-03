@@ -16,11 +16,11 @@ const infoStore = UseInfoStore();
 const userAuthority = infoStore.userInfo.authority;
 const updateUser = infoStore.userInfo.id;
 
-// TODO：查看文章
-const JumpLinkTo = (path, param) => {
+// 查看文章
+const JumpLinkTo = (path, id) => {
   router.push({
     path,
-    query: param,
+    query: { id },
   });
 };
 
@@ -295,7 +295,11 @@ onMounted(() => {
           </el-check-tag>
 
           <!-- 查看文章 -->
-          <el-check-tag checked class="ml-2" @click="JumpLinkTo()">
+          <el-check-tag
+            checked
+            class="ml-2"
+            @click="JumpLinkTo('/viewArticle', scope.row.id)"
+          >
             {{ $t("article.viewArticle") }}
           </el-check-tag>
         </template>

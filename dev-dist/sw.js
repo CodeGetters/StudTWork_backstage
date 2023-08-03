@@ -34,7 +34,7 @@ define(["./workbox-fa446783"], function (e) {
     e.precacheAndRoute(
       [
         { url: "registerSW.js", revision: "22271febdc61e0ae248cd93e3ec01f59" },
-        { url: "index.html", revision: "0.38mk96m2lc8" },
+        { url: "index.html", revision: "0.3vd9p6b479g" },
       ],
       {},
     ),

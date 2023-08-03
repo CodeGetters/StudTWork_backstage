@@ -34,14 +34,6 @@ const routerJump = (url, param) => {
     query: param,
   });
 };
-
-// 处理折叠
-const handleOpen = (key, keyPath) => {
-  console.log(key, keyPath);
-};
-const handleClose = (key, keyPath) => {
-  console.log(key, keyPath);
-};
 </script>
 
 <template>
@@ -50,8 +42,6 @@ const handleClose = (key, keyPath) => {
       default-active="1"
       class="menuCon"
       :collapse="isCollapse"
-      @open="handleOpen"
-      @close="handleClose"
       active-text-color="#165DFF"
     >
       <!-- 主页 -->
@@ -67,6 +57,7 @@ const handleClose = (key, keyPath) => {
           <span>{{ $t("layout.userManage") }}</span>
         </template>
         <el-menu-item-group>
+          <!-- 用户管理 -->
           <el-menu-item index="2-1" @click="routerJump('/userManage', {})">{{
             $t("layout.userManage")
           }}</el-menu-item>
@@ -74,6 +65,11 @@ const handleClose = (key, keyPath) => {
           <!-- 用户中心 -->
           <el-menu-item index="2-2" @click="routerJump('/userCenter', {})">
             {{ $t("layout.userCenter") }}
+          </el-menu-item>
+
+          <!-- 创建用户 -->
+          <el-menu-item index="2-3" @click="routerJump('/createUser', {})">
+            创建用户
           </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>

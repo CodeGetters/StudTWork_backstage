@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 11:27:27
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-21 22:04:41
+ * @LastEditTime: 2023-08-02 17:32:18
 -->
 <script setup>
 // TODO:国际化以及布局主题切换
@@ -68,7 +68,7 @@ const uploadFile = async (visualRange) => {
   await uploadArticle(articleInfo)
     .then((res) => {
       messageTip("success", res.msg);
-      JumpTo("/homePage");
+      JumpTo("/MyArticle");
     })
     .catch((err) => {
       messageTip("error", err.response.data.msg);

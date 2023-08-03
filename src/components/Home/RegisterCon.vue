@@ -5,7 +5,7 @@
  * @version: 
  * @Date: 2023-07-14 13:38:57
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-29 17:56:59
+ * @LastEditTime: 2023-08-03 10:30:59
 -->
 <script setup>
 import { postRegister } from "@/api/user";
@@ -159,10 +159,10 @@ const createUser = async (userInfo) => {
   });
 
   if (createRes.msg === "success") {
-    notification("success");
     authStore.setToken(JSON.stringify(createRes.data.token));
     userStore.setUserInfo(createRes.data.userInfo);
-    linkTo("/home");
+    notification("success");
+    linkTo("/homePage");
   } else {
     notification("error", "请输入账号或密码");
   }

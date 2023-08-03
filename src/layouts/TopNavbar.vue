@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import translate from "@/assets/layout/translate.svg";
 import avatar from "@/assets/layout/avatar.png";
 
@@ -51,7 +51,7 @@ const hasNotification = ref(false);
 
 // 获取是否有待处理事件
 // 请求通知 api:每次刷新都会请求一次？？？
-onMounted(() => {});
+// onMounted(() => {});
 </script>
 
 <template>
@@ -104,8 +104,8 @@ onMounted(() => {});
               <button
                 class="border-none outline-none cursor-pointer overflow-hidden rounded-50%"
               >
-                <img :src="avatar" alt="头像" />
                 <arrow-down />
+                <img :src="avatar" alt="头像" />
               </button>
 
               <template #dropdown>

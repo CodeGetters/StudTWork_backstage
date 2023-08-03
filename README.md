@@ -68,6 +68,22 @@ docker images
 docker run -p 8080:80 images_id
 ```
 
+## Feature
+
+- user login ✔
+- register ✔
+- location ✔
+- create article ✔
+- preview article ✔
+- article operation ✔
+- Token ✔
+- user operation 🕐
+- authority ✔
+- i18n 🕐
+- theme 🕐
+- image upload ✖
+- notification ✖
+
 ## License
 
 GNU
