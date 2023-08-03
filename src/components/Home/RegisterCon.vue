@@ -19,8 +19,6 @@ import useInfoStore from "@/store/user";
 
 import { getIp } from "@/utils/getLocal";
 
-// TODO：注册成功后会返回主页并弹出错误信息
-
 const authStore = useAuthStore();
 const userStore = useInfoStore();
 

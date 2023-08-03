@@ -70,6 +70,8 @@ watch(
 onMounted(() => {
   getAdmin();
 });
+// TODO：执行了两次
+console.log("这个组件会被执行两次吗？");
 </script>
 
 <template>

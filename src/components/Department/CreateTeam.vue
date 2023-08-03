@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from "vue";
+import { ref, onMounted } from "vue";
 import { adminList } from "@/api/user";
 import { createDepartment } from "@/api/department";
 import { messageTip } from "@/utils/reminder";
@@ -52,21 +52,17 @@ const submitForm = async (formEl) => {
 
 // 获取管理员列表
 const getAdmin = async () => {
+  // TODO:执行了两次请求
   const res = await adminList().catch((err) => {
     messageTip("error", err.response.data.msg);
-    console.log(err);
   });
-  options.value = res.data.adminList;
+  if (res) {
+    options.value = res.data.adminList;
+  }
 };
+// TODO：路由只跳转了一次！
+console.log("这个组件为什会执行两次？？？？");
 
-// 监听变化
-watch(
-  () => ruleForm.value.state,
-  (val) => {
-    console.log(val);
-  },
-);
-// TODO:error 信息弹两次
 onMounted(() => {
   getAdmin();
 });

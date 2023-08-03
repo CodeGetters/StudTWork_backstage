@@ -7,6 +7,7 @@ let tableData = ref(null);
 
 const getDepartments = async () => {
   const departmentList = await showDepartments();
+
   let count = 1;
   let departmentLen = departmentList.data.departmentList.length;
 
@@ -22,6 +23,8 @@ const getDepartments = async () => {
 onMounted(() => {
   getDepartments();
 });
+// 这个组件也执行了两次
+console.log("这个组件会被执行两次吗");
 </script>
 
 <template>

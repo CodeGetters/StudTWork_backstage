@@ -51,6 +51,8 @@ const loginInfo = async (loginMsg) => {
   };
 };
 
+// TODO：也执行了两次
+console.log("这个组件会被执行两次嘛？？？");
 onMounted(() => {
   loginInfo(loginMsg);
   searchDepartment(userMsg, departmentId);

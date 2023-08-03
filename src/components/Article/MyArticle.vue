@@ -165,6 +165,8 @@ onMounted(() => {
   // 渲染图表数据
   getArticleList(tableData, personalArticle);
 });
+// TODO：该组件执行了两次
+console.log("这个组件会被执行两次吗");
 </script>
 
 <template>
