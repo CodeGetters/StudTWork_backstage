@@ -84,6 +84,24 @@ docker run -p 8080:80 images_id
 - image upload ✖
 - notification ✖
 
+## Community
+
+We recommend that [issue](https://github.com/CodeGetters/StudTWork_backstage/issues) be used for problem feedback, or others:
+
+- WeChat group
+
+Under preparation...
+
+## Sponsor this project
+
+Sponsor this project to support our better creation. It is recommended to use afdian to subscribe, and your avatar will appear in this project.
+
+### Afdian
+
+[https://afdian.net/a/studtwork?tab=home](https://afdian.net/a/studtwork)
+
+### Wechat / Alipay
+
 ## License
 
 GNU
