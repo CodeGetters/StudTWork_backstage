@@ -17,7 +17,6 @@ const getDepartments = async () => {
     if (count <= departmentLen) item.departmentId = count++;
   });
   tableData.value = departmentList.data.departmentList;
-  // console.log(tableData.value);
 };
 
 onMounted(() => {

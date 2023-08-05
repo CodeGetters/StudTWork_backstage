@@ -84,6 +84,14 @@ docker run -p 8080:80 images_id
 - image upload ✖
 - notification ✖
 
+## TODO
+
+- echarts on-demand introduction
+- improve i18n
+- TS reconstruction
+- theme style optimization
+- image upload
+
 ## Community
 
 We recommend that [issue](https://github.com/CodeGetters/StudTWork_backstage/issues) be used for problem feedback, or others:
@@ -101,6 +109,10 @@ Sponsor this project to support our better creation. It is recommended to use af
 [https://afdian.net/a/studtwork?tab=home](https://afdian.net/a/studtwork)
 
 ### Wechat / Alipay
+
+![Wechat](./public/wechat.jpg)
+
+![Alipay](./public/Alipay.jpg)
 
 ## License
 
