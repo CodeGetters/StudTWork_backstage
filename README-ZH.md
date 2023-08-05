@@ -19,7 +19,10 @@
 - node >= `16`
 
 ```shell
-$ git clone https://github.com/CodeGetters/studTBack.git
+$ https://github.com/CodeGetters/StudTWork_backstage.git
+
+# 如果你想要连接后端
+$ https://github.com/CodeGetters/StudTWork_backend.git
 
 # 推荐使用 yarn
 $ yarn install
