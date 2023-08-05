@@ -14,10 +14,18 @@ export const createDepartment = async (data) => {
 };
 
 /**
- * @description 查询所有小组
+ * @description 查询所有小组以及小组管理员信息
  */
 export const showDepartments = async () => {
   const response = await service.get("/department/show");
+  return response.data;
+};
+
+/**
+ * @description 查看所有小组
+ */
+export const showTeams = async () => {
+  const response = await service.get("/department/team");
   return response.data;
 };
 

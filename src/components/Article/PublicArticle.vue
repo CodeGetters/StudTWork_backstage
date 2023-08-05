@@ -1,16 +1,22 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import {
+  showArticle,
   updatePublicInfo,
   updatePublicCon,
   deletePublic,
-  showArticle,
 } from "@/api/article";
 import { getArticleList } from "@/utils/dataList";
 import { useRouter } from "vue-router";
 const router = useRouter();
 
-// TODO：查看文章
+// 从 token 中获取用户权限信息
+import UseInfoStore from "@/store/user";
+const infoStore = UseInfoStore();
+const userAuthority = infoStore.userInfo.authority;
+const updateUser = infoStore.userInfo.id;
+
+// 查看文章
 const JumpLinkTo = (path, id) => {
   router.push({
     path,
@@ -29,28 +35,79 @@ const dialogSwitch = ref({
   dialogArticleCon: false, // 修改文章内容
   dialogArticleInfo: false, // 修改文章信息
   articleDelete: false, // 删除文章
+  dialogReason: false, // 填写修改
 });
 
+// 文章信息
 const articleInfo = ref({
   id: "", //数据库中的文章 id
   articleName: "", // 文章名
   author: "", // 作者
-  isPublic: "0", // 是否公开
-  visualArr: ["1", "2", "3", "4"], // 文章可见范围
-  visualRange: "1234", // 文章可见范围
+  isPublic: "", // 是否公开
+  visualArr: [], // 文章可见范围
+  visualRange: "", // 文章可见范围
   articleCon: "", // 文章内容
+  modifyReason: "", // 修改理由
+  userId: "", // 文章作者
 });
+
+// 管理员操作 1 -> 更改信息 | 2 -> 更改内容 | 3 -> 删除文章
+// 超级管理员或文章发布者操作 4 -> 更改信息 | 4 -> 更改内容 | 6 -> 删除文章
+let operation = ref(0);
+const operateObj = {
+  1: () => {
+    operateApi(updatePublicInfo);
+  },
+  2: () => {
+    operateApi(updatePublicCon);
+  },
+  3: () => {
+    operateApi(deletePublic);
+  },
+  4: () => {},
+};
+
+// 操作请求 api
+const operateApi = async (postApi) => {
+  const res = await postApi(articleInfo).catch((err) => {
+    messageTip("error", "操作失败");
+    console.log(err);
+  });
+  if (res.msg === "managerSuccess") {
+    // 管理员操作
+    getArticleList(tableData, showArticle);
+    messageTip("success");
+  } else if (res.msg === "authorOrSuperSuccess") {
+    // 超级管理员或文章发布者操作
+    getArticleList(tableData, showArticle);
+    messageTip("success", "修改成功");
+  } else {
+    messageTip("error", res.msg);
+  }
+};
+
+const getReason = () => {
+  // 处理填写值为空的情况
+  if (!articleInfo.value.modifyReason) {
+    messageTip("error", "请填写修改理由");
+  } else {
+    // 根据操作参数调用相应的 api
+    operateObj[operation.value]();
+  }
+  dialogSwitch.value.dialogReason = false;
+};
 
 // 修改结果提示
 const messageTip = (type, msg) => {
   // eslint-disable-next-line no-undef
   ElMessage({
-    message: !msg ? "操作成功" : msg,
+    message: !msg ? "操作成功，请耐心等待超管大大的审核~" : msg,
     type,
   });
 };
 
 // 自动填充文章信息
+// -1 -> 隐藏||0 -> 公开(1234)||1 -> 游客||2 -> 普通用户||3 -> 管理员||4 -> 超级管理员
 const getArticleInfo = (info) => {
   const proxyInfo = new Proxy(info, {});
 
@@ -66,16 +123,18 @@ const getArticleInfo = (info) => {
     proxyInfo.isPublic = "0";
     proxyInfo.visualArr = proxyInfo.visualRange.split("");
   }
+
   articleInfo.value = {
     ...proxyInfo,
   };
+
   dialogSwitch.value.dialogArticleInfo = true;
 };
 
 // 提交修改后的文章信息
 const articleSubmit = async () => {
   const visArr = articleInfo.value.visualArr;
-  // 处理点击公开却没有选择范围的情况
+  // 处理点击公开缺没有选择范围的情况
   let isReq = true;
 
   // 隐藏文章
@@ -94,16 +153,16 @@ const articleSubmit = async () => {
   }
 
   if (isReq) {
-    const res = await updatePublicInfo(articleInfo).catch((err) => {
-      messageTip("error", "操作失败");
-      console.log(err);
-    });
-    if (res.msg !== "success") {
-      messageTip("error", res.msg);
+    // 修改操作值
+    operation.value = 1;
+
+    // 判断用户的权限是否是超级管理员或者是文章发布者
+    if (!(userAuthority === 4 || updateUser === articleInfo.value.userId)) {
+      // 触发打开填写修改理由对话框
+      dialogSwitch.value.dialogReason = true;
     } else {
-      // 刷新页面数据
-      getArticleList(tableData, showArticle);
-      messageTip("success");
+      // 直接执行相应的 api
+      operateObj[operation.value]();
     }
   }
   dialogSwitch.value.dialogArticleInfo = false;
@@ -112,10 +171,8 @@ const articleSubmit = async () => {
 // 自动填充文章内容
 const getArticleCon = (info) => {
   // 自动填充原有的信息
-
-  const proxyInfo = new Proxy(info, {});
   articleInfo.value = {
-    ...proxyInfo,
+    ...info,
   };
 
   dialogSwitch.value.dialogArticleCon = true;
@@ -123,39 +180,39 @@ const getArticleCon = (info) => {
 
 // 提交修改后的文章内容
 const articleConSubmit = async () => {
-  // TODO：更换后端接口
-  const res = await updatePublicCon(articleInfo).catch((err) => {
-    messageTip("error", "操作失败");
-    console.log(err);
-  });
-  if (res.msg !== "success") {
-    messageTip("error", res.msg);
+  // 修改操作值
+  operation.value = 2;
+  // 判断用户的权限是否是超级管理员或者是文章发布者
+  if (!(userAuthority === 4 || updateUser === articleInfo.value.userId)) {
+    // 触发打开填写修改理由对话框
+    dialogSwitch.value.dialogReason = true;
   } else {
-    // 刷新页面数据
-    getArticleList(tableData, showArticle);
-    messageTip("success");
+    // 直接执行相应的 api
+    operateObj[operation.value]();
   }
+
   dialogSwitch.value.dialogArticleCon = false;
 };
 
 // 获取需要删除的文章 id
-const deleteArticle = (id) => {
-  articleInfo.value.id = id;
+const deleteArticle = (info) => {
+  articleInfo.value = {
+    ...info,
+  };
   dialogSwitch.value.articleDelete = true;
 };
 
 // 确认删除文章
 const delSubmit = async () => {
-  // TODO：更换后端接口
-  const res = await deletePublic(articleInfo).catch((err) => {
-    messageTip("error", "操作失败");
-    console.log(err);
-  });
-  if (res.msg === "success") {
-    getArticleList(tableData, showArticle);
-    messageTip("success");
+  // 修改操作值
+  operation.value = 3;
+  // 判断用户的权限是否是超级管理员或者是文章发布者
+  if (!(userAuthority === 4 || updateUser === articleInfo.value.userId)) {
+    // 触发打开填写修改理由对话框
+    dialogSwitch.value.dialogReason = true;
   } else {
-    messageTip("error", res.msg);
+    // 直接执行相应的 api
+    operateObj[operation.value]();
   }
   dialogSwitch.value.articleDelete = false;
 };
@@ -167,7 +224,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div id="MyArticle" class="w100% h100%">
+  <div id="publicArticle" class="w100% h100%">
     <el-table
       :data="tableData"
       stripe
@@ -210,6 +267,7 @@ onMounted(() => {
             @click="getArticleInfo(scope.row, scope.$index)"
             >{{ $t("article.modifyInfo") }}</el-check-tag
           >
+
           <!-- 修改文章内容 -->
           <el-check-tag
             checked
@@ -217,14 +275,16 @@ onMounted(() => {
             @click="getArticleCon(scope.row, scope.$index)"
             >{{ $t("article.modifyCon") }}</el-check-tag
           >
+
           <!-- 删除文章 -->
           <el-check-tag
             checked
             class="ml-2"
-            @click="deleteArticle(scope.row.id, scope.$index)"
+            @click="deleteArticle(scope.row, scope.$index)"
           >
             {{ $t("article.deleteArticle") }}
           </el-check-tag>
+
           <!-- 查看文章 -->
           <el-check-tag
             checked
@@ -299,6 +359,7 @@ onMounted(() => {
           </el-checkbox-group>
         </el-form-item>
       </el-form>
+
       <!-- 尾部内容 -->
       <template #footer>
         <span class="dialog-footer">
@@ -351,6 +412,30 @@ onMounted(() => {
             {{ $t("article.cancel") }}
           </el-button>
           <el-button type="primary" @click="delSubmit()">
+            {{ $t("article.confirm") }}
+          </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
+    <!-- 修改理由 -->
+    <el-dialog
+      v-model="dialogSwitch.dialogReason"
+      title="请您填写修改理由喔 亲~"
+      width="30%"
+    >
+      <el-input
+        v-model="articleInfo.modifyReason"
+        :autosize="{ minRows: 2, maxRows: 10 }"
+        type="textarea"
+        placeholder="请填写修改理由"
+      />
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogSwitch.dialogReason = false">
+            {{ $t("article.cancel") }}</el-button
+          >
+          <el-button type="primary" @click="getReason()">
             {{ $t("article.confirm") }}
           </el-button>
         </span>
