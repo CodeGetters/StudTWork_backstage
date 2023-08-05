@@ -1,20 +1,19 @@
 <script setup>
-import { ref, onMounted, watch } from "vue";
-import { adminList } from "@/api/user";
+import { ref, onMounted } from "vue";
 import { createDepartment } from "@/api/department";
 import { messageTip } from "@/utils/reminder";
-
+// TODO:待完善
 const ruleFormRef = ref();
 
-// 表单信息
-const ruleForm = ref({
-  departmentName: "",
-  departmentIntro: "",
-  departmentAdmin: "",
+const userInfo = ref({
+  userName: "",
+  sex: "",
+  pwd: "",
+  departmentId: "",
 });
 
-// 管理员列表
-const options = ref([]);
+// 表单信息
+const ruleForm = ref({});
 
 // 校验规则
 const rules = ref({
@@ -25,7 +24,6 @@ const rules = ref({
   departmentIntro: [
     { required: true, message: "Please input activity form", trigger: "blur" },
   ],
-  departmentAdmin: [{ required: true, message: "please ", trigger: "blur" }],
 });
 
 // 提交表单
@@ -37,11 +35,8 @@ const submitForm = async (formEl) => {
       const res = await createDepartment(ruleForm).catch((err) => {
         messageTip("error", err.response.data.msg);
       });
-      if (res.msg === "success") {
-        messageTip("success", "创建成功🥰");
-      } else {
-        messageTip("error", "崩溃了，请联系管理员修复bug😥~");
-      }
+      if (res.msg === "success") messageTip("success", "创建成功🥰");
+      else messageTip("error", "崩溃了，请联系管理员修复bug😥~");
     } else {
       // 返回错误原因
       console.log("error submit!", fields);
@@ -50,26 +45,26 @@ const submitForm = async (formEl) => {
   });
 };
 
-// 获取管理员列表
-const getAdmin = async () => {
-  const res = await adminList().catch((err) => {
-    messageTip("error", err.response.data.msg);
-    console.log(err);
-  });
-  options.value = res.data.adminList;
-};
+const sexOptions = ["绅士", "淑女", "保密"];
 
-// 监听变化
-watch(
-  () => ruleForm.value.state,
-  (val) => {
-    console.log(val);
+const options = [
+  {
+    value: "Option1",
+    label: "Option1",
   },
-);
+  {
+    value: "Option2",
+    label: "Option2",
+  },
+  {
+    value: "Option3",
+    label: "Option3",
+  },
+];
+
 // TODO:error 信息弹两次
-onMounted(() => {
-  getAdmin();
-});
+onMounted(() => {});
+
 // TODO：执行了两次
 console.log("这个组件会被执行两次吗？");
 </script>
@@ -86,6 +81,7 @@ console.log("这个组件会被执行两次吗？");
       class="p3"
       status-icon
     >
+      <!-- 用户名 -->
       <el-form-item label="用户名" prop="departmentName">
         <el-input
           v-model="ruleForm.departmentName"
@@ -93,30 +89,50 @@ console.log("这个组件会被执行两次吗？");
         />
       </el-form-item>
 
+      <!-- 性别 -->
       <el-form-item label="性别" prop="departmentAdmin">
-        <el-select v-model="ruleForm.departmentAdmin" placeholder="Select">
+        <el-select v-model="userInfo.sex" placeholder="Select">
           <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.userName"
-            :value="item.id"
+            v-for="item in sexOptions"
+            :key="item"
+            :label="item"
+            :value="item"
           />
         </el-select>
       </el-form-item>
+
+      <!-- 部门 -->
+      <el-form-item label="部门">
+        <el-select
+          v-model="userInfo.departmentId"
+          class="m-2"
+          placeholder="Select"
+        >
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
+
+      <!-- 密码 -->
       <el-form-item label="密码" prop="departmentIntro">
         <el-input
           v-model="ruleForm.departmentIntro"
-          type="textarea"
           placeholder="请输入登录密码"
         />
       </el-form-item>
+
+      <!-- 二次密码 -->
       <el-form-item label="密码" prop="departmentIntro">
         <el-input
           v-model="ruleForm.departmentIntro"
-          type="textarea"
           placeholder="请再次输入密码"
         />
       </el-form-item>
+
       <el-form-item>
         <el-button type="primary" @click="submitForm(ruleFormRef)">
           创建用户

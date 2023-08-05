@@ -5,7 +5,7 @@
  * @version:
  * @Date: 2023-07-06 23:48:32
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-08-02 12:30:03
+ * @LastEditTime: 2023-08-05 11:00:17
 -->
 <script setup>
 import { Tickets, User, View, Clock, Male } from "@element-plus/icons-vue";
@@ -51,6 +51,14 @@ const loginInfo = async (loginMsg) => {
   };
 };
 
+// 身份
+const role = {
+  1: "游客",
+  2: "普通用户",
+  3: "管理员",
+  4: "超级管理员",
+};
+
 // TODO：也执行了两次
 console.log("这个组件会被执行两次嘛？？？");
 onMounted(() => {
@@ -93,7 +101,9 @@ onMounted(() => {
             角色等级
           </div>
         </template>
-        普通用户
+        <el-tag size="default">
+          {{ role[infoStore.userInfo.authority] }}</el-tag
+        >
       </el-descriptions-item>
 
       <el-descriptions-item>

@@ -85,20 +85,16 @@ const checkAccount = (rule, value, callback) => {
  */
 const checkPass = (rule, value, callback) => {
   let passReg = /^(?=.*[a-zA-Z])(?=.*\d).{4,11}$/;
-  let timer = null;
 
   if (!value) {
     callback(new Error(i18n.global.t("loginPage.noNone")));
   } else {
-    timer = setTimeout(() => {
-      if (passReg.test(value)) {
-        if (!ruleFormRef.value) return;
-        isRight.value.pwd = true;
-        callback();
-      }
-      callback(new Error(i18n.global.t("loginPage.pwdVerify")));
-      clearTimeout(timer);
-    }, 1000);
+    if (passReg.test(value)) {
+      if (!ruleFormRef.value) return;
+      isRight.value.pwd = true;
+      callback();
+    }
+    callback(new Error(i18n.global.t("loginPage.pwdVerify")));
   }
 };
 

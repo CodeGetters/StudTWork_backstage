@@ -47,7 +47,6 @@ const articleInfo = ref({
   visualArr: [], // 文章可见范围
   visualRange: "", // 文章可见范围
   articleCon: "", // 文章内容
-  // TODO：判断是否是本人操作或者是超级管理员
   modifyReason: "", // 修改理由
   userId: "", // 文章作者
 });
@@ -55,7 +54,6 @@ const articleInfo = ref({
 // 管理员操作 1 -> 更改信息 | 2 -> 更改内容 | 3 -> 删除文章
 // 超级管理员或文章发布者操作 4 -> 更改信息 | 4 -> 更改内容 | 6 -> 删除文章
 let operation = ref(0);
-// TODO;
 const operateObj = {
   1: () => {
     operateApi(updatePublicInfo);
@@ -158,8 +156,6 @@ const articleSubmit = async () => {
     // 修改操作值
     operation.value = 1;
 
-    console.log("修改者 id", updateUser);
-    console.log("发布者 id：", articleInfo.value.userId);
     // 判断用户的权限是否是超级管理员或者是文章发布者
     if (!(userAuthority === 4 || updateUser === articleInfo.value.userId)) {
       // 触发打开填写修改理由对话框
@@ -175,9 +171,8 @@ const articleSubmit = async () => {
 // 自动填充文章内容
 const getArticleCon = (info) => {
   // 自动填充原有的信息
-  const proxyInfo = new Proxy(info, {});
   articleInfo.value = {
-    ...proxyInfo,
+    ...info,
   };
 
   dialogSwitch.value.dialogArticleCon = true;
@@ -201,9 +196,8 @@ const articleConSubmit = async () => {
 
 // 获取需要删除的文章 id
 const deleteArticle = (info) => {
-  const proxyInfo = new Proxy(info, {});
   articleInfo.value = {
-    ...proxyInfo,
+    ...info,
   };
   dialogSwitch.value.articleDelete = true;
 };
@@ -212,9 +206,6 @@ const deleteArticle = (info) => {
 const delSubmit = async () => {
   // 修改操作值
   operation.value = 3;
-  console.log(userAuthority);
-  console.log(updateUser);
-  console.log(articleInfo.value.userId);
   // 判断用户的权限是否是超级管理员或者是文章发布者
   if (!(userAuthority === 4 || updateUser === articleInfo.value.userId)) {
     // 触发打开填写修改理由对话框
