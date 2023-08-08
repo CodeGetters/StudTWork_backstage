@@ -4,7 +4,7 @@
  * @version:
  * @Date: 2023-06-21 20:00:16
  * @LastEditors: CodeGetters
- * @LastEditTime: 2023-07-23 18:40:28
+ * @LastEditTime: 2023-08-08 23:15:03
  */
 const zhCN = {
   admin: "后台管理系统",
@@ -47,6 +47,7 @@ const zhCN = {
     articleManage: "文章管理",
     userCenter: "用户中心",
     exitAccount: "退出",
+    createUser: "创建用户",
   },
   uploadArticle: {
     saveToDraft: "保存至草稿",

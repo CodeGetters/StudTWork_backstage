@@ -69,7 +69,7 @@ const routerJump = (url, param) => {
 
           <!-- 创建用户 -->
           <el-menu-item index="2-3" @click="routerJump('/createUser', {})">
-            创建用户
+            {{ $t("layout.createUser") }}
           </el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
