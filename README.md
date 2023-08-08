@@ -17,7 +17,10 @@ require:
 - node >= `16`
 
 ```shell
-$ git clone https://github.com/CodeGetters/studTWork.git
+$ git clone https://github.com/CodeGetters/StudTWork_backstage.git
+
+# If you want to connect back end
+$ https://github.com/CodeGetters/StudTWork_backend.git
 
 # Recommend to use yarn
 $ yarn install

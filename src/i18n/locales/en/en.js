@@ -49,6 +49,7 @@ const zhCN = {
     articleManage: "article manage",
     userCenter: "user center",
     exitAccount: "sign out",
+    createUser: "create user",
   },
   uploadArticle: {
     saveToDraft: "save to draft",
