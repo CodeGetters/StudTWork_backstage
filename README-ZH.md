@@ -19,10 +19,12 @@
 - node >= `16`
 
 ```shell
-$ https://github.com/CodeGetters/StudTWork_backstage.git
+$ git clone https://github.com/CodeGetters/StudTWork_backstage.git
 
 # 如果你想要连接后端
-$ https://github.com/CodeGetters/StudTWork_backend.git
+# 配置好后端并运行后需要在本项目根目录中新建 .env 文件
+# 在 .env 文件中添加 VITE_BASE_URL="http://127.0.0.1:5000"
+$ git clone https://github.com/CodeGetters/StudTWork_backend.git
 
 # 推荐使用 yarn
 $ yarn install
@@ -37,6 +39,12 @@ $ pnpm install
 ```
 
 ## 使用
+
+如果你想要使用定位，在 .env 文件中添加你申请的高德开发者平台中 web 服务密钥
+
+```.env
+VITE_GAODE_API="your key"
+```
 
 ```shell
 # 运行
@@ -60,22 +68,6 @@ docker images
 # http://localhost:8080
 docker run -p 8080:80 images_id
 ```
-
-## 功能
-
-- 用户登录 ✔
-- 用户注册 ✔
-- 登录省份 ✔
-- 创建文章 ✔
-- 预览文章 ✔
-- 文章操作 ✔
-- Token ✔
-- 用户操作 🕐
-- 权限管理 ✔
-- i18n 🕐
-- 主题配置 🕐
-- 图片上传 ✖
-- 消息通知 ✖
 
 ## TODO
 
