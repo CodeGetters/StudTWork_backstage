@@ -60,8 +60,8 @@ const zhCN = {
     },
     userCenter: {
       roleGrade: "角色等级",
-      location: "最后一次登录位置",
-      time: "最后一次登录时间",
+      lastLocal: "最后一次登录位置",
+      lastLogin: "最后一次登录时间",
     },
     createUser: {
       department: "部门",

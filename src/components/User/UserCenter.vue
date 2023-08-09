@@ -102,8 +102,7 @@ onMounted(() => {
           </div>
         </template>
         <el-tag size="default">
-          {{ role[infoStore.userInfo.authority] }}</el-tag
-        >
+          {{ role[infoStore.userInfo.authority] }}</el-tag>
       </el-descriptions-item>
 
       <el-descriptions-item>
@@ -123,7 +122,7 @@ onMounted(() => {
             <el-icon>
               <tickets />
             </el-icon>
-            {{ $t("userManage.userCenter.location") }}
+            {{ $t("userManage.userCenter. lastLocal") }}
           </div>
         </template>
         <el-tag size="default">
@@ -147,7 +146,7 @@ onMounted(() => {
             <el-icon>
               <Clock />
             </el-icon>
-            {{ $t("userManage.userCenter.time") }}
+            {{ $t("userManage.userCenter.lastLogin") }}
           </div>
         </template>
         {{ normalDate(loginMsg.loginTime) }}

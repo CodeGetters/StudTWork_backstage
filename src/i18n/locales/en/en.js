@@ -62,8 +62,8 @@ const zhCN = {
     },
     userCenter: {
       roleGrade: "Role grade",
-      location: "Last login location",
-      time: "Last login time",
+      lastLocal: "Last login location",
+      lastLogin: "Last login time",
     },
     createUser: {
       department: "department",
