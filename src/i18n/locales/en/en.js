@@ -51,6 +51,31 @@ const zhCN = {
     exitAccount: "sign out",
     createUser: "create user",
   },
+  userManage: {
+    userName: "userName",
+    group: "group",
+    sex: "sex",
+    JoinDate: "Join date",
+    userManage: {
+      role: "role",
+      opener: "opener",
+    },
+    userCenter: {
+      roleGrade: "Role grade",
+      location: "Last login location",
+      time: "Last login time",
+    },
+    createUser: {
+      department: "department",
+      password: "password",
+    },
+  },
+  articleManage: {
+    publicArticle: "Public Article",
+    visibleArticle: "Visible Article",
+    myArticle: "My Article",
+    createArticle: "Create Article",
+  },
   uploadArticle: {
     saveToDraft: "save to draft",
     publish: "publish",
@@ -83,6 +108,10 @@ const zhCN = {
     conceal: "conceal",
     ArticleVisibility: "visibility",
     keepDelete: "The article is so good, are you sure to delete it",
+  },
+  teamManagement: {
+    creatTeam: "Creat Team",
+    teamManagement: "Team Management",
   },
 };
 

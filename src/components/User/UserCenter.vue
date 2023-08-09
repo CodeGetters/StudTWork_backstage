@@ -76,7 +76,7 @@ onMounted(() => {
             <el-icon>
               <user />
             </el-icon>
-            用户名
+            {{ $t("userManage.userName") }}
           </div>
         </template>
         {{ infoStore.userInfo.userName }}
@@ -87,7 +87,7 @@ onMounted(() => {
             <el-icon>
               <Male />
             </el-icon>
-            性别
+            {{ $t("userManage.sex") }}
           </div>
         </template>
         {{ userMsg.userSex }}
@@ -98,7 +98,7 @@ onMounted(() => {
             <el-icon>
               <View />
             </el-icon>
-            角色等级
+            {{ $t("userManage.userCenter.roleGrade") }}
           </div>
         </template>
         <el-tag size="default">
@@ -112,7 +112,7 @@ onMounted(() => {
             <el-icon>
               <tickets />
             </el-icon>
-            组别
+            {{ $t("userManage.group") }}
           </div>
         </template>
         <el-tag size="default"> {{ userMsg.department }}</el-tag>
@@ -123,7 +123,7 @@ onMounted(() => {
             <el-icon>
               <tickets />
             </el-icon>
-            最后一次登录位置
+            {{ $t("userManage.userCenter.location") }}
           </div>
         </template>
         <el-tag size="default">
@@ -136,7 +136,7 @@ onMounted(() => {
             <el-icon>
               <Clock />
             </el-icon>
-            注册时间
+            {{ $t("userManage.JoinDate") }}
           </div>
         </template>
         {{ userMsg.registerTime }}
@@ -147,7 +147,7 @@ onMounted(() => {
             <el-icon>
               <Clock />
             </el-icon>
-            最后一次登录时间
+            {{ $t("userManage.userCenter.time") }}
           </div>
         </template>
         {{ normalDate(loginMsg.loginTime) }}
