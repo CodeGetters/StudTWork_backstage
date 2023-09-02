@@ -46,14 +46,18 @@ const routerJump = (url, param) => {
     >
       <!-- 主页 -->
       <el-menu-item index="1" @click="routerJump('/', {})">
-        <el-icon><Odometer /></el-icon>
+        <el-icon>
+          <Odometer />
+        </el-icon>
         <template #title>{{ $t("layout.homePage") }}</template>
       </el-menu-item>
 
       <!-- 用户管理 -->
       <el-sub-menu index="2">
         <template #title>
-          <el-icon><User /></el-icon>
+          <el-icon>
+            <User />
+          </el-icon>
           <span>{{ $t("layout.userManage") }}</span>
         </template>
         <el-menu-item-group>
@@ -77,42 +81,48 @@ const routerJump = (url, param) => {
       <!-- 文章管理 -->
       <el-sub-menu index="3">
         <template #title>
-          <el-icon><Operation /></el-icon>
+          <el-icon>
+            <Operation />
+          </el-icon>
           <span>{{ $t("layout.articleManage") }}</span>
         </template>
         <el-menu-item-group>
           <!-- 所有公开的文章 -->
-          <el-menu-item index="3-1" @click="routerJump('/publicArticle', {})"
-            >公开文章</el-menu-item
-          >
+          <el-menu-item index="3-1" @click="routerJump('/publicArticle', {})">{{
+            $t("articleManage.publicArticle")
+          }}</el-menu-item>
           <!-- 权限内可见文章 -->
-          <el-menu-item index="3-2" @click="routerJump('/visibleArticle', {})"
-            >可见文章</el-menu-item
+          <el-menu-item
+            index="3-2"
+            @click="routerJump('/visibleArticle', {})"
+            >{{ $t("articleManage.visibleArticle") }}</el-menu-item
           >
           <!-- 个人文章 -->
-          <el-menu-item index="3-3" @click="routerJump('/MyArticle', {})"
-            >我的文章</el-menu-item
-          >
+          <el-menu-item index="3-3" @click="routerJump('/MyArticle', {})">{{
+            $t("articleManage.myArticle")
+          }}</el-menu-item>
           <!-- 创建文章 -->
-          <el-menu-item index="3-4" @click="routerJump('/CreateArticle', {})"
-            >创建文章</el-menu-item
-          >
+          <el-menu-item index="3-4" @click="routerJump('/CreateArticle', {})">{{
+            $t("articleManage.createArticle")
+          }}</el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
 
       <!-- 小组管理 -->
       <el-sub-menu index="4">
         <template #title>
-          <el-icon><setting /></el-icon>
-          <span>小组管理</span>
+          <el-icon>
+            <setting />
+          </el-icon>
+          <span>{{ $t("teamManagement.teamManagement") }}</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item index="4-1" @click="routerJump('/createTeam', {})"
-            >创建小组</el-menu-item
-          >
-          <el-menu-item index="4-2" @click="routerJump('/manageTeam', {})"
-            >小组管理</el-menu-item
-          >
+          <el-menu-item index="4-1" @click="routerJump('/createTeam', {})">{{
+            $t("teamManagement.creatTeam")
+          }}</el-menu-item>
+          <el-menu-item index="4-2" @click="routerJump('/manageTeam', {})">{{
+            $t("teamManagement.teamManagement")
+          }}</el-menu-item>
         </el-menu-item-group>
       </el-sub-menu>
     </el-menu>
@@ -120,8 +130,12 @@ const routerJump = (url, param) => {
       class="isOpen flex items-center h5% outline-none border-none cursor-pointer justify-end"
       @click="changeCollapse()"
     >
-      <el-icon v-if="isCollapse"><Expand /></el-icon>
-      <el-icon v-else><Fold /></el-icon>
+      <el-icon v-if="isCollapse">
+        <Expand />
+      </el-icon>
+      <el-icon v-else>
+        <Fold />
+      </el-icon>
     </button>
   </div>
 </template>

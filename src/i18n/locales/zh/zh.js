@@ -49,6 +49,32 @@ const zhCN = {
     exitAccount: "退出",
     createUser: "创建用户",
   },
+  userManage: {
+    userName: "用户名",
+    group: "组别",
+    sex: "性别",
+    JoinDate: "注册时间",
+    userManage: {
+      role: "角色",
+      opener: "操作",
+    },
+    userCenter: {
+      roleGrade: "角色等级",
+      lastLocal: "最后一次登录位置",
+      lastLogin: "最后一次登录时间",
+    },
+    createUser: {
+      department: "部门",
+      password: "密码",
+    },
+  },
+
+  articleManage: {
+    publicArticle: "公开文章",
+    visibleArticle: "可见文章",
+    myArticle: "我的文章",
+    createArticle: "创建文章",
+  },
   uploadArticle: {
     saveToDraft: "保存至草稿",
     publish: "发布",
@@ -80,6 +106,10 @@ const zhCN = {
     conceal: "隐藏",
     ArticleVisibility: "文章可见范围",
     keepDelete: "文章写的这么好，确定删除吗",
+  },
+  teamManagement: {
+    creatTeam: "创建小组",
+    teamManagement: "小组管理",
   },
 };
 
